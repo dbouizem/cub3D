@@ -24,15 +24,24 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 LDFLAGS = $(LIBFT_A) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 
 SRC_CORE = \
+	srcs/core/main.c \
+	srcs/core/init.c
 
 SRC_PARSING = \
+	srcs/parsing/parse_file.c \
+	srcs/parsing/parse_file_color.c \
+	srcs/parsing/parse_file_headers.c \
+	srcs/parsing/parse_file_io.c \
+	srcs/parsing/parse_file_line.c \
+	srcs/parsing/parse_file_split.c
 
 SRC_RENDER = \
 
 SRC_INPUT = \
 
 SRC_TOOLS = \
-
+	srcs/tools/error.c \
+	srcs/tools/memory.c
 
 SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS)
 
