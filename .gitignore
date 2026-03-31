@@ -1,0 +1,27 @@
+# Build outputs
+cub3D
+obj/
+
+# Libraries / objects
+*.o
+*.a
+*.so
+*.dylib
+
+# minilibx build artifacts
+minilibx/libmlx*.a
+minilibx/*.o
+
+# Logs
+*.log
+vgcore.*
+valgrind*.txt
+
+# Temporary files
+*~
+*.swp
+*.swo
+.DS_Store
+
+# IDE
+#.vscode/
