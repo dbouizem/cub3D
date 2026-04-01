@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
+/*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 06:23:18 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/03/31 14:11:13 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/04/01 20:19:59 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "parse.h"
+# include "validation.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>

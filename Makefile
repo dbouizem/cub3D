@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+         #
+#    By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/31 06:20:52 by dbouizem          #+#    #+#              #
-#    Updated: 2026/03/31 06:22:14 by dbouizem         ###   ########.fr        #
+#    Updated: 2026/04/01 20:41:12 by brrr1            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,11 @@ SRC_PARSING = \
 	srcs/parsing/parse_file_headers.c \
 	srcs/parsing/parse_file_io.c \
 	srcs/parsing/parse_file_line.c \
-	srcs/parsing/parse_file_split.c
+	srcs/parsing/parse_file_split.c \
+	srcs/parsing/validation/validate_map.c \
+	srcs/parsing/validation/validate_player.c \
+	srcs/parsing/validation/validate_boundaries.c \
+	srcs/parsing/validation/validate_chars.c
 
 SRC_RENDER = \
 
