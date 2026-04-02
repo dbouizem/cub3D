@@ -25,7 +25,8 @@ LDFLAGS = $(LIBFT_A) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 
 SRC_CORE = \
 	srcs/core/main.c \
-	srcs/core/init.c
+	srcs/core/init.c \
+	srcs/core/init_mlx.c
 
 SRC_PARSING = \
 	srcs/parsing/parse_file.c \
@@ -36,8 +37,10 @@ SRC_PARSING = \
 	srcs/parsing/parse_file_split.c
 
 SRC_RENDER = \
+	srcs/render/draw_frame.c
 
 SRC_INPUT = \
+	srcs/input/keyboard.c
 
 SRC_TOOLS = \
 	srcs/tools/error.c \

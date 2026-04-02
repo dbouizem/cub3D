@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/31 17:23:16 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/03/31 17:23:16 by dbouizem         ###   ########.fr       */
+/*   Created: 2026/04/02 06:00:00 by dbouizem          #+#    #+#             */
+/*   Updated: 2026/04/02 06:00:00 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef DEFINES_H
+# define DEFINES_H
 
-void	init_app(t_app *app)
-{
-	ft_bzero(app, sizeof(*app));
-	app->config.floor_rgb[0] = -1;
-	app->config.floor_rgb[1] = -1;
-	app->config.floor_rgb[2] = -1;
-	app->config.ceiling_rgb[0] = -1;
-	app->config.ceiling_rgb[1] = -1;
-	app->config.ceiling_rgb[2] = -1;
-	app->win_w = WIN_W;
-	app->win_h = WIN_H;
-}
+/* Window and event constants (Linux/X11 key/event codes). */
+# define WIN_W 1280
+# define WIN_H 720
+# define KEY_ESC 65307
+# define EVENT_KEYPRESS 2
+# define EVENT_DESTROY 17
+
+/* Generic parser return codes. */
+# define PARSE_OK 0
+# define PARSE_ERR 1
+# define PARSE_NOT_HEADER 2
+
+#endif

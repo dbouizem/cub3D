@@ -12,6 +12,14 @@
 
 #include "cub3d.h"
 
+static void	destroy_img(t_app *app, t_img *img)
+{
+	if (app->mlx_ptr && img->img_ptr)
+		mlx_destroy_image(app->mlx_ptr, img->img_ptr);
+	img->img_ptr = NULL;
+	img->addr = NULL;
+}
+
 void	free_split(char **ptr)
 {
 	int	i;
@@ -33,6 +41,20 @@ void	free_app(t_app *app)
 	free(app->config.tex_so);
 	free(app->config.tex_we);
 	free(app->config.tex_ea);
+	destroy_img(app, &app->tex_no);
+	destroy_img(app, &app->tex_so);
+	destroy_img(app, &app->tex_we);
+	destroy_img(app, &app->tex_ea);
+	destroy_img(app, &app->frame);
+	if (app->mlx_ptr && app->win_ptr)
+		mlx_destroy_window(app->mlx_ptr, app->win_ptr);
+	app->win_ptr = NULL;
+	if (app->mlx_ptr)
+	{
+		mlx_destroy_display(app->mlx_ptr);
+		free(app->mlx_ptr);
+	}
+	app->mlx_ptr = NULL;
 	free_split(app->file_lines);
 	app->file_lines = NULL;
 }

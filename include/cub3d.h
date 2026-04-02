@@ -14,32 +14,40 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "parse.h"
+# include "defines.h"
+# include "structs.h"
 # include <fcntl.h>
+# include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_config
-{
-	char	*tex_no;
-	char	*tex_so;
-	char	*tex_we;
-	char	*tex_ea;
-	int		floor_rgb[3];
-	int		ceiling_rgb[3];
-}	t_config;
+/* Parsing helpers: file I/O and line splitting. */
+int		has_cub_extension(const char *path);
+char	*read_all_text(const char *path);
+int		count_lines(const char *text);
+char	**split_lines(const char *text, int count);
 
-typedef struct s_app
-{
-	t_config	config;
-	char		**file_lines;
-	int			line_count;
-	int			map_start;
-}	t_app;
+/* Parsing helpers: header identifiers and values. */
+int		is_empty_line(const char *line);
+int		starts_with_id(const char *line, const char *id);
+int		starts_with_one_id(const char *line, char id);
+int		is_map_like_line(const char *line);
+char	*dup_trimmed_value(const char *line, int start);
+int		parse_texture(char **slot, const char *line);
+int		parse_rgb_triplet(const char *line, int start, int out[3]);
+int		parse_color(int dst[3], const char *line);
+int		parse_headers(t_app *app, char **lines, int line_count, int *map_start);
+int		check_required_headers(t_app *app);
 
+/* App lifecycle and rendering loop. */
 int		parse_file(t_app *app, const char *path);
 void	init_app(t_app *app);
+int		init_mlx(t_app *app);
+int		draw_frame(t_app *app);
+int		close_window(t_app *app);
+int		handle_keypress(int keycode, t_app *app);
 
+/* Shared utilities. */
 void	error_put(const char *msg);
 void	free_split(char **ptr);
 void	free_app(t_app *app);

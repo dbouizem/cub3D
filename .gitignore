@@ -1,27 +1,38 @@
 # Build outputs
 cub3D
-obj/
 
-# Libraries / objects
+# Object files
+obj/*
+!obj/.gitkeep
+
+# Common artifacts
 *.o
-*.a
-*.so
-*.dylib
-
-# minilibx build artifacts
-minilibx/libmlx*.a
-minilibx/*.o
-
-# Logs
-*.log
+*.out
+*.dSYM/
 vgcore.*
-valgrind*.txt
 
-# Temporary files
-*~
-*.swp
-*.swo
+# Editor/system
+.vscode/
+.idea/
 .DS_Store
 
-# IDE
-#.vscode/
+tests/
+
+# md
+TODO.md
+
+# Legacy local folder (clean copy used in Makefile is minilibx/)
+minilibx-linux/
+
+# Libft build artifacts
+libft/libft.a
+libft/objs/
+
+# MiniLibX generated artifacts
+minilibx/obj/
+minilibx/libmlx.a
+minilibx/libmlx_Linux.a
+minilibx/Makefile.gen
+minilibx/test/Makefile.gen
+minilibx/test/main.o
+minilibx/test/mlx-test
