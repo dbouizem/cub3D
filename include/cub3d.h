@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 06:23:18 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/01 20:19:59 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/02 16:05:40 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,30 @@ typedef struct s_app
 	char		**file_lines;
 	int			line_count;
 	int			map_start;
+	// NEW: player information
+	int			player_x;
+	int			player_y;
+	char		player_dir;
 }	t_app;
+
+typedef struct	s_node
+{
+	int				x;
+	int				y;
+	struct s_node	*next;
+}	t_node;
+
+typedef struct s_bfs_context
+{
+	char	**lines;
+	int		start;
+	int		width;
+	int		height;
+	char	**visited;
+	t_node	*queue;
+	int		px;
+	int		py;
+}	t_bfs_context;
 
 int		parse_file(t_app *app, const char *path);
 void	init_app(t_app *app);

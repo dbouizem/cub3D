@@ -6,7 +6,7 @@
 #    By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/31 06:20:52 by dbouizem          #+#    #+#              #
-#    Updated: 2026/04/01 20:41:12 by brrr1            ###   ########.fr        #
+#    Updated: 2026/04/02 15:41:38 by brrr1            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,10 @@ SRC_PARSING = \
 	srcs/parsing/validation/validate_map.c \
 	srcs/parsing/validation/validate_player.c \
 	srcs/parsing/validation/validate_boundaries.c \
-	srcs/parsing/validation/validate_chars.c
+	srcs/parsing/validation/validate_chars.c \
+	srcs/parsing/validation/flood_fill_utils.c \
+	srcs/parsing/validation/flood_fill_core.c \
+	srcs/parsing/validation/flood_fill_bfs.c
 
 SRC_RENDER = \
 

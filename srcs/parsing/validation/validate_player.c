@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 20:22:12 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/01 21:13:20 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/02 17:03:26 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	validate_player(t_app *app, char **lines, int start)
 
 	(void)app;
 	count = count_player(lines, start);
-
 	if (count == 0)
 	{
 		error_put("Error\n");

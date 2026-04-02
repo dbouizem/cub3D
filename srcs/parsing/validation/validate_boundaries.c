@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 08:44:04 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 09:48:47 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/02 17:04:52 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ static int	check_right_col(char **lines, int start)
 int	validate_boundaries(t_app *app, char **lines, int start)
 {
 	(void)app;
-
 	if (check_top_row(lines, start) != 0)
 		return (1);
 	if (check_bottom_row(lines, start) != 0)
