@@ -6,12 +6,18 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 08:44:04 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 17:04:52 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:07:11 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+** @brief: Checks if the top row of the map is enclosed by walls.
+** @param lines: Map lines array
+** @param start: Index where map begins
+** @return: 0 if enclosed, 1 if not enclosed
+*/
 static int	check_top_row(char **lines, int start)
 {
 	int	i;
@@ -30,6 +36,12 @@ static int	check_top_row(char **lines, int start)
 	return (0);
 }
 
+/*
+** @brief: Checks if the bottom row of the map is enclosed by walls.
+** @param lines: Map lines array
+** @param start: Index where map begins
+** @return: 0 if enclosed, 1 if not enclosed
+*/
 static int	check_bottom_row(char **lines, int start)
 {
 	int	last_row;
@@ -53,6 +65,12 @@ static int	check_bottom_row(char **lines, int start)
 	return (0);
 }
 
+/*
+** @brief: Checks if the left column of the map is enclosed by walls.
+** @param lines: Map lines array
+** @param start: Index where map begins
+** @return: 0 if enclosed, 1 if not enclosed
+*/
 static int	check_left_col(char **lines, int start)
 {
 	int	i;
@@ -71,6 +89,12 @@ static int	check_left_col(char **lines, int start)
 	return (0);
 }
 
+/*
+** @brief: Checks if the right column of the map is enclosed by walls.
+** @param lines: Map lines array
+** @param start: Index where map begins
+** @return: 0 if enclosed, 1 if not enclosed
+*/
 static int	check_right_col(char **lines, int start)
 {
 	int	i;
@@ -91,6 +115,13 @@ static int	check_right_col(char **lines, int start)
 	return (0);
 }
 
+/*
+** @brief: Validates that the map is enclosed by walls on all four sides.
+** @param app: App struct (unused, kept for consistency)
+** @param lines: Map lines array
+** @param start: Index where map begins
+** @return: 0 on success, 1 if any boundary is not enclosed
+*/
 int	validate_boundaries(t_app *app, char **lines, int start)
 {
 	(void)app;

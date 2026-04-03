@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 12:36:25 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 16:43:39 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:00:33 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** @brief: Finds the player's positiion and orientation in the map.
 ** @param app: App strauct to store results
 ** @param lines: Map lines
+** @param start: Index where map begins in lines array
 ** @return: 0 on success, 1 if player not found
 */
 int	find_player(t_app *app, char **lines, int start)
@@ -45,8 +46,12 @@ int	find_player(t_app *app, char **lines, int start)
 }
 
 /*
-** @brief: Calculates map width and height
-**
+** @brief: Calculates map width and height from the map lines.
+** @param lines: Map lines array
+** @param start: Index where map begins in lines array
+** @param width: Pointer to store calculated width
+** @param height: Pointer to store calculated height
+** @return: 0 on success
 */
 int	calculate_dimensions(char **lines, int start, int *width, int *height)
 {
@@ -68,7 +73,10 @@ int	calculate_dimensions(char **lines, int start, int *width, int *height)
 }
 
 /*
-** @brief: Allocates and initializes the visited grid.
+** @brief: Allocates and initializes the visited grid for flood fill.
+** @param height: Number of rows in the grid
+** @param width: Number of columns in the grid
+** @return: Pointer to allocated 2D array, NULL on failure
 */
 char	**allocate_visited(int height, int width)
 {
@@ -96,7 +104,12 @@ char	**allocate_visited(int height, int width)
 }
 
 /*
-** @brief: Scans for unvisited walkable cells.
+** @brief: Scans for unvisited walkable cells after flood fill.
+** @param lines: Map lines array
+** @param start: Index where map begins in lines array
+** @param height: Height of the visited grid
+** @param visited: Visited grid to check
+** @return: 1 if unreachable cells found, 0 if all reachable
 */
 int	scan_unreachable(char **lines, int start, int height, char **visited)
 {
@@ -119,7 +132,9 @@ int	scan_unreachable(char **lines, int start, int height, char **visited)
 }
 
 /*
-** @brief: Frees the visited grid.
+** @brief: Frees the visited grid memory.
+** @param visited: Visited grid to free
+** @param height: Number of rows in the grid
 */
 void	cleanup_visited(char **visited, int height)
 {

@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 14:55:52 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 18:20:10 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:03:52 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 /*
 ** @brief: Handles the error case for unreachable areas.
+** @param visited: Visited grid to clean up
+** @param height: Number of rows in the grid
+** @return: 1 (error code)
 */
 static int	handle_unreachable_error(char **visited, int height)
 {
@@ -24,7 +27,10 @@ static int	handle_unreachable_error(char **visited, int height)
 }
 
 /*
-** @brief: Checks and enqueues a valid neighbor.
+** @brief: Checks and enqueues a valid neighbor if it is walkable and unvisited.
+** @param ctx: BFS context containing map and visited data
+** @param nx: Neighbor x coordinate
+** @param ny: Neighbor y coordinate
 */
 static void	try_enqueue(t_bfs_context *ctx, int nx, int ny)
 {
@@ -39,7 +45,10 @@ static void	try_enqueue(t_bfs_context *ctx, int nx, int ny)
 }
 
 /*
-** @brief: Processes one cell in the BFS queue.
+** @brief: Processes one cell in the BFS queue by checking its four neighbors.
+** @param ctx: BFS context containing map and visited data
+** @param x: Current cell x coordinate
+** @param y: Current cell y coordinate
 */
 static void	process_cell(t_bfs_context *ctx, int x, int y)
 {
@@ -61,7 +70,8 @@ static void	process_cell(t_bfs_context *ctx, int x, int y)
 }
 
 /*
-** @brief: Performs BFS flood-fill from player position.
+** @brief: Performs BFS flood-fill from player position until queue is empty.
+** @param ctx: BFS context containing queue, visited, and map info
 */
 static void	run_bfs(t_bfs_context *ctx)
 {
@@ -75,7 +85,11 @@ static void	run_bfs(t_bfs_context *ctx)
 }
 
 /*
-** @brief: Validates that all walkable cells are reachable.
+** @brief: Validates that all walkable cells are reachable from the player.
+** @param app: App struct containing player position
+** @param lines: Map lines array
+** @param start: Index where map begins in lines array
+** @return: 0 if map is enclosed, 1 if unreachable areas exist or error
 */
 int	check_enclosure(t_app *app, char **lines, int start)
 {

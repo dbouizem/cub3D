@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 06:23:18 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/02 16:05:40 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:24:37 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/* ************************************************************************** */
+/*                                Structs                                     */
+/* ************************************************************************** */
+
+/* Configuration: textures and colors */
 typedef struct s_config
 {
 	char	*tex_no;
@@ -30,18 +35,19 @@ typedef struct s_config
 	int		ceiling_rgb[3];
 }	t_config;
 
+/* Main application context: holds config, raw file lines, and player data */
 typedef struct s_app
 {
 	t_config	config;
 	char		**file_lines;
 	int			line_count;
 	int			map_start;
-	// NEW: player information
 	int			player_x;
 	int			player_y;
 	char		player_dir;
 }	t_app;
 
+/* Linked list node for BFS queue */
 typedef struct	s_node
 {
 	int				x;
@@ -49,6 +55,7 @@ typedef struct	s_node
 	struct s_node	*next;
 }	t_node;
 
+/* Context for BFS flood-fill algorithm */
 typedef struct s_bfs_context
 {
 	char	**lines;
@@ -61,9 +68,15 @@ typedef struct s_bfs_context
 	int		py;
 }	t_bfs_context;
 
+/* ************************************************************************** */
+/*                      Initialization and Parsing                            */
+/* ************************************************************************** */
 int		parse_file(t_app *app, const char *path);
 void	init_app(t_app *app);
 
+/* ************************************************************************** */
+/*                    Utilities and Memory Management                         */
+/* ************************************************************************** */
 void	error_put(const char *msg);
 void	free_split(char **ptr);
 void	free_app(t_app *app);

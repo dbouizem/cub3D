@@ -6,17 +6,17 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 20:22:12 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 17:03:26 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:09:50 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-** @brief: Counts player position (N, S, E, W) in the map.
-** @param lines: Map lines starting from 'start' index
-** @param start: Index where map begins
-** @return: Number of players found
+** @brief: Counts player position markers (N, S, E, W) in the map.
+** @param lines: Map lines array starting from 'start' index
+** @param start: Index where map begins in lines array
+** @return: Number of player positions found
 */
 static int	count_player(char **lines, int start)
 {
@@ -42,9 +42,11 @@ static int	count_player(char **lines, int start)
 }
 
 /*
-** @brief: Validates that exactly one player exists
-** @param app: App struct (for error message)
-** @return: 0 on success, 1 on error
+** @brief: Validates that exactly one player position exists in the map.
+** @param app: App struct (unused, kept for consistency)
+** @param lines: Map lines array
+** @param start: Index where map begins in lines array
+** @return: 0 on success, 1 if zero or multiple players found
 */
 int	validate_player(t_app *app, char **lines, int start)
 {

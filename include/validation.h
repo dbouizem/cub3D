@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 20:14:37 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 18:19:04 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:20:36 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ int		calculate_dimensions(char **lines, int start, int *width, int *height);
 char	**allocate_visited(int height, int width);
 int		scan_unreachable(char **lines, int start, int height, char **visited);
 void	cleanup_visited(char **visited, int height);
-
 
 #endif

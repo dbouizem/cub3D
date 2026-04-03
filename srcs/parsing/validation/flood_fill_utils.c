@@ -6,15 +6,17 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 13:59:54 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 18:18:44 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:06:14 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-** @brief: Enqueue a coordinate
-**
+** @brief: Enqueue a coordinate pair into the BFS queue.
+** @param queue: Pointer to queue head node
+** @param x: X coordinate to enqueue
+** @param y: Y coordinate to enqueue
 */
 void	enqueue(t_node **queue, int x, int y)
 {
@@ -39,8 +41,11 @@ void	enqueue(t_node **queue, int x, int y)
 }
 
 /*
-** @brief: Dequeue a coordinate
-**
+** @brief: Dequeue a coordinate pair from the BFS queue.
+** @param queue: Pointer to queue head node
+** @param x: Pointer to store dequeued x coordinate
+** @param y: Pointer to store dequeued y coordinate
+** @return: 1 if successful, 0 if queue was empty
 */
 int	dequeue(t_node **queue, int *x, int *y)
 {
@@ -57,7 +62,8 @@ int	dequeue(t_node **queue, int *x, int *y)
 }
 
 /*
-** @brief: Free the entire queue
+** @brief: Free the entire queue and all nodes.
+** @param queue: Queue to free
 */
 void	free_queue(t_node *queue)
 {
@@ -72,7 +78,9 @@ void	free_queue(t_node *queue)
 }
 
 /*
-** @brief: Initializes direction arrays for N, S, E, W.
+** @brief: Initializes direction arrays for N, S, E, W movement.
+** @param dx: Array to store x direction offsets
+** @param dy: Array to store y direction offsets
 */
 void	init_directions(int *dx, int *dy)
 {
