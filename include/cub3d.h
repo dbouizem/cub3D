@@ -38,6 +38,10 @@ int		parse_rgb_triplet(const char *line, int start, int out[3]);
 int		parse_color(int dst[3], const char *line);
 int		parse_headers(t_app *app, char **lines, int line_count, int *map_start);
 int		check_required_headers(t_app *app);
+int		validate_map_block(char **lines, int line_count, int map_start);
+int		parse_header_entry(t_app *app, char *line);
+int		starts_with_header_prefix(const char *line);
+int		has_required_headers_loaded(t_app *app);
 
 /* App lifecycle and rendering loop. */
 int		parse_file(t_app *app, const char *path);

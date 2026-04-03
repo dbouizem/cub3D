@@ -38,9 +38,13 @@ void	free_split(char **ptr)
 void	free_app(t_app *app)
 {
 	free(app->config.tex_no);
+	app->config.tex_no = NULL;
 	free(app->config.tex_so);
+	app->config.tex_so = NULL;
 	free(app->config.tex_we);
+	app->config.tex_we = NULL;
 	free(app->config.tex_ea);
+	app->config.tex_ea = NULL;
 	destroy_img(app, &app->tex_no);
 	destroy_img(app, &app->tex_so);
 	destroy_img(app, &app->tex_we);

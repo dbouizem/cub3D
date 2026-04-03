@@ -16,8 +16,6 @@ vgcore.*
 .idea/
 .DS_Store
 
-tests/
-
 # md
 TODO.md
 

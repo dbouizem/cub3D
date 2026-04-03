@@ -33,9 +33,11 @@ int	starts_with_id(const char *line, const char *id)
 	if (!line)
 		return (0);
 	i = 0;
-	while (line && ft_isspace(line[i]))
+	while (line[i] && ft_isspace(line[i]))
 		i++;
-	if (line[i] != id[0] || line[i + 1] != id[1])
+	if (ft_strlen(line + i) < 3)
+		return (0);
+	if (ft_strncmp(line + i, id, 2) != 0)
 		return (0);
 	if (!ft_isspace(line[i + 2]))
 		return (0);
@@ -49,8 +51,10 @@ int	starts_with_one_id(const char *line, char id)
 	if (!line)
 		return (0);
 	i = 0;
-	while (line && ft_isspace(line[i]))
+	while (line[i] && ft_isspace(line[i]))
 		i++;
+	if (ft_strlen(line + i) < 2)
+		return (0);
 	if (line[i] != id)
 		return (0);
 	if (!ft_isspace(line[i + 1]))

@@ -29,12 +29,14 @@ SRC_CORE = \
 	srcs/core/init_mlx.c
 
 SRC_PARSING = \
-	srcs/parsing/parse_file.c \
-	srcs/parsing/parse_file_color.c \
-	srcs/parsing/parse_file_headers.c \
-	srcs/parsing/parse_file_io.c \
-	srcs/parsing/parse_file_line.c \
-	srcs/parsing/parse_file_split.c
+	srcs/parsing/file.c \
+	srcs/parsing/file_color.c \
+	srcs/parsing/file_headers.c \
+	srcs/parsing/file_headers_tools.c \
+	srcs/parsing/file_io.c \
+	srcs/parsing/file_line.c \
+	srcs/parsing/file_map.c \
+	srcs/parsing/file_split.c
 
 SRC_RENDER = \
 	srcs/render/draw_frame.c

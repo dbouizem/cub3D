@@ -15,14 +15,19 @@
 static int	parse_number(const char *line, int *idx, int *value)
 {
 	int	val;
+	int	digit;
 
 	if (!ft_isdigit(line[*idx]))
 		return (1);
 	val = 0;
 	while (ft_isdigit(line[*idx]))
-		val = val * 10 + (line[(*idx)++] - '0');
-	if (val < 0 || val > 255)
-		return (1);
+	{
+		digit = line[*idx] - '0';
+		if (val > 25 || (val == 25 && digit > 5))
+			return (1);
+		val = val * 10 + digit;
+		(*idx)++;
+	}
 	*value = val;
 	return (0);
 }

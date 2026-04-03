@@ -55,6 +55,8 @@ int	init_mlx(t_app *app)
 	app->frame.img_ptr = mlx_new_image(app->mlx_ptr, app->win_w, app->win_h);
 	if (!app->frame.img_ptr)
 		return (error_put("Error\nmlx_new_image failed\n"), 1);
+	app->frame.width = app->win_w;
+	app->frame.height = app->win_h;
 	app->frame.addr = mlx_get_data_addr(app->frame.img_ptr, &app->frame.bpp,
 			&app->frame.line_len, &app->frame.endian);
 	if (!app->frame.addr)

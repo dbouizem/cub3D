@@ -20,6 +20,8 @@ static int	read_and_split(const char *path, char ***lines, int *line_count)
 	if (!text)
 		return (error_put("Error\nCannot read map file\n"), 1);
 	*line_count = count_lines(text);
+	if (*line_count < 0)
+		return (free(text), error_put("Error\nMap file is too large\n"), 1);
 	*lines = split_lines(text, *line_count);
 	free(text);
 	if (!*lines)
@@ -43,6 +45,8 @@ int	parse_file(t_app *app, const char *path)
 	if (map_start >= line_count)
 		return (free_split(lines), error_put("Error\nMissing map block\n"), 1);
 	if (check_required_headers(app) != 0)
+		return (free_split(lines), 1);
+	if (validate_map_block(lines, line_count, map_start) != 0)
 		return (free_split(lines), 1);
 	app->file_lines = lines;
 	app->line_count = line_count;
