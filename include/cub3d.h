@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 06:23:18 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/03 13:24:37 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:39:29 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_app
 }	t_app;
 
 /* Linked list node for BFS queue */
-typedef struct	s_node
+typedef struct s_node
 {
 	int				x;
 	int				y;

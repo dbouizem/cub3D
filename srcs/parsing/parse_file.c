@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:58:54 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/01 20:45:14 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:37:12 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	parse_file(t_app *app, const char *path)
 	map_start = 0;
 	if (parse_headers(app, lines, line_count, &map_start) != 0)
 		return (free_split(lines), 1);
-	// NEW: Call to the validation orchestrator
 	if (validate_map(app, lines, map_start) != 0)
 		return (free_split(lines), 1);
 	if (map_start >= line_count)

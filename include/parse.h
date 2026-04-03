@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 06:27:42 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/03 13:20:17 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:39:05 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define PARSE_ERR 1
 # define PARSE_NOT_HEADER 2
 
-struct s_app;
+struct	s_app;
 
 /* --- parse_file_io.c: File I/O operations --- */
 int		has_cub_extension(const char *path);

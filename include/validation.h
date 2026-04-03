@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 20:14:37 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/03 13:20:36 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/03 13:38:38 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ struct	s_app;
 struct	s_node;
 
 /* validate_map.c - Main orchestrator */
-int	validate_map(struct s_app *app, char **lines, int start);
+int		validate_map(struct s_app *app, char **lines, int start);
 
 /* validate_player.c - Player count validation (only 1) */
-int	validate_player(struct s_app *app, char **lines, int start);
+int		validate_player(struct s_app *app, char **lines, int start);
 
 /* validate_boundaries.c - Wall enclousure check */
-int	validate_boundaries(struct s_app *app, char **lines, int start);
+int		validate_boundaries(struct s_app *app, char **lines, int start);
 
 /* validate_chars.c - Character validation */
-int validate_chars(struct s_app *app, char **lines, int start);
+int		validate_chars(struct s_app *app, char **lines, int start);
 
 /* flood_fill_utils.c - Queue operations */
 void	enqueue(struct s_node **queue, int x, int y);
