@@ -76,6 +76,7 @@ typedef struct s_bfs_context
 	t_node	*queue;
 	int		px;
 	int		py;
+	int		leak;
 }	t_bfs_context;
 
 #endif

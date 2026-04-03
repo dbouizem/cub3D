@@ -1,21 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill_utils.c                                 :+:      :+:    :+:   */
+/*   validate_map_closed_utils.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/02 13:59:54 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 18:18:44 by brrr1            ###   ########.fr       */
+/*   Created: 2026/04/03 00:00:00 by brrr1             #+#    #+#             */
+/*   Updated: 2026/04/03 00:00:00 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-** @brief: Enqueue a coordinate
-**
-*/
 void	enqueue(t_node **queue, int x, int y)
 {
 	t_node	*new_node;
@@ -38,10 +34,6 @@ void	enqueue(t_node **queue, int x, int y)
 	}
 }
 
-/*
-** @brief: Dequeue a coordinate
-**
-*/
 int	dequeue(t_node **queue, int *x, int *y)
 {
 	t_node	*temp;
@@ -56,9 +48,6 @@ int	dequeue(t_node **queue, int *x, int *y)
 	return (1);
 }
 
-/*
-** @brief: Free the entire queue
-*/
 void	free_queue(t_node *queue)
 {
 	t_node	*temp;
@@ -71,9 +60,6 @@ void	free_queue(t_node *queue)
 	}
 }
 
-/*
-** @brief: Initializes direction arrays for N, S, E, W.
-*/
 void	init_directions(int *dx, int *dy)
 {
 	dy[0] = -1;

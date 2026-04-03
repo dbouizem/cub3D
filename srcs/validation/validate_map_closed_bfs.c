@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill_core.c                                  :+:      :+:    :+:   */
+/*   validate_map_closed_bfs.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/02 12:36:25 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 16:43:39 by brrr1            ###   ########.fr       */
+/*   Created: 2026/04/03 00:00:00 by brrr1             #+#    #+#             */
+/*   Updated: 2026/04/03 00:00:00 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-** @brief: Finds the player's positiion and orientation in the map.
-** @param app: App strauct to store results
-** @param lines: Map lines
-** @return: 0 on success, 1 if player not found
-*/
 int	find_player(t_app *app, char **lines, int start)
 {
 	int	i;
@@ -44,11 +38,8 @@ int	find_player(t_app *app, char **lines, int start)
 	return (1);
 }
 
-/*
-** @brief: Calculates map width and height
-**
-*/
-int	calculate_dimensions(char **lines, int start, int *width, int *height)
+int	calculate_dimensions(char **lines, int start,
+	int *width, int *height)
 {
 	int	i;
 	int	j;
@@ -67,9 +58,6 @@ int	calculate_dimensions(char **lines, int start, int *width, int *height)
 	return (0);
 }
 
-/*
-** @brief: Allocates and initializes the visited grid.
-*/
 char	**allocate_visited(int height, int width)
 {
 	char	**visited;
@@ -95,10 +83,8 @@ char	**allocate_visited(int height, int width)
 	return (visited);
 }
 
-/*
-** @brief: Scans for unvisited walkable cells.
-*/
-int	scan_unreachable(char **lines, int start, int height, char **visited)
+int	scan_unreachable(char **lines, int start,
+	int height, char **visited)
 {
 	int	i;
 	int	j;
@@ -118,9 +104,6 @@ int	scan_unreachable(char **lines, int start, int height, char **visited)
 	return (0);
 }
 
-/*
-** @brief: Frees the visited grid.
-*/
 void	cleanup_visited(char **visited, int height)
 {
 	int	i;

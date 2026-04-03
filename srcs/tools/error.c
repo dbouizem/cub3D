@@ -14,5 +14,7 @@
 
 void	error_put(const char *msg)
 {
+	if (!msg)
+		return ;
 	write(2, msg, ft_strlen(msg));
 }

@@ -16,35 +16,52 @@
 # include "libft.h"
 # include "defines.h"
 # include "structs.h"
-# include "validation.h"
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
 
-/* Parsing helpers: file I/O and line splitting. */
+/* parse_read.c / parse_split.c */
 int		has_cub_extension(const char *path);
 char	*read_all_text(const char *path);
 int		count_lines(const char *text);
 char	**split_lines(const char *text, int count);
 
-/* Parsing helpers: header identifiers and values. */
+/* parse_config_utils.c */
 int		is_empty_line(const char *line);
 int		starts_with_id(const char *line, const char *id);
 int		starts_with_one_id(const char *line, char id);
 int		is_map_like_line(const char *line);
 char	*dup_trimmed_value(const char *line, int start);
+
+/* parse_config_texture.c / parse_config_color.c */
 int		parse_texture(char **slot, const char *line);
 int		parse_rgb_triplet(const char *line, int start, int out[3]);
 int		parse_color(int dst[3], const char *line);
+
+/* parse_config.c / parse_config_headers.c */
 int		parse_headers(t_app *app, char **lines, int line_count, int *map_start);
 int		check_required_headers(t_app *app);
-int		validate_map_block(char **lines, int line_count, int map_start);
 int		parse_header_entry(t_app *app, char *line);
 int		starts_with_header_prefix(const char *line);
 int		has_required_headers_loaded(t_app *app);
 
-/* App lifecycle and rendering loop. */
+/* validation */
+int		validate_map(t_app *app, char **lines, int start);
+int		validate_player(t_app *app, char **lines, int start);
+int		validate_chars(t_app *app, char **lines, int start);
+void	enqueue(t_node **queue, int x, int y);
+int		dequeue(t_node **queue, int *x, int *y);
+void	free_queue(t_node *queue);
+void	init_directions(int *dx, int *dy);
+int		check_enclosure(t_app *app, char **lines, int start);
+int		find_player(t_app *app, char **lines, int start);
+int		calculate_dimensions(char **lines, int start, int *width, int *height);
+char	**allocate_visited(int height, int width);
+int		scan_unreachable(char **lines, int start, int height, char **visited);
+void	cleanup_visited(char **visited, int height);
+
+/* parse_file.c / core / input / render */
 int		parse_file(t_app *app, const char *path);
 void	init_app(t_app *app);
 int		init_mlx(t_app *app);

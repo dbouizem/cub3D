@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill_bfs.c                                   :+:      :+:    :+:   */
+/*   validate_map_closed.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,14 +12,12 @@
 
 #include "cub3d.h"
 
-/*
-** @brief: Handles the error case for unreachable areas.
-*/
-static int	handle_unreachable_error(char **visited, int height)
+static int	handle_validation_error(char **visited, int height,
+	const char *msg, int len)
 {
 	cleanup_visited(visited, height);
 	error_put("Error\n");
-	write(2, "Map contains unreachable areas\n", 31);
+	write(2, msg, len);
 	return (1);
 }
 
@@ -28,9 +26,20 @@ static int	handle_unreachable_error(char **visited, int height)
 */
 static void	try_enqueue(t_bfs_context *ctx, int nx, int ny)
 {
-	if (nx < 0 || nx >= ctx->width || ny < 0 || ny >= ctx->height)
+	size_t	len;
+	char	cell;
+
+	if (ctx->leak)
 		return ;
-	if (ctx->lines[ctx->start + ny][nx] == '1')
+	if (nx < 0 || ny < 0 || nx >= ctx->width || ny >= ctx->height)
+		return (ctx->leak = 1, (void)0);
+	len = ft_strlen(ctx->lines[ctx->start + ny]);
+	if ((size_t)nx >= len)
+		return (ctx->leak = 1, (void)0);
+	cell = ctx->lines[ctx->start + ny][nx];
+	if (cell == ' ')
+		return (ctx->leak = 1, (void)0);
+	if (cell == '1')
 		return ;
 	if (ctx->visited[ny][nx] == '1')
 		return ;
@@ -38,69 +47,54 @@ static void	try_enqueue(t_bfs_context *ctx, int nx, int ny)
 	enqueue(&ctx->queue, nx, ny);
 }
 
-/*
-** @brief: Processes one cell in the BFS queue.
-*/
-static void	process_cell(t_bfs_context *ctx, int x, int y)
+static void	run_bfs(t_bfs_context *ctx)
 {
 	int	dx[4];
 	int	dy[4];
 	int	i;
-	int	nx;
-	int	ny;
-
-	init_directions(dx, dy);
-	i = 0;
-	while (i < 4)
-	{
-		nx = x + dx[i];
-		ny = y + dy[i];
-		try_enqueue(ctx, nx, ny);
-		i++;
-	}
-}
-
-/*
-** @brief: Performs BFS flood-fill from player position.
-*/
-static void	run_bfs(t_bfs_context *ctx)
-{
 	int	x;
 	int	y;
 
+	init_directions(dx, dy);
 	enqueue(&ctx->queue, ctx->px, ctx->py);
 	ctx->visited[ctx->py][ctx->px] = '1';
-	while (dequeue(&ctx->queue, &x, &y))
-		process_cell(ctx, x, y);
+	while (ctx->leak == 0 && dequeue(&ctx->queue, &x, &y))
+	{
+		i = 0;
+		while (i < 4)
+		{
+			try_enqueue(ctx, x + dx[i], y + dy[i]);
+			if (ctx->leak)
+				return ;
+			i++;
+		}
+	}
 }
 
-/*
-** @brief: Validates that all walkable cells are reachable.
-*/
 int	check_enclosure(t_app *app, char **lines, int start)
 {
-	int				width;
-	int				height;
-	char			**visited;
 	t_bfs_context	ctx;
 
 	if (find_player(app, lines, start) != 0)
 		return (1);
-	calculate_dimensions(lines, start, &width, &height);
-	visited = allocate_visited(height, width);
-	if (!visited)
+	calculate_dimensions(lines, start, &ctx.width, &ctx.height);
+	ctx.visited = allocate_visited(ctx.height, ctx.width);
+	if (!ctx.visited)
 		return (1);
 	ctx.lines = lines;
 	ctx.start = start;
-	ctx.width = width;
-	ctx.height = height;
-	ctx.visited = visited;
 	ctx.queue = NULL;
 	ctx.px = app->player_x;
 	ctx.py = app->player_y;
+	ctx.leak = 0;
 	run_bfs(&ctx);
-	if (scan_unreachable(lines, start, height, visited))
-		return (handle_unreachable_error(visited, height));
-	cleanup_visited(visited, height);
+	if (ctx.leak)
+		return (handle_validation_error(ctx.visited, ctx.height,
+				"Map is not enclosed by walls\n", 29));
+	if (scan_unreachable(lines, start, ctx.height, ctx.visited))
+		return (handle_validation_error(ctx.visited, ctx.height,
+				"Map contains unreachable areas\n", 31));
+	cleanup_visited(ctx.visited, ctx.height);
+	free_queue(ctx.queue);
 	return (0);
 }

@@ -16,8 +16,6 @@ int	validate_map(t_app *app, char **lines, int start)
 {
 	if (validate_player(app, lines, start) != 0)
 		return (1);
-	if (validate_boundaries(app, lines, start) != 0)
-		return (1);
 	if (validate_chars(app, lines, start) != 0)
 		return (1);
 	if (check_enclosure(app, lines, start) != 0)

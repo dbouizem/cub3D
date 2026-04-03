@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_player.c                                  :+:      :+:    :+:   */
+/*   validate_map_player.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/01 20:22:12 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 17:03:26 by brrr1            ###   ########.fr       */
+/*   Created: 2026/04/03 00:00:00 by brrr1             #+#    #+#             */
+/*   Updated: 2026/04/03 00:00:00 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-** @brief: Counts player position (N, S, E, W) in the map.
-** @param lines: Map lines starting from 'start' index
-** @param start: Index where map begins
-** @return: Number of players found
-*/
 static int	count_player(char **lines, int start)
 {
 	int	count;
@@ -31,8 +25,7 @@ static int	count_player(char **lines, int start)
 		j = 0;
 		while (lines[i][j])
 		{
-			if (lines[i][j] == 'N' || lines[i][j] == 'S' || lines[i][j] == 'E'
-			|| lines[i][j] == 'W')
+			if (ft_strchr("NSEW", lines[i][j]))
 				count++;
 			j++;
 		}
@@ -41,11 +34,6 @@ static int	count_player(char **lines, int start)
 	return (count);
 }
 
-/*
-** @brief: Validates that exactly one player exists
-** @param app: App struct (for error message)
-** @return: 0 on success, 1 on error
-*/
 int	validate_player(t_app *app, char **lines, int start)
 {
 	int	count;

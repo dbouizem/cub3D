@@ -29,21 +29,20 @@ SRC_CORE = \
 	srcs/core/init_mlx.c
 
 SRC_PARSING = \
-	srcs/parsing/file.c \
-	srcs/parsing/file_color.c \
-	srcs/parsing/file_headers.c \
-	srcs/parsing/file_headers_tools.c \
-	srcs/parsing/file_io.c \
-	srcs/parsing/file_line.c \
-	srcs/parsing/file_map.c \
-	srcs/parsing/file_split.c \
-	srcs/parsing/validation/validate_map.c \
-	srcs/parsing/validation/validate_player.c \
-	srcs/parsing/validation/validate_boundaries.c \
-	srcs/parsing/validation/validate_chars.c \
-	srcs/parsing/validation/flood_fill_utils.c \
-	srcs/parsing/validation/flood_fill_core.c \
-	srcs/parsing/validation/flood_fill_bfs.c
+	srcs/parsing/parse_file.c \
+	srcs/parsing/parse_read.c \
+	srcs/parsing/parse_split.c \
+	srcs/parsing/parse_config.c \
+	srcs/parsing/parse_config_headers.c \
+	srcs/parsing/parse_config_texture.c \
+	srcs/parsing/parse_config_color.c \
+	srcs/parsing/parse_config_utils.c \
+	srcs/validation/validate_map.c \
+	srcs/validation/validate_map_player.c \
+	srcs/validation/validate_map_chars.c \
+	srcs/validation/validate_map_closed.c \
+	srcs/validation/validate_map_closed_bfs.c \
+	srcs/validation/validate_map_closed_utils.c
 
 SRC_RENDER = \
 	srcs/render/draw_frame.c

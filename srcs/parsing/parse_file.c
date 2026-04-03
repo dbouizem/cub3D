@@ -29,6 +29,14 @@ static int	read_and_split(const char *path, char ***lines, int *line_count)
 	return (0);
 }
 
+static int	fail_parse(char **lines, const char *msg)
+{
+	free_split(lines);
+	if (msg)
+		error_put(msg);
+	return (1);
+}
+
 int	parse_file(t_app *app, const char *path)
 {
 	char	**lines;
@@ -41,15 +49,13 @@ int	parse_file(t_app *app, const char *path)
 		return (1);
 	map_start = 0;
 	if (parse_headers(app, lines, line_count, &map_start) != 0)
-		return (free_split(lines), 1);
-	if (validate_map(app, lines, map_start) != 0)
-		return (free_split(lines), 1);
+		return (fail_parse(lines, NULL));
 	if (map_start >= line_count)
-		return (free_split(lines), error_put("Error\nMissing map block\n"), 1);
+		return (fail_parse(lines, "Error\nMissing map block\n"));
 	if (check_required_headers(app) != 0)
-		return (free_split(lines), 1);
-	if (validate_map_block(lines, line_count, map_start) != 0)
-		return (free_split(lines), 1);
+		return (fail_parse(lines, NULL));
+	if (validate_map(app, lines, map_start) != 0)
+		return (fail_parse(lines, NULL));
 	app->file_lines = lines;
 	app->line_count = line_count;
 	app->map_start = map_start;
