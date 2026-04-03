@@ -25,6 +25,13 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_node
+{
+	int				x;
+	int				y;
+	struct s_node	*next;
+}	t_node;
+
 /* Parsed .cub configuration (textures and RGB colors). */
 typedef struct s_config
 {
@@ -54,6 +61,21 @@ typedef struct s_app
 	int			win_h;
 	int			floor_color;
 	int			ceiling_color;
+	int			player_x;
+	int			player_y;
+	char		player_dir;
 }	t_app;
+
+typedef struct s_bfs_context
+{
+	char	**lines;
+	int		start;
+	int		width;
+	int		height;
+	char	**visited;
+	t_node	*queue;
+	int		px;
+	int		py;
+}	t_bfs_context;
 
 #endif
