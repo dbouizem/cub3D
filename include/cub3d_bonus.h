@@ -15,11 +15,13 @@
 
 typedef struct s_app	t_app;
 typedef struct s_img	t_img;
+typedef struct s_ray	t_ray;
 
 int				retro_init(t_app *app);
 int				retro_begin(t_app *app, t_img *saved_frame);
 int				retro_render(t_app *app, t_img *saved_frame);
 void			retro_shutdown(t_app *app);
+int				apply_wall_shading(int color, t_ray ray);
 
 int				retro_init_img(t_app *app, t_img *img, int width, int height);
 void			retro_reset_img(t_img *img);

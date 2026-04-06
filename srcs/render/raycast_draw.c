@@ -62,6 +62,7 @@ static void	draw_wall_texels(t_app *app, t_ray ray, t_img *tex, double wall_x)
 	double	tex_pos;
 	int		y;
 	int		tex_x;
+	int		color;
 
 	step = (double)tex->height / (double)ray.line_height;
 	tex_pos = (ray.draw_start - app->frame.height / 2
@@ -70,8 +71,9 @@ static void	draw_wall_texels(t_app *app, t_ray ray, t_img *tex, double wall_x)
 	y = ray.draw_start;
 	while (y <= ray.draw_end)
 	{
-		put_pixel(&app->frame, ray.x, y,
-			sample_texel(tex, tex_x, (int)tex_pos));
+		color = sample_texel(tex, tex_x, (int)tex_pos);
+		color = apply_wall_shading(color, ray);
+		put_pixel(&app->frame, ray.x, y, color);
 		tex_pos += step;
 		y++;
 	}

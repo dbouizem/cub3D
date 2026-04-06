@@ -13,6 +13,8 @@ This project keeps bonus code isolated from mandatory code.
   - bonus image allocation/destruction/pixel read helpers
 - `srcs_bonus/retro/upscale.c`
   - nearest-neighbor upscale from low-res framebuffer to output image
+- `srcs_bonus/retro/shading.c`
+  - bonus-only distance/faces shading (+ gamma/quantization)
 
 ## Rules
 

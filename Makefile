@@ -56,7 +56,8 @@ SRC_RENDER = \
 	srcs/render/frame_timing.c \
 	srcs/render/raycast.c \
 	srcs/render/raycast_cast.c \
-	srcs/render/raycast_draw.c
+	srcs/render/raycast_draw.c \
+	srcs/render/raycast_shading.c
 
 SRC_INPUT = \
 	srcs/input/keyboard.c \
@@ -76,10 +77,12 @@ MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOO
 BONUS_SRCS = \
 	srcs_bonus/retro/api.c \
 	srcs_bonus/retro/image.c \
-	srcs_bonus/retro/upscale.c
+	srcs_bonus/retro/upscale.c \
+	srcs_bonus/retro/shading.c
 
 BONUS_REPLACE_SRCS = \
-	$(BONUS_NOOP_SRC)
+	$(BONUS_NOOP_SRC) \
+	srcs/render/raycast_shading.c
 
 SRCS = $(MANDATORY_SRCS)
 
