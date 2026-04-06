@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map_chars.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 20:22:12 by brrr1             #+#    #+#             */
+/*   Updated: 2026/04/02 17:03:26 by brrr1            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+static int	is_valid_char(char c)
+{
+	return (ft_strchr("01NSEW ", c) != NULL);
+}
+
+static int	check_all_chars(char **lines, int start)
+{
+	int	i;
+	int	j;
+
+	i = start;
+	while (lines[i])
+	{
+		j = 0;
+		while (lines[i][j])
+		{
+			if (!is_valid_char(lines[i][j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	validate_chars(t_app *app, char **lines, int start)
+{
+	(void)app;
+	if (check_all_chars(lines, start) != 0)
+		return (error_put("Error\nMap contains invalid characters\n"), 1);
+	return (0);
+}

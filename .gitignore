@@ -1,0 +1,36 @@
+# Build outputs
+cub3D
+cub3D_asan
+
+# Object files
+obj/
+obj_asan/
+
+# Common artifacts
+*.o
+*.out
+*.dSYM/
+vgcore.*
+
+# Editor/system
+.vscode/
+.idea/
+.DS_Store
+
+# Test temp files
+# tests/
+
+
+# Libft build artifacts
+libft/libft.a
+libft/objs/
+
+# MiniLibX generated artifacts
+minilibx/obj/
+minilibx/obj_asan/
+minilibx/libmlx.a
+minilibx/libmlx_Linux.a
+minilibx/Makefile.gen
+minilibx/test/Makefile.gen
+minilibx/test/main.o
+minilibx/test/mlx-test
