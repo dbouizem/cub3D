@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
+/*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 06:00:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/02 06:00:00 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/04/06 11:11:33 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ typedef struct s_config
 	int		ceiling_rgb[3];
 }	t_config;
 
+/* Key state tracker for player input */
+typedef struct s_keys
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_keys;
+
+
 /* Global application state shared across modules. */
 typedef struct s_app
 {
@@ -61,8 +73,13 @@ typedef struct s_app
 	int			win_h;
 	int			floor_color;
 	int			ceiling_color;
-	int			player_x;
-	int			player_y;
+	t_keys		keys;
+	double		player_x;
+	double		player_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 	char		player_dir;
 }	t_app;
 

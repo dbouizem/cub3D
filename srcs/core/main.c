@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
+/*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:00:15 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/03/31 17:00:16 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/04/06 11:28:08 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	start_game_loop(t_app *app)
 {
-	mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0, handle_keypress, app);
+	mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0, key_press, app);
 	mlx_hook(app->win_ptr, EVENT_DESTROY, 0, close_window, app);
 	mlx_loop_hook(app->mlx_ptr, draw_frame, app);
 	mlx_loop(app->mlx_ptr);

@@ -6,7 +6,7 @@
 #    By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/31 06:20:52 by dbouizem          #+#    #+#              #
-#    Updated: 2026/04/02 15:41:38 by brrr1            ###   ########.fr        #
+#    Updated: 2026/04/06 16:42:24 by brrr1            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,15 @@ SRC_PARSING = \
 	srcs/validation/validate_map_chars.c \
 	srcs/validation/validate_map_closed.c \
 	srcs/validation/validate_map_closed_bfs.c \
-	srcs/validation/validate_map_closed_utils.c
+	srcs/validation/validate_map_closed_utils.c \
+	srcs/validation/init_player.c
 
 SRC_RENDER = \
 	srcs/render/draw_frame.c
 
 SRC_INPUT = \
-	srcs/input/keyboard.c
+	srcs/input/keyboard.c \
+	srcs/input/movement.c
 
 SRC_TOOLS = \
 	srcs/tools/error.c \

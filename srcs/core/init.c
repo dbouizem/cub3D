@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
+/*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:23:16 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/03/31 17:23:16 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/04/06 10:33:32 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,11 @@ void	init_app(t_app *app)
 	app->config.ceiling_rgb[2] = -1;
 	app->win_w = WIN_W;
 	app->win_h = WIN_H;
+	app->player_x = 0.0;
+	app->player_y = 0.0;
+	app->dir_x = 0.0;
+	app->dir_y = 0.0;
+	app->plane_x = 0.0;
+	app->plane_y = 0.0;
+	app->player_dir = ' ';
 }

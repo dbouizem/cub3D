@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 00:00:00 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/03 00:00:00 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/06 16:38:00 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	find_player(t_app *app, char **lines, int start)
 				app->player_x = j;
 				app->player_y = i - start;
 				app->player_dir = lines[i][j];
+				init_player_directions(app);
 				return (0);
 			}
 			j++;
