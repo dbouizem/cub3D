@@ -68,7 +68,12 @@ SRC_TOOLS = \
 	srcs/tools/error.c \
 	srcs/tools/memory.c
 
-SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS)
+MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS)
+
+BONUS_SRCS = \
+	srcs_bonus/bonus_stub.c
+
+SRCS = $(MANDATORY_SRCS)
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
@@ -96,10 +101,11 @@ $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-bonus: all
+bonus:
+	@$(MAKE) SRCS="$(MANDATORY_SRCS) $(BONUS_SRCS)" OBJ_DIR=obj_bonus CFLAGS="$(CFLAGS) -DBONUS" all --no-print-directory
 
 clean:
-	@rm -rf $(OBJ_DIR) obj_asan
+	@rm -rf $(OBJ_DIR) obj_asan obj_bonus
 	@$(MAKE) -C $(LIBFT_DIR) clean --no-print-directory > /dev/null 2>&1
 
 fclean: clean

@@ -34,3 +34,6 @@ minilibx/Makefile.gen
 minilibx/test/Makefile.gen
 minilibx/test/main.o
 minilibx/test/mlx-test
+
+# Tools
+/cub3d
