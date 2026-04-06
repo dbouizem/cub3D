@@ -15,7 +15,9 @@
 
 # include "libft.h"
 # include "defines.h"
+# include "defines_bonus.h"
 # include "structs.h"
+# include "cub3d_bonus.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>

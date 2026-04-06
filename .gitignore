@@ -1,9 +1,11 @@
 # Build outputs
 cub3D
+cub3D_bonus
 cub3D_asan
 
 # Object files
 obj/
+obj_bonus/
 obj_asan/
 
 # Common artifacts
@@ -18,8 +20,7 @@ vgcore.*
 .DS_Store
 
 # Test temp files
-# tests/
-
+tests/.tmp_bonus/
 
 # Libft build artifacts
 libft/libft.a
@@ -36,4 +37,5 @@ minilibx/test/main.o
 minilibx/test/mlx-test
 
 # Tools
-/cub3d
+/cub3d/
+/home/djh/Bureau/cub3D/tools/

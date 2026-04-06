@@ -49,6 +49,7 @@ void	free_app(t_app *app)
 	destroy_img(app, &app->tex_so);
 	destroy_img(app, &app->tex_we);
 	destroy_img(app, &app->tex_ea);
+	retro_shutdown(app);
 	destroy_img(app, &app->frame);
 	if (app->mlx_ptr && app->win_ptr)
 		mlx_destroy_window(app->mlx_ptr, app->win_ptr);

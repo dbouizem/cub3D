@@ -55,6 +55,9 @@ void	init_app(t_app *app)
 	init_tex(&app->tex_so);
 	init_tex(&app->tex_we);
 	init_tex(&app->tex_ea);
+	init_tex(&app->bonus_fb);
+	init_tex(&app->bonus_out);
+	app->bonus_on = 0;
 }
 
 static void	set_direction_ns(t_app *app)

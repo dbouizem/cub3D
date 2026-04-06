@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME  = cub3D
+BONUS_NAME = cub3D_bonus
 ASAN_NAME = cub3D_asan
 
 CC = cc
@@ -68,10 +69,17 @@ SRC_TOOLS = \
 	srcs/tools/error.c \
 	srcs/tools/memory.c
 
-MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS)
+BONUS_NOOP_SRC = srcs_bonus/noop/api_noop.c
+
+MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS) $(BONUS_NOOP_SRC)
 
 BONUS_SRCS = \
-	srcs_bonus/bonus_stub.c
+	srcs_bonus/retro/api.c \
+	srcs_bonus/retro/image.c \
+	srcs_bonus/retro/upscale.c
+
+BONUS_REPLACE_SRCS = \
+	$(BONUS_NOOP_SRC)
 
 SRCS = $(MANDATORY_SRCS)
 
@@ -94,7 +102,8 @@ $(NAME): $(LIBFT_A) $(OBJS)
 
 $(LIBFT_A):
 	@echo "$(YELLOW)Building libft...$(RESET)"
-	@$(MAKE) -C $(LIBFT_DIR) --no-print-directory > /dev/null 2>&1
+	@env -u MAKEFLAGS -u MAKEOVERRIDES -u MFLAGS -u CFLAGS -u CPPFLAGS -u LDFLAGS \
+		$(MAKE) -C $(LIBFT_DIR) --no-print-directory > /dev/null 2>&1
 	@echo "$(GREEN)✓ libft ready!$(RESET)"
 
 $(OBJ_DIR)/%.o: %.c
@@ -102,7 +111,7 @@ $(OBJ_DIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 bonus:
-	@$(MAKE) SRCS="$(MANDATORY_SRCS) $(BONUS_SRCS)" OBJ_DIR=obj_bonus CFLAGS="$(CFLAGS) -DBONUS" all --no-print-directory
+	@$(MAKE) NAME="$(BONUS_NAME)" SRCS="$(filter-out $(BONUS_REPLACE_SRCS),$(MANDATORY_SRCS)) $(BONUS_SRCS)" OBJ_DIR=obj_bonus CFLAGS="$(CFLAGS) -DBONUS" all --no-print-directory
 
 clean:
 	@rm -rf $(OBJ_DIR) obj_asan obj_bonus
@@ -110,7 +119,7 @@ clean:
 
 fclean: clean
 	@echo "$(RED)Cleaning...$(RESET)"
-	@rm -f $(NAME) $(ASAN_NAME)
+	@rm -f $(NAME) $(BONUS_NAME) $(ASAN_NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory > /dev/null 2>&1
 	@$(MAKE) -C $(MLX_DIR) clean --no-print-directory > /dev/null 2>&1
 	@echo "$(GREEN)✓ All cleaned.$(RESET)"
@@ -118,8 +127,14 @@ fclean: clean
 re: fclean
 	@$(MAKE) all --no-print-directory
 
+rebonus: fclean
+	@$(MAKE) bonus --no-print-directory
+
 test: all
 	@./tests/run.sh
+
+test_bonus: bonus
+	@./tests/run_bonus.sh ./$(BONUS_NAME)
 
 ci:
 	@$(MAKE) fclean --no-print-directory
@@ -129,4 +144,4 @@ ci:
 asan:
 	@$(MAKE) CFLAGS="$(SAN_CFLAGS)" LDFLAGS="$(SAN_LDFLAGS)" OBJ_DIR=obj_asan NAME="$(ASAN_NAME)" all --no-print-directory
 
-.PHONY: all bonus clean fclean re test ci asan
+.PHONY: all bonus clean fclean re rebonus test test_bonus ci asan

@@ -112,6 +112,9 @@ typedef struct s_app
 	double		plane_x;
 	double		plane_y;
 	t_input		input;
+	t_img		bonus_fb;
+	t_img		bonus_out;
+	int			bonus_on;
 }	t_app;
 
 typedef struct s_bfs_context

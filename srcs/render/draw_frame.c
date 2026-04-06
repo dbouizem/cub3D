@@ -47,10 +47,15 @@ static void	draw_background(t_app *app)
 
 int	draw_frame(t_app *app)
 {
+	t_img	saved_frame;
+
 	update_frame_timing(app);
 	update_player_input(app);
+	retro_begin(app, &saved_frame);
 	draw_background(app);
 	raycast_scene(app);
+	if (retro_render(app, &saved_frame) != 0)
+		return (0);
 	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr,
 		app->frame.img_ptr, 0, 0);
 	return (0);

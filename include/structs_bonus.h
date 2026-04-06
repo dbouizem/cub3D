@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_stub.c                                       :+:      :+:    :+:   */
+/*   structs_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: djh <djh@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/06 09:20:00 by djh               #+#    #+#             */
-/*   Updated: 2026/04/06 09:20:00 by djh              ###   ########.fr       */
+/*   Created: 2026/04/06 10:25:00 by dbouizem          #+#    #+#             */
+/*   Updated: 2026/04/06 10:25:00 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bonus/bonus.h"
+#ifndef STRUCTS_BONUS_H
+# define STRUCTS_BONUS_H
 
-int	bonus_build_enabled(void)
-{
-	return (1);
-}
+# define BONUS_HEADER_VERSION 1
+
+#endif
