@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:55:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/06 14:27:24 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/08 09:55:26 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,40 @@ static void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = (unsigned int)color;
 }
 
-static void	draw_player(t_app *app, t_img *img)
+static void	draw_player_square(t_img *img, int x, int y, int color)
 {
-	double	scale;
-	int		screen_x;
-	int		screen_y;
-	int		player_color;
-	int		y_offset;
-	int		x_offset;
+	int	y_offset;
+	int	x_offset;
 
-	scale = app->win_w / 10.0;
-	screen_x = (int)(app->player_x * scale);
-	screen_y = (int)(app->player_y * scale);
-	player_color = (255 << 16);
 	y_offset = -5;
 	while (y_offset <= 5)
 	{
 		x_offset = -5;
 		while (x_offset <= 5)
 		{
-			put_pixel(img, screen_x + x_offset, screen_y
-				+ y_offset, player_color);
+			put_pixel(img, x + x_offset, y + y_offset, color);
 			x_offset++;
 		}
 		y_offset++;
 	}
+}
+
+static void	draw_player(t_app *app, t_img *img)
+{
+	double	scale_x;
+	double	scale_y;
+	int		screen_x;
+	int		screen_y;
+	int		player_color;
+
+	if (app->map_width == 0 || app->map_height == 0)
+		return ;
+	scale_x = (double)app->win_w / (double)app->map_width;
+	scale_y = (double)app->win_h / (double)app->map_height;
+	screen_x = (int)(app->player_x * scale_x);
+	screen_y = (int)(app->player_y * scale_y);
+	player_color = (255 << 16);
+	draw_player_square(img, screen_x, screen_y, player_color);
 }
 
 int	draw_frame(t_app *app)

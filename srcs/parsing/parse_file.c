@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:58:54 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/01 20:45:14 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/08 09:55:52 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,29 @@ static int	fail_parse(char **lines, const char *msg)
 	return (1);
 }
 
+static int	calculate_map_dimensions(t_app *app, char **lines)
+{
+	int	i;
+	int	max_w;
+	int	h;
+	int	len;
+
+	max_w = 0;
+	h = 0;
+	i = app->map_start;
+	while (lines[i] && is_map_like_line(lines[i]))
+	{
+		len = ft_strlen(lines[i]);
+		if (len > max_w)
+			max_w = len;
+		h++;
+		i++;
+	}
+	app->map_width = max_w;
+	app->map_height = h;
+	return (0);
+}
+
 int	parse_file(t_app *app, const char *path)
 {
 	char	**lines;
@@ -56,8 +79,9 @@ int	parse_file(t_app *app, const char *path)
 		return (fail_parse(lines, NULL));
 	if (validate_map(app, lines, map_start) != 0)
 		return (fail_parse(lines, NULL));
+	app->map_start = map_start;
+	calculate_map_dimensions(app, lines);
 	app->file_lines = lines;
 	app->line_count = line_count;
-	app->map_start = map_start;
 	return (0);
 }

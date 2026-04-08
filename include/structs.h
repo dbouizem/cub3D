@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 06:00:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/06 11:11:33 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/07 11:22:20 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_app
 	char		**file_lines;
 	int			line_count;
 	int			map_start;
+	int			map_width;
+	int			map_height;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		frame;
