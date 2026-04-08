@@ -43,7 +43,7 @@ static int	visit_neighbor(t_bfs_context *ctx, int nx, int ny)
 	cell = map_cell(ctx, nx, ny);
 	if (cell == ' ')
 		return (ctx->leak = 1, 0);
-	if (cell == '1' || ctx->visited[ny][nx] == '1')
+	if (bonus_is_solid_tile(cell) || ctx->visited[ny][nx] == '1')
 		return (0);
 	ctx->visited[ny][nx] = '1';
 	return (push_node(ctx, nx, ny));

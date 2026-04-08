@@ -36,9 +36,11 @@ static void	draw_background(t_app *app)
 		while (x < app->frame.width)
 		{
 			if (y < app->frame.height / 2)
-				put_pixel(&app->frame, x, y, app->ceiling_color);
+				put_pixel(&app->frame, x, y, apply_flat_shading(
+						app->ceiling_color, y, app->frame.height));
 			else
-				put_pixel(&app->frame, x, y, app->floor_color);
+				put_pixel(&app->frame, x, y, apply_flat_shading(
+						app->floor_color, y, app->frame.height));
 			x++;
 		}
 		y++;

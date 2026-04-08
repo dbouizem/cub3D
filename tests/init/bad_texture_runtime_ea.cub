@@ -1,6 +1,6 @@
-NO ../../textures/no.xpm
-SO ../../textures/so.xpm
-WE ../../textures/we.xpm
+NO ../../textures/mandatory/no.xpm
+SO ../../textures/mandatory/so.xpm
+WE ../../textures/mandatory/we.xpm
 EA ./not_xpm.xpm
 F 220,100,0
 C 225,30,0

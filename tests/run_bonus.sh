@@ -63,16 +63,17 @@ run_expect_running "bonus retro maze map" "$ROOT_DIR/tests/bonus/retro_maze.cub"
 run_expect_running "bonus retro wide map" "$ROOT_DIR/tests/bonus/retro_wide.cub"
 run_expect_running "bonus retro tall map" "$ROOT_DIR/tests/bonus/retro_tall.cub"
 run_expect_running "bonus retro corridor map" "$ROOT_DIR/tests/bonus/retro_corridor.cub"
+run_expect_running "bonus retro tiles 2..9" "$ROOT_DIR/tests/bonus/retro_tiles_2_9.cub"
 run_expect_exit "bonus parser invalid rgb" 1 "$BIN" \
 	"$ROOT_DIR/tests/parser/bad_rgb.cub"
 run_expect_exit "bonus parser unreachable map" 1 "$BIN" \
 	"$ROOT_DIR/tests/validation/unreachable.cub"
 
 cat > "$ROOT_DIR/tests/.tmp_bonus/wrong_ext.txt" <<'MAP'
-NO ../../textures/no.xpm
-SO ../../textures/so.xpm
-WE ../../textures/we.xpm
-EA ../../textures/ea.xpm
+NO ../../textures/mandatory/no.xpm
+SO ../../textures/mandatory/so.xpm
+WE ../../textures/mandatory/we.xpm
+EA ../../textures/mandatory/ea.xpm
 F 1,2,3
 C 4,5,6
 111

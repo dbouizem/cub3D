@@ -35,7 +35,7 @@ void	free_split(char **ptr)
 	free(ptr);
 }
 
-void	free_app(t_app *app)
+static void	free_config(t_app *app)
 {
 	free(app->config.tex_no);
 	app->config.tex_no = NULL;
@@ -45,12 +45,23 @@ void	free_app(t_app *app)
 	app->config.tex_we = NULL;
 	free(app->config.tex_ea);
 	app->config.tex_ea = NULL;
+}
+
+static void	destroy_textures(t_app *app)
+{
 	destroy_img(app, &app->tex_no);
 	destroy_img(app, &app->tex_so);
 	destroy_img(app, &app->tex_we);
 	destroy_img(app, &app->tex_ea);
+	bonus_destroy_wall_textures(app);
 	retro_shutdown(app);
 	destroy_img(app, &app->frame);
+}
+
+void	free_app(t_app *app)
+{
+	free_config(app);
+	destroy_textures(app);
 	if (app->mlx_ptr && app->win_ptr)
 		mlx_destroy_window(app->mlx_ptr, app->win_ptr);
 	app->win_ptr = NULL;

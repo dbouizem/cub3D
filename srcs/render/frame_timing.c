@@ -37,4 +37,5 @@ void	update_frame_timing(t_app *app)
 			app->delta_time = FRAME_DT_MAX;
 	}
 	app->last_frame_time = now;
+	app->frame_count++;
 }

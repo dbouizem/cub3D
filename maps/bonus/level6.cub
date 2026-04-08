@@ -1,0 +1,24 @@
+NO ../../textures/bonus/walls/wall_s/wall_s.xpm
+SO ../../textures/bonus/walls/wall_s/wall_s.xpm
+WE ../../textures/bonus/walls/wall_s/wall_s.xpm
+EA ../../textures/bonus/walls/wall_s/wall_s.xpm
+F 22,31,27
+C 102,111,140
+
+11111111111111111111111111111
+1            rDr            1
+1   rr      r0S0r      rr   1
+1  r00rr   r00000r   rr00r  1
+1 v00000vtv00xsx00vuv00000v 1
+1 u00x0000000x0x000000x000t 1
+1 v000xx0000x000x0000xx000v 1
+1  r000xxxx000000xxxx0000r  1
+1   r0000z0000q0000w0000r   1
+1  r000xxxx000000xxxx0000r  1
+1 v000xx0000x000x0000xx000v 1
+1 t00x0000000x0x000000x000u 1
+1 v00000vuv00xyx00vtv00000v 1
+1  r00rr   r00000r   rr00r  1
+1   rr      r000r      rr   1
+1            tvu            1
+11111111111111111111111111111

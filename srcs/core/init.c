@@ -40,10 +40,39 @@ static void	init_defaults(t_app *app)
 	app->win_h = WIN_H;
 	app->delta_time = FRAME_DT_DEFAULT;
 	app->last_frame_time = 0.0;
+	app->frame_count = 0;
 	app->dir_x = 0.0;
 	app->dir_y = 0.0;
 	app->plane_x = 0.0;
 	app->plane_y = 0.0;
+}
+
+static void	init_bonus_textures(t_app *app)
+{
+	int	i;
+
+	i = -1;
+	while (++i < BONUS_WALL_COUNT)
+		init_tex(&app->bonus_walls[i]);
+	i = -1;
+	while (++i < BONUS_WALL_SYMBOL_COUNT)
+		init_tex(&app->bonus_wall_symbols[i]);
+	i = -1;
+	while (++i < BONUS_DOOR_COUNT)
+		init_tex(&app->bonus_doors[i]);
+	i = -1;
+	while (++i < BONUS_ANIM_LPAREN_FRAMES)
+	{
+		if (i < BONUS_ANIM_O_FRAMES)
+			init_tex(&app->bonus_wall_o_anim[i]);
+		if (i < BONUS_ANIM_P_FRAMES)
+			init_tex(&app->bonus_wall_p_anim[i]);
+		if (i < BONUS_ANIM_Q_FRAMES)
+			init_tex(&app->bonus_wall_q_anim[i]);
+		if (i < BONUS_ANIM_STAR_FRAMES)
+			init_tex(&app->bonus_wall_star_anim[i]);
+		init_tex(&app->bonus_wall_lparen_anim[i]);
+	}
 }
 
 void	init_app(t_app *app)
@@ -55,45 +84,34 @@ void	init_app(t_app *app)
 	init_tex(&app->tex_so);
 	init_tex(&app->tex_we);
 	init_tex(&app->tex_ea);
+	init_bonus_textures(app);
 	init_tex(&app->bonus_fb);
 	init_tex(&app->bonus_out);
 	app->bonus_on = 0;
 }
 
-static void	set_direction_ns(t_app *app)
-{
-	if (app->player.orientation == 'N')
-	{
-		app->dir_x = 0;
-		app->dir_y = -1;
-		app->plane_x = FOV_FACTOR;
-		app->plane_y = 0;
-	}
-	else if (app->player.orientation == 'S')
-	{
-		app->dir_x = 0;
-		app->dir_y = 1;
-		app->plane_x = -FOV_FACTOR;
-		app->plane_y = 0;
-	}
-}
-
 void	init_player_vectors(t_app *app)
 {
 	if (app->player.orientation == 'N' || app->player.orientation == 'S')
-		return (set_direction_ns(app));
-	else if (app->player.orientation == 'E')
 	{
-		app->dir_x = 1;
-		app->dir_y = 0;
-		app->plane_x = 0;
-		app->plane_y = FOV_FACTOR;
+		app->dir_x = 0;
+		app->plane_y = 0;
+		app->dir_y = -1;
+		app->plane_x = FOV_FACTOR;
+		if (app->player.orientation == 'S')
+			app->dir_y = 1;
+		if (app->player.orientation == 'S')
+			app->plane_x = -FOV_FACTOR;
 	}
 	else
 	{
-		app->dir_x = -1;
 		app->dir_y = 0;
 		app->plane_x = 0;
+		app->dir_x = -1;
 		app->plane_y = -FOV_FACTOR;
+		if (app->player.orientation == 'E')
+			app->dir_x = 1;
+		if (app->player.orientation == 'E')
+			app->plane_y = FOV_FACTOR;
 	}
 }

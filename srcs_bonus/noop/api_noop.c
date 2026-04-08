@@ -44,3 +44,10 @@ void	retro_shutdown(t_app *app)
 {
 	(void)app;
 }
+
+int	apply_flat_shading(int color, int y, int height)
+{
+	(void)y;
+	(void)height;
+	return (color);
+}

@@ -48,6 +48,9 @@ static double	shade_factor(t_ray ray)
 		factor = BONUS_SHADE_MIN;
 	if (factor > 1.0)
 		factor = 1.0;
+	factor = BONUS_SHADE_AMBIENT + (1.0 - BONUS_SHADE_AMBIENT) * factor;
+	if (factor > 1.0)
+		factor = 1.0;
 	return (factor);
 }
 

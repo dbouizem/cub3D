@@ -1,7 +1,7 @@
-NO ../../textures/no.xpm
-SO ../../textures/so.xpm
-WE ../../textures/we.xpm
-EA ../../textures/ea.xpm
+NO ../../textures/mandatory/no.xpm
+SO ../../textures/mandatory/so.xpm
+WE ../../textures/mandatory/we.xpm
+EA ../../textures/mandatory/ea.xpm
 F 60,60,80
 C 120,170,230
 

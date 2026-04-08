@@ -14,6 +14,20 @@
 
 static t_img	*pick_texture(t_app *app, t_ray ray)
 {
+	t_img	*bonus_tex;
+	char	tile;
+	int		len;
+
+	tile = '1';
+	if (ray.map_y >= 0 && ray.map_y < app->map.height)
+	{
+		len = (int)ft_strlen(app->map.grid[ray.map_y]);
+		if (ray.map_x >= 0 && ray.map_x < len)
+			tile = app->map.grid[ray.map_y][ray.map_x];
+	}
+	bonus_tex = bonus_pick_wall_texture(app, tile);
+	if (bonus_tex != NULL)
+		return (bonus_tex);
 	if (ray.side == 0)
 	{
 		if (ray.ray_dir_x > 0)

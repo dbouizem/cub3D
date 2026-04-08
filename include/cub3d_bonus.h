@@ -22,6 +22,18 @@ int				retro_begin(t_app *app, t_img *saved_frame);
 int				retro_render(t_app *app, t_img *saved_frame);
 void			retro_shutdown(t_app *app);
 int				apply_wall_shading(int color, t_ray ray);
+int				apply_flat_shading(int color, int y, int height);
+int				bonus_is_valid_map_char(char c);
+int				bonus_is_solid_tile(char c);
+int				bonus_load_wall_textures(t_app *app);
+void			bonus_destroy_wall_textures(t_app *app);
+t_img			*bonus_pick_wall_texture(t_app *app, char tile);
+int				bonus_symbol_index(char c);
+t_img			*bonus_pick_symbol_texture(t_app *app, char tile);
+t_img			*bonus_pick_door_texture(t_app *app, char tile);
+t_img			*bonus_pick_anim_texture(t_app *app, char tile);
+void			bonus_load_symbol_textures(t_app *app);
+void			bonus_destroy_symbol_textures(t_app *app);
 
 int				retro_init_img(t_app *app, t_img *img, int width, int height);
 void			retro_reset_img(t_img *img);

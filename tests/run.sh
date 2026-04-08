@@ -135,10 +135,10 @@ run_expect_exit "edge wrong extension" 1 "$BIN" "$TMP_DIR/wrong_ext.txt"
 
 # Edge: irregular lines (still enclosed, should run).
 cat > "$TMP_DIR/irregular_open.cub" <<MAP
-NO $ROOT_DIR/textures/no.xpm
-SO $ROOT_DIR/textures/so.xpm
-WE $ROOT_DIR/textures/we.xpm
-EA $ROOT_DIR/textures/ea.xpm
+NO $ROOT_DIR/textures/mandatory/no.xpm
+SO $ROOT_DIR/textures/mandatory/so.xpm
+WE $ROOT_DIR/textures/mandatory/we.xpm
+EA $ROOT_DIR/textures/mandatory/ea.xpm
 F 1,2,3
 C 4,5,6
 
@@ -153,10 +153,10 @@ run_expect_running "edge irregular lines" "$TMP_DIR/irregular_open.cub"
 # Perf-ish: large enclosed map should still run.
 {
   cat <<MAP
-NO $ROOT_DIR/textures/no.xpm
-SO $ROOT_DIR/textures/so.xpm
-WE $ROOT_DIR/textures/we.xpm
-EA $ROOT_DIR/textures/ea.xpm
+NO $ROOT_DIR/textures/mandatory/no.xpm
+SO $ROOT_DIR/textures/mandatory/so.xpm
+WE $ROOT_DIR/textures/mandatory/we.xpm
+EA $ROOT_DIR/textures/mandatory/ea.xpm
 F 10,20,30
 C 40,50,60
 

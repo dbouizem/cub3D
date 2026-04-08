@@ -14,7 +14,9 @@
 
 static int	is_valid_char(char c)
 {
-	return (ft_strchr("01NSEW ", c) != NULL);
+	if (ft_strchr("01NSEW ", c) != NULL)
+		return (1);
+	return (bonus_is_valid_map_char(c));
 }
 
 static int	check_all_chars(char **lines, int start)

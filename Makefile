@@ -25,6 +25,7 @@ OBJ_DIR = obj
 MLX_DIR = minilibx
 LIBFT_DIR = libft
 LIBFT_A = $(LIBFT_DIR)/libft.a
+HEADERS = $(wildcard include/*.h) $(wildcard $(LIBFT_INC)/*.h)
 
 LDFLAGS = $(LIBFT_A) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 
@@ -70,18 +71,29 @@ SRC_TOOLS = \
 	srcs/tools/error.c \
 	srcs/tools/memory.c
 
-BONUS_NOOP_SRC = srcs_bonus/noop/api_noop.c
+BONUS_NOOP_SRCS = \
+	srcs_bonus/noop/api_noop.c \
+	srcs_bonus/noop/walls_noop.c
 
-MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS) $(BONUS_NOOP_SRC)
+MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS) $(BONUS_NOOP_SRCS)
 
 BONUS_SRCS = \
 	srcs_bonus/retro/api.c \
 	srcs_bonus/retro/image.c \
 	srcs_bonus/retro/upscale.c \
-	srcs_bonus/retro/shading.c
+	srcs_bonus/retro/shading.c \
+	srcs_bonus/retro/flat_shading.c \
+	srcs_bonus/retro/walls_rules.c \
+	srcs_bonus/retro/walls_core.c \
+	srcs_bonus/retro/walls_door_pick.c \
+	srcs_bonus/retro/walls_anim_pick.c \
+	srcs_bonus/retro/walls_symbol_pick.c \
+	srcs_bonus/retro/walls_io.c \
+	srcs_bonus/retro/walls_destroy.c \
+	srcs_bonus/retro/walls_symbol_io.c
 
 BONUS_REPLACE_SRCS = \
-	$(BONUS_NOOP_SRC) \
+	$(BONUS_NOOP_SRCS) \
 	srcs/render/raycast_shading.c
 
 SRCS = $(MANDATORY_SRCS)
@@ -109,7 +121,7 @@ $(LIBFT_A):
 		$(MAKE) -C $(LIBFT_DIR) --no-print-directory > /dev/null 2>&1
 	@echo "$(GREEN)✓ libft ready!$(RESET)"
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 

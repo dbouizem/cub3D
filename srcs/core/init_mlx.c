@@ -65,6 +65,8 @@ int	init_mlx(t_app *app)
 	app->floor_color = rgb_to_int(app->config.floor_rgb);
 	if (load_textures(app) != 0)
 		return (1);
+	if (bonus_load_wall_textures(app) != 0)
+		return (1);
 	if (retro_init(app) != 0)
 		return (1);
 	return (0);

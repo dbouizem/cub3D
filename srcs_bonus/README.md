@@ -15,6 +15,8 @@ This project keeps bonus code isolated from mandatory code.
   - nearest-neighbor upscale from low-res framebuffer to output image
 - `srcs_bonus/retro/shading.c`
   - bonus-only distance/faces shading (+ gamma/quantization)
+- `srcs_bonus/retro/walls_core.c` + `srcs_bonus/retro/walls_io.c`
+  - bonus-only wall tiles (`2..9`) validation/solid rules + texture loading
 
 ## Rules
 

@@ -21,7 +21,7 @@ static int	is_wall(t_app *app, int x, int y)
 	len = (int)ft_strlen(app->map.grid[y]);
 	if (x < 0 || x >= len)
 		return (1);
-	return (app->map.grid[y][x] == '1');
+	return (bonus_is_solid_tile(app->map.grid[y][x]));
 }
 
 static void	init_ray(t_app *app, t_ray *r, int x)
