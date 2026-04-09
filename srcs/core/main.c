@@ -31,12 +31,18 @@ static int	start_game_loop(t_app *app)
 
 int	main(int argc, char **argv)
 {
-	t_app	app;
+	t_app		app;
+	const char	*map_path;
 
 	if (argc != 2)
 		return (error_put("Error\nUsage: ./cub3D <map.cub>\n"), 1);
 	init_app(&app);
-	if (parse_file(&app, argv[1]) != 0)
+	if (bonus_levels_init(&app, argv[1]) != 0)
+		return (free_app(&app), 1);
+	map_path = bonus_level_current_path(&app);
+	if (map_path == NULL)
+		map_path = argv[1];
+	if (parse_file(&app, map_path) != 0)
 		return (free_app(&app), 1);
 	init_player_vectors(&app);
 	if (init_mlx(&app) != 0)

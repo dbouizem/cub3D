@@ -29,6 +29,7 @@
 # define KEY_F1 65470
 # define KEY_F2 65471
 # define KEY_F3 65472
+# define KEY_F4 65473
 
 # define EVENT_KEYPRESS 2
 # define EVENT_KEYRELEASE 3

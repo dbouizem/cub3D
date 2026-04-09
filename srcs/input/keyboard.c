@@ -43,6 +43,11 @@ int	handle_keypress(int keycode, t_app *app)
 {
 	if (keycode == KEY_ESC)
 		close_window(app);
+	if (keycode == KEY_F4)
+	{
+		if (bonus_load_next_level(app) == 0)
+			return (0);
+	}
 	if (keycode == KEY_E)
 		bonus_door_try_toggle(app);
 	if (apply_resolution_preset(app, keycode))

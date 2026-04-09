@@ -76,11 +76,21 @@ typedef struct s_bonus_retro
 	double	minimap_zoom;
 }	t_bonus_retro;
 
+typedef struct s_bonus_levels
+{
+	const char	*paths[BONUS_LEVEL_MAX];
+	const char	*start_path;
+	int			count;
+	int			current;
+	int			active;
+}	t_bonus_levels;
+
 typedef struct s_bonus_ctx
 {
 	t_bonus_assets	assets;
 	t_bonus_retro	retro;
 	t_bonus_doors	doors;
+	t_bonus_levels	levels;
 }	t_bonus_ctx;
 
 #endif

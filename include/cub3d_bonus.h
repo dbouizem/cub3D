@@ -49,6 +49,9 @@ char			bonus_map_cell_at(t_app *app, int x, int y);
 t_door			*bonus_find_door(t_app *app, int x, int y);
 int				bonus_find_front_door(t_app *app, int *x, int *y);
 void			bonus_toggle_door_state(t_door *door);
+int				bonus_levels_init(t_app *app, const char *start_path);
+const char		*bonus_level_current_path(t_app *app);
+int				bonus_load_next_level(t_app *app);
 
 int				retro_init_img(t_app *app, t_img *img, int width, int height);
 void			retro_reset_img(t_img *img);
