@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:55:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/08 09:55:26 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/09 11:02:13 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,24 @@ static void	draw_player_square(t_img *img, int x, int y, int color)
 	}
 }
 
+static void	draw_direction_line(t_app *app, t_img *img, int cx, int cy)
+{
+	int		i;
+	int		end_x;
+	int		end_y;
+	int		line_len;
+
+	line_len = 40;
+	i = 0;
+	while (i < line_len)
+	{
+		end_x = cx + (int)(app->dir_x * i);
+		end_y = cy + (int)(app->dir_y * i);
+		put_pixel(img, end_x, end_y, 0x00FF00);
+		i++;
+	}
+}
+
 static void	draw_player(t_app *app, t_img *img)
 {
 	double	scale_x;
@@ -57,6 +75,7 @@ static void	draw_player(t_app *app, t_img *img)
 	screen_y = (int)(app->player_y * scale_y);
 	player_color = (255 << 16);
 	draw_player_square(img, screen_x, screen_y, player_color);
+	draw_direction_line(app, img, screen_x, screen_y);
 }
 
 int	draw_frame(t_app *app)
@@ -65,6 +84,7 @@ int	draw_frame(t_app *app)
 	int	y;
 
 	handle_movement(app);
+	handle_rotation(app);
 	y = 0;
 	while (y < app->win_h)
 	{

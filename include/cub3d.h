@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 06:23:18 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/06 16:41:08 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/09 09:28:07 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 /* ============================================================================
  * CORE - Initialization and main loop
@@ -36,9 +37,10 @@ int		key_release(int keycode, t_app *app);
 int		close_window(t_app *app);
 
 /* ============================================================================
- * MOVEMENT - Player position updates
+ * MOVEMENT / ROTATION - Player position updates
  * ============================================================================ */
 void	handle_movement(t_app *app);
+void	handle_rotation(t_app *app);
 
 /* ============================================================================
  * RENDER - Drawing functions

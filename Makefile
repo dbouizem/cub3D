@@ -6,7 +6,7 @@
 #    By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/31 06:20:52 by dbouizem          #+#    #+#              #
-#    Updated: 2026/04/06 16:42:24 by brrr1            ###   ########.fr        #
+#    Updated: 2026/04/09 09:12:30 by brrr1            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ SRC_RENDER = \
 
 SRC_INPUT = \
 	srcs/input/keyboard.c \
-	srcs/input/movement.c
+	srcs/input/movement.c \
+	srcs/input/rotation.c
 
 SRC_TOOLS = \
 	srcs/tools/error.c \
