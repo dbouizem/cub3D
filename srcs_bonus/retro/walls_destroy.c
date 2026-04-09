@@ -30,6 +30,7 @@ static void	destroy_anim_lists(t_app *app)
 	destroy_img_list(app, app->bonus_wall_p_anim, BONUS_ANIM_P_FRAMES);
 	destroy_img_list(app, app->bonus_wall_q_anim, BONUS_ANIM_Q_FRAMES);
 	destroy_img_list(app, app->bonus_wall_star_anim, BONUS_ANIM_STAR_FRAMES);
+	destroy_img_list(app, app->bonus_wall_dot_anim, BONUS_ANIM_DOT_FRAMES);
 	destroy_img_list(app, app->bonus_wall_lparen_anim,
 		BONUS_ANIM_LPAREN_FRAMES);
 }

@@ -36,4 +36,5 @@ void	update_player_input(t_app *app)
 {
 	apply_move_keys(app);
 	apply_turn_keys(app);
+	apply_mouse_look(app);
 }

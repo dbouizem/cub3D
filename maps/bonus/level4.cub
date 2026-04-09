@@ -5,42 +5,41 @@ EA ../../textures/bonus/walls/wall_s/wall_s.xpm
 F 38,38,38
 C 9,120,222
 
-11111111111111111111111111111111111111111111111111111111111111111
-1                                                               1
-1                                                               1
-1        dDd                                                    1
-1       d000ddddfdddddfdddddfdddde                              1
-1       f0000000000000000000000000e                             1
-1       d00000000000000000000000000e                            1
-1        ddddfdddddDdddddfddddde0000ed                          1
-1                               e00000D                         1
-1                                e0000e                         1
-1                                 e0000e                        1
-1                                  e0000e                       1
-1                                   e0000e                      1
-1                                    e0000e                     1
-1                                     e000d                     1
-1                                     d000f                     1
-1                                     d000d                     1
-1                                     f000d                     1
-1                                     d000d                     1
-1                                     d000f                     1
-1                                     d000d                     1
-1                                     f000d                     1
-1                                     d000d                     1
-1                                     d000f                     1
-1                                     d000d                     1
-1                                     f000d                     1
-1                                     d000d                     1
-1      ddDdd                          d000f                     1
-1      d0S0d                          e000d                     1
-1      e0000e                        e0000d                     1
-1       e0000e                      e00000d                     1
-1        e0000e                   de0000ed                      1
-1         e0000edddfddddDddddfdddd00000e                        1
-1          e00000000000000000000000000e                         1
-1           dddddddfdddddddddfddddddde                          1
-1                                                               1
-11111111111111111111111111111111111111111111111111111111111111111
+111111111111111111111111111111111111111111
+1                                        1
+1    dDd                                 1
+1   d000ddddfdddddfdddddfdddde           1
+1   f0000000000000000000000000e          1
+1   d00000000000000000000000000e         1
+1    ddddfdddddDdddddfddddde0000ed       1
+1                           e00000D      1
+1                            e0000e      1
+1                             e0000e     1
+1                              e0000e    1
+1                               e0000e   1
+1                                e0000e  1
+1                                 e000d  1
+1                                 d000f  1
+1                                 d000d  1
+1                                 f000d  1
+1                                 d000d  1
+1                                 d000f  1
+1                                 d000d  1
+1                                 f000d  1
+1                                 d000d  1
+1                                 d000f  1
+1                                 d000d  1
+1                                 f000d  1
+1                                 d000d  1
+1  ddDdd                          d000f  1
+1  d0S0d                          e000d  1
+1  e0000e                        e0000d  1
+1   e0000e                      e00000d  1
+1    e0000e                   de0000ed   1
+1     e0000edddfddddDddddfdddd00000e     1
+1      e00000000000000000000000000e      1
+1       dddddddfdddddddddfddddddde       1
+1                                        1
+111111111111111111111111111111111111111111
 
 

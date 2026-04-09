@@ -32,7 +32,8 @@ LDFLAGS = $(LIBFT_A) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 SRC_CORE = \
 	srcs/core/main.c \
 	srcs/core/init.c \
-	srcs/core/init_mlx.c
+	srcs/core/init_mlx.c \
+	srcs/core/window_resize.c
 
 SRC_PARSING = \
 	srcs/parsing/parse_file.c \
@@ -62,6 +63,8 @@ SRC_RENDER = \
 
 SRC_INPUT = \
 	srcs/input/keyboard.c \
+	srcs/input/mouse.c \
+	srcs/input/resolution_preset.c \
 	srcs/input/input_update.c \
 	srcs/input/move_core.c \
 	srcs/input/movement.c \

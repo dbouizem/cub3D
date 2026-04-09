@@ -58,6 +58,9 @@ typedef struct s_input
 	int	right;
 	int	turn_left;
 	int	turn_right;
+	int	mouse_dx;
+	int	mouse_last_x;
+	int	mouse_ready;
 }	t_input;
 
 typedef struct s_parse_headers
@@ -108,6 +111,7 @@ typedef struct s_app
 	t_img		bonus_wall_p_anim[BONUS_ANIM_P_FRAMES];
 	t_img		bonus_wall_q_anim[BONUS_ANIM_Q_FRAMES];
 	t_img		bonus_wall_star_anim[BONUS_ANIM_STAR_FRAMES];
+	t_img		bonus_wall_dot_anim[BONUS_ANIM_DOT_FRAMES];
 	t_img		bonus_wall_lparen_anim[BONUS_ANIM_LPAREN_FRAMES];
 	int			win_w;
 	int			win_h;

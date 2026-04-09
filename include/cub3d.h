@@ -75,8 +75,14 @@ void	draw_wall_column(t_app *app, t_ray ray);
 
 int		handle_keypress(int keycode, t_app *app);
 int		handle_keyrelease(int keycode, t_app *app);
+int		handle_mouse_move(int x, int y, t_app *app);
+int		handle_window_resize(int width, int height, t_app *app);
 int		close_window(t_app *app);
 void	update_player_input(t_app *app);
+void	apply_mouse_look(t_app *app);
+void	bind_window_hooks(t_app *app);
+int		resize_window(t_app *app, int w, int h, int recreate_window);
+int		apply_resolution_preset(t_app *app, int keycode);
 void	move_with_collision(t_app *app, double dx, double dy);
 void	move_forward(t_app *app);
 void	move_backward(t_app *app);

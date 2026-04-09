@@ -43,6 +43,8 @@ int	handle_keypress(int keycode, t_app *app)
 {
 	if (keycode == KEY_ESC)
 		close_window(app);
+	if (apply_resolution_preset(app, keycode))
+		return (0);
 	set_move_keys(app, keycode, 1);
 	set_turn_keys(app, keycode, 1);
 	return (0);

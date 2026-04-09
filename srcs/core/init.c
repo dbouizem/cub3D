@@ -49,30 +49,7 @@ static void	init_defaults(t_app *app)
 
 static void	init_bonus_textures(t_app *app)
 {
-	int	i;
-
-	i = -1;
-	while (++i < BONUS_WALL_COUNT)
-		init_tex(&app->bonus_walls[i]);
-	i = -1;
-	while (++i < BONUS_WALL_SYMBOL_COUNT)
-		init_tex(&app->bonus_wall_symbols[i]);
-	i = -1;
-	while (++i < BONUS_DOOR_COUNT)
-		init_tex(&app->bonus_doors[i]);
-	i = -1;
-	while (++i < BONUS_ANIM_LPAREN_FRAMES)
-	{
-		if (i < BONUS_ANIM_O_FRAMES)
-			init_tex(&app->bonus_wall_o_anim[i]);
-		if (i < BONUS_ANIM_P_FRAMES)
-			init_tex(&app->bonus_wall_p_anim[i]);
-		if (i < BONUS_ANIM_Q_FRAMES)
-			init_tex(&app->bonus_wall_q_anim[i]);
-		if (i < BONUS_ANIM_STAR_FRAMES)
-			init_tex(&app->bonus_wall_star_anim[i]);
-		init_tex(&app->bonus_wall_lparen_anim[i]);
-	}
+	(void)app;
 }
 
 void	init_app(t_app *app)

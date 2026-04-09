@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 10:25:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/08 13:10:12 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/04/09 12:29:16 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define BONUS_WARN_FB_INIT "Warning\nBonus disabled: fb init failed\n"
 # define BONUS_WARN_OUT_INIT "Warning\nBonus disabled: out init failed\n"
+# define BONUS_MOUSE_SENS 0.0025
 
 # define BONUS_SHADE_DIST 0.14
 # define BONUS_SHADE_MIN 0.45
@@ -42,6 +43,8 @@
 # define BONUS_ANIM_Q_FPS 6.0
 # define BONUS_ANIM_STAR_FRAMES 4
 # define BONUS_ANIM_STAR_FPS 3.0
+# define BONUS_ANIM_DOT_FRAMES 4
+# define BONUS_ANIM_DOT_FPS 9.0
 # define BONUS_ANIM_LPAREN_FRAMES 4
 # define BONUS_ANIM_LPAREN_FPS 3.0
 
@@ -127,13 +130,22 @@
 # define BONUS_WALL_LPAREN_XPM BONUS_WALL_LPAREN1_XPM // (
 
 // MAP LEVEL5
-
-# define BONUS_WALL_RPAREN_XPM "textures/bonus/walls/wall_p/wall_p1.xpm" //)
+// option 1
+# define BONUS_WALL_RPAREN_XPM "textures/bonus/walls/wall_p/wall.xpm" //)
 # define BONUS_WALL_STAR1_XPM "textures/bonus/walls/wall_p/wall_pa1.xpm"
 # define BONUS_WALL_STAR2_XPM "textures/bonus/walls/wall_p/wall_pa2.xpm"
 # define BONUS_WALL_STAR3_XPM "textures/bonus/walls/wall_p/wall_pa3.xpm"
 # define BONUS_WALL_STAR4_XPM "textures/bonus/walls/wall_p/wall_pa4.xpm"
 # define BONUS_WALL_STAR_XPM BONUS_WALL_STAR1_XPM // *
+// option 2
+# define BONUS_WALL_PLUS_XPM "textures/bonus/walls/wall_c/wall_c1.xpm" // +
+# define BONUS_WALL_COMMA_XPM  "textures/bonus/walls/wall_c/wall_c2.xpm"// ,
+# define BONUS_WALL_MINUS_XPM  "textures/bonus/walls/wall_c/wall_c3.xpm"// -
+# define BONUS_WALL_DOT1_XPM  "textures/bonus/walls/wall_c/wall_ca1.xpm"// .
+# define BONUS_WALL_DOT2_XPM  "textures/bonus/walls/wall_c/wall_ca2.xpm"// .
+# define BONUS_WALL_DOT3_XPM  "textures/bonus/walls/wall_c/wall_ca3.xpm"// .
+# define BONUS_WALL_DOT4_XPM  "textures/bonus/walls/wall_c/wall_ca4.xpm"// .
+# define BONUS_WALL_DOT_XPM BONUS_WALL_DOT1_XPM// .
 
 // ----- DOORS -----
 
@@ -166,10 +178,6 @@
 
 // ----- SPRAYT -----
 
-# define BONUS_WALL_PLUS_XPM BONUS_WALL_DEFAULT_XPM        // +
-# define BONUS_WALL_COMMA_XPM BONUS_WALL_DEFAULT_XPM       // ,
-# define BONUS_WALL_MINUS_XPM BONUS_WALL_DEFAULT_XPM       // -
-# define BONUS_WALL_DOT_XPM BONUS_WALL_DEFAULT_XPM         // .
 # define BONUS_WALL_SLASH_XPM BONUS_WALL_DEFAULT_XPM       // /
 # define BONUS_WALL_COLON_XPM BONUS_WALL_DEFAULT_XPM       // :
 # define BONUS_WALL_SEMI_XPM BONUS_WALL_DEFAULT_XPM        // ;

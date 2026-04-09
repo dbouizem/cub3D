@@ -61,6 +61,13 @@ static const char	*g_wall_star_anim_paths[BONUS_ANIM_STAR_FRAMES] = {
 	BONUS_WALL_STAR4_XPM
 };
 
+static const char	*g_wall_dot_anim_paths[BONUS_ANIM_DOT_FRAMES] = {
+	BONUS_WALL_DOT1_XPM,
+	BONUS_WALL_DOT2_XPM,
+	BONUS_WALL_DOT3_XPM,
+	BONUS_WALL_DOT4_XPM
+};
+
 static const char	*g_wall_lparen_anim_paths[BONUS_ANIM_LPAREN_FRAMES] = {
 	BONUS_WALL_LPAREN1_XPM,
 	BONUS_WALL_LPAREN2_XPM,
@@ -129,6 +136,8 @@ static void	load_anim_lists(t_app *app)
 		BONUS_ANIM_Q_FRAMES);
 	load_img_list(app, app->bonus_wall_star_anim, g_wall_star_anim_paths,
 		BONUS_ANIM_STAR_FRAMES);
+	load_img_list(app, app->bonus_wall_dot_anim, g_wall_dot_anim_paths,
+		BONUS_ANIM_DOT_FRAMES);
 	load_img_list(app, app->bonus_wall_lparen_anim, g_wall_lparen_anim_paths,
 		BONUS_ANIM_LPAREN_FRAMES);
 }
