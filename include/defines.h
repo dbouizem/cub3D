@@ -32,9 +32,13 @@
 
 # define EVENT_KEYPRESS 2
 # define EVENT_KEYRELEASE 3
+# define EVENT_BUTTONPRESS 4
 # define EVENT_MOUSEMOVE 6
 # define EVENT_CONFIGURE 22
 # define EVENT_DESTROY 17
+
+# define BUTTON_SCROLL_UP 4
+# define BUTTON_SCROLL_DOWN 5
 
 # define PARSE_OK 0
 # define PARSE_ERR 1

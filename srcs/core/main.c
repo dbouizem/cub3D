@@ -16,6 +16,7 @@ void	bind_window_hooks(t_app *app)
 {
 	mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0, handle_keypress, app);
 	mlx_hook(app->win_ptr, EVENT_KEYRELEASE, 1L << 1, handle_keyrelease, app);
+	mlx_hook(app->win_ptr, EVENT_BUTTONPRESS, 1L << 2, handle_mouse_press, app);
 	mlx_hook(app->win_ptr, EVENT_MOUSEMOVE, 1L << 6, handle_mouse_move, app);
 	mlx_hook(app->win_ptr, EVENT_DESTROY, 0, close_window, app);
 }

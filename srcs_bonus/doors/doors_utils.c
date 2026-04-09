@@ -34,11 +34,11 @@ t_door	*bonus_find_door(t_app *app, int x, int y)
 	int	i;
 
 	i = 0;
-	while (i < app->bonus_door_sys.count)
+	while (i < app->bonus.doors.count)
 	{
-		if (app->bonus_door_sys.items[i].x == x
-			&& app->bonus_door_sys.items[i].y == y)
-			return (&app->bonus_door_sys.items[i]);
+		if (app->bonus.doors.items[i].x == x
+			&& app->bonus.doors.items[i].y == y)
+			return (&app->bonus.doors.items[i]);
 		i++;
 	}
 	return (NULL);

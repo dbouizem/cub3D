@@ -22,6 +22,7 @@ int				retro_init(t_app *app);
 int				retro_begin(t_app *app, t_img *saved_frame);
 int				retro_render(t_app *app, t_img *saved_frame);
 void			retro_shutdown(t_app *app);
+void			bonus_draw_minimap(t_app *app);
 int				apply_wall_shading(int color, t_ray ray);
 int				apply_flat_shading(int color, int y, int height);
 int				bonus_is_valid_map_char(char c);
@@ -54,5 +55,9 @@ void			retro_reset_img(t_img *img);
 void			retro_destroy_img(t_app *app, t_img *img);
 unsigned int	retro_get_pixel(t_img *img, int x, int y);
 void			retro_upscale_to_out(t_app *app);
+void			bonus_minimap_clear(t_img *img);
+void			bonus_minimap_render_pixels(t_app *app, t_img *img, t_mm mm);
+void			bonus_minimap_draw_player(t_img *img, t_mm mm);
+void			bonus_minimap_blit(t_app *app, t_img *img, t_mm mm);
 
 #endif

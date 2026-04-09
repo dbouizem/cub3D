@@ -75,6 +75,7 @@ void	draw_wall_column(t_app *app, t_ray ray);
 
 int		handle_keypress(int keycode, t_app *app);
 int		handle_keyrelease(int keycode, t_app *app);
+int		handle_mouse_press(int button, int x, int y, t_app *app);
 int		handle_mouse_move(int x, int y, t_app *app);
 int		handle_window_resize(int width, int height, t_app *app);
 int		close_window(t_app *app);

@@ -39,22 +39,22 @@ static t_img	*pick_anim(t_app *app, t_img *frames, int count, double fps)
 t_img	*bonus_pick_anim_texture(t_app *app, char tile)
 {
 	if (tile == 'o')
-		return (pick_anim(app, app->bonus_wall_o_anim,
+		return (pick_anim(app, app->bonus.assets.wall_o_anim,
 				BONUS_ANIM_O_FRAMES, BONUS_ANIM_O_FPS));
 	if (tile == 'p')
-		return (pick_anim(app, app->bonus_wall_p_anim,
+		return (pick_anim(app, app->bonus.assets.wall_p_anim,
 				BONUS_ANIM_P_FRAMES, BONUS_ANIM_P_FPS));
 	if (tile == 'q')
-		return (pick_anim(app, app->bonus_wall_q_anim,
+		return (pick_anim(app, app->bonus.assets.wall_q_anim,
 				BONUS_ANIM_Q_FRAMES, BONUS_ANIM_Q_FPS));
 	if (tile == '*')
-		return (pick_anim(app, app->bonus_wall_star_anim,
+		return (pick_anim(app, app->bonus.assets.wall_star_anim,
 				BONUS_ANIM_STAR_FRAMES, BONUS_ANIM_STAR_FPS));
 	if (tile == '.')
-		return (pick_anim(app, app->bonus_wall_dot_anim,
+		return (pick_anim(app, app->bonus.assets.wall_dot_anim,
 				BONUS_ANIM_DOT_FRAMES, BONUS_ANIM_DOT_FPS));
 	if (tile == '(')
-		return (pick_anim(app, app->bonus_wall_lparen_anim,
+		return (pick_anim(app, app->bonus.assets.wall_lparen_anim,
 				BONUS_ANIM_LPAREN_FRAMES, BONUS_ANIM_LPAREN_FPS));
 	return (NULL);
 }

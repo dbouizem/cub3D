@@ -13,6 +13,8 @@
 #ifndef STRUCTS_BONUS_H
 # define STRUCTS_BONUS_H
 
+# include "img.h"
+
 # define BONUS_HEADER_VERSION 1
 
 typedef enum e_door_state
@@ -41,6 +43,44 @@ typedef struct s_bonus_doors
 	double	interact_timer;
 }	t_bonus_doors;
 
-typedef t_bonus_doors	t_bdoor;
+typedef struct s_mm
+{
+	int	ox;
+	int	oy;
+	int	cx;
+	int	cy;
+	int	size;
+	int	r2;
+	int	ring2;
+}	t_mm;
+
+typedef struct s_bonus_assets
+{
+	t_img	walls[BONUS_WALL_COUNT];
+	t_img	wall_symbols[BONUS_WALL_SYMBOL_COUNT];
+	t_img	doors[BONUS_DOOR_COUNT];
+	t_img	wall_o_anim[BONUS_ANIM_O_FRAMES];
+	t_img	wall_p_anim[BONUS_ANIM_P_FRAMES];
+	t_img	wall_q_anim[BONUS_ANIM_Q_FRAMES];
+	t_img	wall_star_anim[BONUS_ANIM_STAR_FRAMES];
+	t_img	wall_dot_anim[BONUS_ANIM_DOT_FRAMES];
+	t_img	wall_lparen_anim[BONUS_ANIM_LPAREN_FRAMES];
+}	t_bonus_assets;
+
+typedef struct s_bonus_retro
+{
+	t_img	fb;
+	t_img	out;
+	t_img	minimap;
+	int		enabled;
+	double	minimap_zoom;
+}	t_bonus_retro;
+
+typedef struct s_bonus_ctx
+{
+	t_bonus_assets	assets;
+	t_bonus_retro	retro;
+	t_bonus_doors	doors;
+}	t_bonus_ctx;
 
 #endif

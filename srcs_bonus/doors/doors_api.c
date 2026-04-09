@@ -33,7 +33,7 @@ static int	scan_doors(t_app *app, int fill)
 			if (is_door_tile(app->map.grid[y][x]))
 			{
 				if (fill)
-					app->bonus_door_sys.items[count] = (t_door){x, y,
+					app->bonus.doors.items[count] = (t_door){x, y,
 						DOOR_CLOSED, 0.0, 0.0};
 				count++;
 			}
@@ -50,19 +50,19 @@ int	bonus_doors_init(t_app *app)
 
 	if (!app)
 		return (1);
-	app->bonus_door_sys.items = NULL;
-	app->bonus_door_sys.count = 0;
-	app->bonus_door_sys.cap = 0;
-	app->bonus_door_sys.interact_cooldown = BONUS_DOOR_INTERACT_COOLDOWN;
-	app->bonus_door_sys.interact_timer = 0.0;
+	app->bonus.doors.items = NULL;
+	app->bonus.doors.count = 0;
+	app->bonus.doors.cap = 0;
+	app->bonus.doors.interact_cooldown = BONUS_DOOR_INTERACT_COOLDOWN;
+	app->bonus.doors.interact_timer = 0.0;
 	count = scan_doors(app, 0);
 	if (count <= 0)
 		return (0);
-	app->bonus_door_sys.items = malloc(sizeof(t_door) * count);
-	if (!app->bonus_door_sys.items)
+	app->bonus.doors.items = malloc(sizeof(t_door) * count);
+	if (!app->bonus.doors.items)
 		return (1);
-	app->bonus_door_sys.count = count;
-	app->bonus_door_sys.cap = count;
+	app->bonus.doors.count = count;
+	app->bonus.doors.cap = count;
 	scan_doors(app, 1);
 	return (0);
 }
@@ -72,12 +72,12 @@ void	bonus_doors_update(t_app *app)
 	t_door	*door;
 	int		i;
 
-	if (!app || app->bonus_on == 0)
+	if (!app || app->bonus.retro.enabled == 0)
 		return ;
 	i = 0;
-	while (i < app->bonus_door_sys.count)
+	while (i < app->bonus.doors.count)
 	{
-		door = &app->bonus_door_sys.items[i++];
+		door = &app->bonus.doors.items[i++];
 		door->state_timer += app->delta_time;
 		if (door->state == DOOR_OPENING)
 			door->open_progress += app->delta_time * BONUS_DOOR_SPEED;
@@ -88,21 +88,21 @@ void	bonus_doors_update(t_app *app)
 		else if (door->open_progress <= 0.0)
 			*door = (t_door){door->x, door->y, DOOR_CLOSED, 0.0, 0.0};
 	}
-	if (app->bonus_door_sys.interact_timer <= 0.0)
+	if (app->bonus.doors.interact_timer <= 0.0)
 		return ;
-	app->bonus_door_sys.interact_timer -= app->delta_time;
-	if (app->bonus_door_sys.interact_timer < 0.0)
-		app->bonus_door_sys.interact_timer = 0.0;
+	app->bonus.doors.interact_timer -= app->delta_time;
+	if (app->bonus.doors.interact_timer < 0.0)
+		app->bonus.doors.interact_timer = 0.0;
 }
 
 void	bonus_doors_shutdown(t_app *app)
 {
 	if (!app)
 		return ;
-	free(app->bonus_door_sys.items);
-	app->bonus_door_sys.items = NULL;
-	app->bonus_door_sys.count = 0;
-	app->bonus_door_sys.cap = 0;
-	app->bonus_door_sys.interact_cooldown = BONUS_DOOR_INTERACT_COOLDOWN;
-	app->bonus_door_sys.interact_timer = 0.0;
+	free(app->bonus.doors.items);
+	app->bonus.doors.items = NULL;
+	app->bonus.doors.count = 0;
+	app->bonus.doors.cap = 0;
+	app->bonus.doors.interact_cooldown = BONUS_DOOR_INTERACT_COOLDOWN;
+	app->bonus.doors.interact_timer = 0.0;
 }

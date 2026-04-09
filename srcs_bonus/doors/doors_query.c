@@ -18,9 +18,9 @@ int	bonus_door_try_toggle(t_app *app)
 	int		tx;
 	int		ty;
 
-	if (!app || app->bonus_on == 0)
+	if (!app || app->bonus.retro.enabled == 0)
 		return (0);
-	if (app->bonus_door_sys.interact_timer > 0.0)
+	if (app->bonus.doors.interact_timer > 0.0)
 		return (0);
 	if (!bonus_find_front_door(app, &tx, &ty))
 		return (0);
@@ -28,7 +28,7 @@ int	bonus_door_try_toggle(t_app *app)
 	if (!door)
 		return (0);
 	bonus_toggle_door_state(door);
-	app->bonus_door_sys.interact_timer = app->bonus_door_sys.interact_cooldown;
+	app->bonus.doors.interact_timer = app->bonus.doors.interact_cooldown;
 	return (1);
 }
 

@@ -25,10 +25,31 @@ static void	rotate_mouse(t_app *app, double angle)
 	app->plane_y = old_plane_x * sin(angle) + app->plane_y * cos(angle);
 }
 
+int	handle_mouse_press(int button, int x, int y, t_app *app)
+{
+	(void)x;
+	(void)y;
+	if (!app || app->bonus.retro.enabled == 0)
+		return (0);
+	if (button == BUTTON_SCROLL_UP)
+	{
+		app->bonus.retro.minimap_zoom += BONUS_MINIMAP_ZOOM_STEP;
+		if (app->bonus.retro.minimap_zoom > BONUS_MINIMAP_ZOOM_MAX)
+			app->bonus.retro.minimap_zoom = BONUS_MINIMAP_ZOOM_MAX;
+	}
+	else if (button == BUTTON_SCROLL_DOWN)
+	{
+		app->bonus.retro.minimap_zoom -= BONUS_MINIMAP_ZOOM_STEP;
+		if (app->bonus.retro.minimap_zoom < BONUS_MINIMAP_ZOOM_MIN)
+			app->bonus.retro.minimap_zoom = BONUS_MINIMAP_ZOOM_MIN;
+	}
+	return (0);
+}
+
 int	handle_mouse_move(int x, int y, t_app *app)
 {
 	(void)y;
-	if (!app || app->bonus_on == 0 || x < 0 || x >= app->win_w)
+	if (!app || app->bonus.retro.enabled == 0 || x < 0 || x >= app->win_w)
 		return (0);
 	if (!app->input.mouse_ready)
 	{
@@ -45,7 +66,7 @@ void	apply_mouse_look(t_app *app)
 {
 	double	angle;
 
-	if (!app || app->bonus_on == 0 || !app->input.mouse_ready)
+	if (!app || app->bonus.retro.enabled == 0 || !app->input.mouse_ready)
 		return ;
 	if (app->input.mouse_dx == 0)
 		return ;

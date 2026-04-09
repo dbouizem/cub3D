@@ -76,6 +76,7 @@ SRC_TOOLS = \
 
 BONUS_NOOP_SRCS = \
 	srcs_bonus/noop/api_noop.c \
+	srcs_bonus/noop/minimap_noop.c \
 	srcs_bonus/noop/walls_noop.c \
 	srcs_bonus/noop/doors_api_noop.c \
 	srcs_bonus/noop/doors_utils_noop.c \
@@ -87,6 +88,8 @@ BONUS_SRCS = \
 	srcs_bonus/retro/api.c \
 	srcs_bonus/retro/image.c \
 	srcs_bonus/retro/upscale.c \
+	srcs_bonus/retro/minimap.c \
+	srcs_bonus/retro/minimap_render.c \
 	srcs_bonus/retro/shading.c \
 	srcs_bonus/retro/flat_shading.c \
 	srcs_bonus/retro/walls_rules.c \

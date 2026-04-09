@@ -128,18 +128,19 @@ static void	init_path_tables(const char **wall_paths, const char **door_paths)
 
 static void	load_anim_lists(t_app *app)
 {
-	load_img_list(app, app->bonus_wall_o_anim, g_wall_o_anim_paths,
+	load_img_list(app, app->bonus.assets.wall_o_anim, g_wall_o_anim_paths,
 		BONUS_ANIM_O_FRAMES);
-	load_img_list(app, app->bonus_wall_p_anim, g_wall_p_anim_paths,
+	load_img_list(app, app->bonus.assets.wall_p_anim, g_wall_p_anim_paths,
 		BONUS_ANIM_P_FRAMES);
-	load_img_list(app, app->bonus_wall_q_anim, g_wall_q_anim_paths,
+	load_img_list(app, app->bonus.assets.wall_q_anim, g_wall_q_anim_paths,
 		BONUS_ANIM_Q_FRAMES);
-	load_img_list(app, app->bonus_wall_star_anim, g_wall_star_anim_paths,
+	load_img_list(app, app->bonus.assets.wall_star_anim,
+		g_wall_star_anim_paths,
 		BONUS_ANIM_STAR_FRAMES);
-	load_img_list(app, app->bonus_wall_dot_anim, g_wall_dot_anim_paths,
+	load_img_list(app, app->bonus.assets.wall_dot_anim, g_wall_dot_anim_paths,
 		BONUS_ANIM_DOT_FRAMES);
-	load_img_list(app, app->bonus_wall_lparen_anim, g_wall_lparen_anim_paths,
-		BONUS_ANIM_LPAREN_FRAMES);
+	load_img_list(app, app->bonus.assets.wall_lparen_anim,
+		g_wall_lparen_anim_paths, BONUS_ANIM_LPAREN_FRAMES);
 }
 
 int	bonus_load_wall_textures(t_app *app)
@@ -148,8 +149,8 @@ int	bonus_load_wall_textures(t_app *app)
 	const char	*door_paths[BONUS_DOOR_COUNT];
 
 	init_path_tables(wall_paths, door_paths);
-	load_img_list(app, app->bonus_walls, wall_paths, BONUS_WALL_COUNT);
-	load_img_list(app, app->bonus_doors, door_paths, BONUS_DOOR_COUNT);
+	load_img_list(app, app->bonus.assets.walls, wall_paths, BONUS_WALL_COUNT);
+	load_img_list(app, app->bonus.assets.doors, door_paths, BONUS_DOOR_COUNT);
 	bonus_load_symbol_textures(app);
 	load_anim_lists(app);
 	return (0);

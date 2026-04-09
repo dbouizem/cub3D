@@ -53,6 +53,7 @@ static void	destroy_textures(t_app *app)
 	destroy_img(app, &app->tex_so);
 	destroy_img(app, &app->tex_we);
 	destroy_img(app, &app->tex_ea);
+	destroy_img(app, &app->bonus.retro.minimap);
 	bonus_destroy_wall_textures(app);
 	retro_shutdown(app);
 	bonus_doors_shutdown(app);

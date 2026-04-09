@@ -35,8 +35,8 @@ t_img	*bonus_pick_symbol_texture(t_app *app, char tile)
 	idx = bonus_symbol_index(tile);
 	if (idx < 0 || idx >= BONUS_WALL_SYMBOL_COUNT)
 		return (NULL);
-	if (!app->bonus_wall_symbols[idx].img_ptr
-		|| !app->bonus_wall_symbols[idx].addr)
+	if (!app->bonus.assets.wall_symbols[idx].img_ptr
+		|| !app->bonus.assets.wall_symbols[idx].addr)
 		return (NULL);
-	return (&app->bonus_wall_symbols[idx]);
+	return (&app->bonus.assets.wall_symbols[idx]);
 }

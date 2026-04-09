@@ -13,20 +13,10 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "img.h"
 # include "structs_bonus.h"
 
 typedef unsigned long	t_size;
-
-typedef struct s_img
-{
-	void	*img_ptr;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
 
 typedef struct s_player
 {
@@ -106,15 +96,6 @@ typedef struct s_app
 	t_img		tex_so;
 	t_img		tex_we;
 	t_img		tex_ea;
-	t_img		bonus_walls[BONUS_WALL_COUNT];
-	t_img		bonus_wall_symbols[BONUS_WALL_SYMBOL_COUNT];
-	t_img		bonus_doors[BONUS_DOOR_COUNT];
-	t_img		bonus_wall_o_anim[BONUS_ANIM_O_FRAMES];
-	t_img		bonus_wall_p_anim[BONUS_ANIM_P_FRAMES];
-	t_img		bonus_wall_q_anim[BONUS_ANIM_Q_FRAMES];
-	t_img		bonus_wall_star_anim[BONUS_ANIM_STAR_FRAMES];
-	t_img		bonus_wall_dot_anim[BONUS_ANIM_DOT_FRAMES];
-	t_img		bonus_wall_lparen_anim[BONUS_ANIM_LPAREN_FRAMES];
 	int			win_w;
 	int			win_h;
 	int			floor_color;
@@ -127,11 +108,7 @@ typedef struct s_app
 	double		plane_x;
 	double		plane_y;
 	t_input		input;
-	t_img		bonus_fb;
-	t_img		bonus_out;
-	int			bonus_on;
-
-	t_bdoor		bonus_door_sys;
+	t_bonus_ctx	bonus;
 }	t_app;
 
 typedef struct s_bfs_context

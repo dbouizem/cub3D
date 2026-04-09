@@ -24,12 +24,14 @@ with:
 
 ```bash
 make
+make bonus
 ```
 
 ### Run
 
 ```bash
 ./cub3D tests/validation/good.cub
+./cub3D_bonus tests/bonus/retro_small.cub
 ```
 
 ### Controls
@@ -43,14 +45,32 @@ make
 - `ESC`: quit
 - Window close button (red cross): quit cleanly
 
+### Bonus Controls
+
+- `Mouse`: look around
+- `Mouse Wheel`: zoom minimap
+- `E`: interact with bonus doors
+
 ### Useful commands
 
 ```bash
 make test
+make test_bonus
 make ci
 make asan
 norminette srcs include
 ```
+
+## Bonus Notes
+
+The bonus build now uses:
+- a dedicated retro render pipeline,
+- a grouped bonus context inside `t_app`,
+- a modular minimap renderer,
+- bonus door state/query helpers,
+- a separate bonus smoke-test suite.
+
+See [srcs_bonus/README.md](/home/djh/Bureau/Cub3d-Advanced-Raycasting/cub3D/srcs_bonus/README.md) for the bonus architecture overview.
 
 ## Project Organization
 

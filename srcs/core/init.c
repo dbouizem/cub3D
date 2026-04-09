@@ -62,9 +62,11 @@ void	init_app(t_app *app)
 	init_tex(&app->tex_we);
 	init_tex(&app->tex_ea);
 	init_bonus_textures(app);
-	init_tex(&app->bonus_fb);
-	init_tex(&app->bonus_out);
-	app->bonus_on = 0;
+	init_tex(&app->bonus.retro.fb);
+	init_tex(&app->bonus.retro.out);
+	init_tex(&app->bonus.retro.minimap);
+	app->bonus.retro.enabled = 0;
+	app->bonus.retro.minimap_zoom = BONUS_MINIMAP_ZOOM_DEFAULT;
 }
 
 void	init_player_vectors(t_app *app)

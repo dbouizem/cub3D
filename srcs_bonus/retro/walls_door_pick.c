@@ -35,7 +35,8 @@ t_img	*bonus_pick_door_texture(t_app *app, char tile)
 	idx = door_index(tile);
 	if (idx < 0 || idx >= BONUS_DOOR_COUNT)
 		return (NULL);
-	if (!app->bonus_doors[idx].img_ptr || !app->bonus_doors[idx].addr)
+	if (!app->bonus.assets.doors[idx].img_ptr
+		|| !app->bonus.assets.doors[idx].addr)
 		return (NULL);
-	return (&app->bonus_doors[idx]);
+	return (&app->bonus.assets.doors[idx]);
 }

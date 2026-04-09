@@ -36,9 +36,10 @@ static t_img	*pick_bonus_wall(t_app *app, char tile)
 		return (anim);
 	if (idx < 0 || idx >= BONUS_WALL_COUNT)
 		return (NULL);
-	if (!app->bonus_walls[idx].img_ptr || !app->bonus_walls[idx].addr)
+	if (!app->bonus.assets.walls[idx].img_ptr
+		|| !app->bonus.assets.walls[idx].addr)
 		return (NULL);
-	return (&app->bonus_walls[idx]);
+	return (&app->bonus.assets.walls[idx]);
 }
 
 t_img	*bonus_pick_wall_texture(t_app *app, char tile)

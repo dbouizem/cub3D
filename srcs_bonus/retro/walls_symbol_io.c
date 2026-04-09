@@ -34,7 +34,7 @@ void	bonus_load_symbol_textures(t_app *app)
 	i = 0;
 	while (i < BONUS_WALL_SYMBOL_COUNT)
 	{
-		img = &app->bonus_wall_symbols[i];
+		img = &app->bonus.assets.wall_symbols[i];
 		retro_reset_img(img);
 		img->img_ptr = mlx_xpm_file_to_image(app->mlx_ptr,
 				(char *)g_symbol_paths[i], &img->width, &img->height);
@@ -54,7 +54,7 @@ void	bonus_destroy_symbol_textures(t_app *app)
 	i = 0;
 	while (i < BONUS_WALL_SYMBOL_COUNT)
 	{
-		retro_destroy_img(app, &app->bonus_wall_symbols[i]);
+		retro_destroy_img(app, &app->bonus.assets.wall_symbols[i]);
 		i++;
 	}
 }
