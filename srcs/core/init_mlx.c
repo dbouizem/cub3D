@@ -43,15 +43,8 @@ static int	load_textures(t_app *app)
 	return (0);
 }
 
-int	init_mlx(t_app *app)
+static int	init_frame_buffer(t_app *app)
 {
-	app->mlx_ptr = mlx_init();
-	if (!app->mlx_ptr)
-		return (error_put("Error\nmlx_init failed\n"), 1);
-	app->win_ptr = mlx_new_window(app->mlx_ptr, app->win_w,
-			app->win_h, "cub3D");
-	if (!app->win_ptr)
-		return (error_put("Error\nmlx_new_window failed\n"), 1);
 	app->frame.img_ptr = mlx_new_image(app->mlx_ptr, app->win_w, app->win_h);
 	if (!app->frame.img_ptr)
 		return (error_put("Error\nmlx_new_image failed\n"), 1);
@@ -61,6 +54,20 @@ int	init_mlx(t_app *app)
 			&app->frame.line_len, &app->frame.endian);
 	if (!app->frame.addr)
 		return (error_put("Error\nFailed to access frame buffer\n"), 1);
+	return (0);
+}
+
+int	init_mlx(t_app *app)
+{
+	app->mlx_ptr = mlx_init();
+	if (!app->mlx_ptr)
+		return (error_put("Error\nmlx_init failed\n"), 1);
+	app->win_ptr = mlx_new_window(app->mlx_ptr, app->win_w,
+			app->win_h, "cub3D");
+	if (!app->win_ptr)
+		return (error_put("Error\nmlx_new_window failed\n"), 1);
+	if (init_frame_buffer(app) != 0)
+		return (1);
 	app->ceiling_color = rgb_to_int(app->config.ceiling_rgb);
 	app->floor_color = rgb_to_int(app->config.floor_rgb);
 	if (load_textures(app) != 0)
@@ -68,6 +75,8 @@ int	init_mlx(t_app *app)
 	if (bonus_load_wall_textures(app) != 0)
 		return (1);
 	if (retro_init(app) != 0)
+		return (1);
+	if (bonus_doors_init(app) != 0)
 		return (1);
 	return (0);
 }

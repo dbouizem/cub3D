@@ -13,6 +13,8 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+# include "structs_bonus.h"
+
 typedef unsigned long	t_size;
 
 typedef struct s_img
@@ -128,6 +130,8 @@ typedef struct s_app
 	t_img		bonus_fb;
 	t_img		bonus_out;
 	int			bonus_on;
+
+	t_bdoor		bonus_door_sys;
 }	t_app;
 
 typedef struct s_bfs_context

@@ -12,16 +12,43 @@
 
 #include "cub3d.h"
 
-static int	is_wall(t_app *app, int x, int y)
+static int	is_door_hit_blocking(t_app *app, t_ray *r, char tile)
 {
-	int	len;
+	double	progress;
+	double	dist;
+	double	hit;
+	double	half;
 
-	if (y < 0 || y >= app->map.height)
+	if (!bonus_is_door_tile(tile))
+		return (bonus_is_solid_tile(tile));
+	progress = bonus_door_open_progress_at(app, r->map_x, r->map_y);
+	if (progress <= 0.0)
 		return (1);
-	len = (int)ft_strlen(app->map.grid[y]);
-	if (x < 0 || x >= len)
+	if (progress >= 1.0)
+		return (0);
+	if (tile == 'A')
+		return (progress < BONUS_DOOR_PASSABLE);
+	if (r->side == 0)
+		dist = r->side_x - r->delta_x;
+	else
+		dist = r->side_y - r->delta_y;
+	if (r->side == 0)
+		hit = app->player.y + dist * r->ray_dir_y;
+	else
+		hit = app->player.x + dist * r->ray_dir_x;
+	hit -= floor(hit);
+	half = progress * 0.5;
+	return (!(hit > 0.5 - half && hit < 0.5 + half));
+}
+
+static int	hit_solid_cell(t_app *app, t_ray *r)
+{
+	char	tile;
+
+	tile = bonus_map_cell_at(app, r->map_x, r->map_y);
+	if (tile == ' ')
 		return (1);
-	return (bonus_is_solid_tile(app->map.grid[y][x]));
+	return (is_door_hit_blocking(app, r, tile));
 }
 
 static void	init_ray(t_app *app, t_ray *r, int x)
@@ -52,7 +79,7 @@ static void	run_dda(t_app *app, t_ray *r)
 		r->side_y = (app->player.y - r->map_y) * r->delta_y;
 	else
 		r->side_y = (r->map_y + 1.0 - app->player.y) * r->delta_y;
-	while (is_wall(app, r->map_x, r->map_y) == 0)
+	while (1)
 	{
 		if (r->side_x < r->side_y)
 		{
@@ -66,6 +93,8 @@ static void	run_dda(t_app *app, t_ray *r)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
+		if (hit_solid_cell(app, r))
+			break ;
 	}
 }
 

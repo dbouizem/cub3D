@@ -12,6 +12,11 @@
 
 #include "cub3d.h"
 
+static int	is_door_tile(char c)
+{
+	return (ft_strchr(BONUS_DOOR_SET, c) != NULL);
+}
+
 static int	is_walkable(t_app *app, double x, double y)
 {
 	int		map_x;
@@ -27,8 +32,12 @@ static int	is_walkable(t_app *app, double x, double y)
 	if (map_x < 0 || map_x >= row_len)
 		return (0);
 	cell = app->map.grid[map_y][map_x];
-	return (cell == '0' || cell == 'N' || cell == 'S'
-		|| cell == 'E' || cell == 'W');
+	if (cell == '0' || cell == 'N' || cell == 'S'
+		|| cell == 'E' || cell == 'W')
+		return (1);
+	if (is_door_tile(cell) && bonus_door_is_blocking(app, x, y) == 0)
+		return (1);
+	return (0);
 }
 
 static int	is_position_clear(t_app *app, double x, double y)

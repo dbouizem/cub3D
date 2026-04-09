@@ -16,24 +16,15 @@ static t_img	*pick_texture(t_app *app, t_ray ray)
 {
 	t_img	*bonus_tex;
 	char	tile;
-	int		len;
 
-	tile = '1';
-	if (ray.map_y >= 0 && ray.map_y < app->map.height)
-	{
-		len = (int)ft_strlen(app->map.grid[ray.map_y]);
-		if (ray.map_x >= 0 && ray.map_x < len)
-			tile = app->map.grid[ray.map_y][ray.map_x];
-	}
+	tile = bonus_map_cell_at(app, ray.map_x, ray.map_y);
 	bonus_tex = bonus_pick_wall_texture(app, tile);
 	if (bonus_tex != NULL)
 		return (bonus_tex);
+	if (ray.side == 0 && ray.ray_dir_x > 0)
+		return (&app->tex_we);
 	if (ray.side == 0)
-	{
-		if (ray.ray_dir_x > 0)
-			return (&app->tex_we);
 		return (&app->tex_ea);
-	}
 	if (ray.ray_dir_y > 0)
 		return (&app->tex_no);
 	return (&app->tex_so);
@@ -59,15 +50,31 @@ static int	sample_texel(t_img *tex, int tex_x, int tex_y)
 	return (*(unsigned int *)pixel);
 }
 
-static int	texture_x(t_ray ray, t_img *tex, double wall_x)
+static void	apply_door_projection(t_ray *ray, double *wall_x, char tile,
+	double progress)
 {
-	int	x;
+	double	panel;
+	double	half;
 
-	x = (int)(wall_x * (double)tex->width);
-	if ((ray.side == 0 && ray.ray_dir_x < 0)
-		|| (ray.side == 1 && ray.ray_dir_y > 0))
-		x = tex->width - x - 1;
-	return (x);
+	if (progress <= 0.0 || progress >= 1.0)
+		return ;
+	if (tile == 'A')
+	{
+		ray->draw_end -= (int)((double)ray->line_height * progress);
+		return ;
+	}
+	half = progress * 0.5;
+	panel = 0.5 - half;
+	if (panel <= 1e-6)
+		return ;
+	if (*wall_x < 0.5)
+		*wall_x = (*wall_x / panel) * 0.5;
+	else
+		*wall_x = 0.5 + ((*wall_x - (0.5 + half)) / panel) * 0.5;
+	if (*wall_x < 0.0)
+		*wall_x = 0.0;
+	if (*wall_x > 1.0)
+		*wall_x = 1.0;
 }
 
 static void	draw_wall_texels(t_app *app, t_ray ray, t_img *tex, double wall_x)
@@ -81,7 +88,10 @@ static void	draw_wall_texels(t_app *app, t_ray ray, t_img *tex, double wall_x)
 	step = (double)tex->height / (double)ray.line_height;
 	tex_pos = (ray.draw_start - app->frame.height / 2
 			+ ray.line_height / 2) * step;
-	tex_x = texture_x(ray, tex, wall_x);
+	tex_x = (int)(wall_x * (double)tex->width);
+	if ((ray.side == 0 && ray.ray_dir_x < 0)
+		|| (ray.side == 1 && ray.ray_dir_y > 0))
+		tex_x = tex->width - tex_x - 1;
 	y = ray.draw_start;
 	while (y <= ray.draw_end)
 	{
@@ -96,7 +106,9 @@ static void	draw_wall_texels(t_app *app, t_ray ray, t_img *tex, double wall_x)
 void	draw_wall_column(t_app *app, t_ray ray)
 {
 	t_img	*tex;
+	char	tile;
 	double	wall_x;
+	double	progress;
 
 	tex = pick_texture(app, ray);
 	if (ray.line_height <= 0 || app->frame.height <= 0)
@@ -105,5 +117,11 @@ void	draw_wall_column(t_app *app, t_ray ray)
 		wall_x = app->player.y + ray.perp_dist * ray.ray_dir_y;
 	else
 		wall_x = app->player.x + ray.perp_dist * ray.ray_dir_x;
-	draw_wall_texels(app, ray, tex, wall_x - floor(wall_x));
+	wall_x = wall_x - floor(wall_x);
+	tile = bonus_map_cell_at(app, ray.map_x, ray.map_y);
+	progress = bonus_door_open_progress_at(app, ray.map_x, ray.map_y);
+	apply_door_projection(&ray, &wall_x, tile, progress);
+	if (ray.draw_end < ray.draw_start)
+		return ;
+	draw_wall_texels(app, ray, tex, wall_x);
 }

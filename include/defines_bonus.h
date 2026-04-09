@@ -19,6 +19,11 @@
 # define BONUS_WARN_FB_INIT "Warning\nBonus disabled: fb init failed\n"
 # define BONUS_WARN_OUT_INIT "Warning\nBonus disabled: out init failed\n"
 # define BONUS_MOUSE_SENS 0.0025
+# define BONUS_DOOR_INTERACT_COOLDOWN 0.2
+# define BONUS_DOOR_INTERACT_DIST 1.20
+# define BONUS_DOOR_SCAN_STEP 0.08
+# define BONUS_DOOR_SPEED 1.80
+# define BONUS_DOOR_PASSABLE 0.90
 
 # define BONUS_SHADE_DIST 0.14
 # define BONUS_SHADE_MIN 0.45

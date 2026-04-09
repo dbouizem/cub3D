@@ -76,7 +76,10 @@ SRC_TOOLS = \
 
 BONUS_NOOP_SRCS = \
 	srcs_bonus/noop/api_noop.c \
-	srcs_bonus/noop/walls_noop.c
+	srcs_bonus/noop/walls_noop.c \
+	srcs_bonus/noop/doors_api_noop.c \
+	srcs_bonus/noop/doors_utils_noop.c \
+	srcs_bonus/noop/doors_query_noop.c
 
 MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS) $(BONUS_NOOP_SRCS)
 
@@ -93,7 +96,10 @@ BONUS_SRCS = \
 	srcs_bonus/retro/walls_symbol_pick.c \
 	srcs_bonus/retro/walls_io.c \
 	srcs_bonus/retro/walls_destroy.c \
-	srcs_bonus/retro/walls_symbol_io.c
+	srcs_bonus/retro/walls_symbol_io.c \
+	srcs_bonus/doors/doors_api.c \
+	srcs_bonus/doors/doors_utils.c \
+	srcs_bonus/doors/doors_query.c
 
 BONUS_REPLACE_SRCS = \
 	$(BONUS_NOOP_SRCS) \
