@@ -85,12 +85,39 @@ typedef struct s_bonus_levels
 	int			active;
 }	t_bonus_levels;
 
+typedef struct s_bonus_sprites
+{
+	t_img	star_tex;
+	t_img	at_tex;
+	t_img	*tex_of;
+	double	*xs;
+	double	*ys;
+	char	*types;
+	double	*dists;
+	int		count;
+	int		cap;
+	double	*zbuf;
+	int		zcap;
+}	t_bonus_sprites;
+
+typedef struct s_sprite_proj
+{
+	int		sx;
+	int		sh;
+	int		x0;
+	int		x1;
+	int		y0;
+	int		y1;
+	double	sy;
+}	t_sprite_proj;
+
 typedef struct s_bonus_ctx
 {
 	t_bonus_assets	assets;
 	t_bonus_retro	retro;
 	t_bonus_doors	doors;
 	t_bonus_levels	levels;
+	t_bonus_sprites	sprites;
 }	t_bonus_ctx;
 
 #endif

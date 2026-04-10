@@ -22,6 +22,7 @@ int	raycast_scene(t_app *app)
 	{
 		ray = cast_ray(app, x);
 		draw_wall_column(app, ray);
+		bonus_sprites_set_depth(app, x, ray.perp_dist);
 		x++;
 	}
 	return (0);

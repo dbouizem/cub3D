@@ -78,5 +78,7 @@ int	init_mlx(t_app *app)
 		return (1);
 	if (bonus_doors_init(app) != 0)
 		return (1);
+	if (bonus_sprites_init(app) != 0)
+		return (1);
 	return (0);
 }

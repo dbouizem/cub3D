@@ -58,6 +58,7 @@ int	draw_frame(t_app *app)
 	retro_active = retro_begin(app, &saved_frame);
 	draw_background(app);
 	raycast_scene(app);
+	bonus_draw_sprites(app);
 	bonus_draw_minimap(app);
 	if (retro_active)
 		retro_render(app, &saved_frame);

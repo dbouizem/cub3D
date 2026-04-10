@@ -47,8 +47,7 @@ t_img	*bonus_pick_wall_texture(t_app *app, char tile)
 	t_img	*sym;
 	t_img	*anim;
 
-	if (tile >= 'A' && tile <= 'Z'
-		&& tile != 'N' && tile != 'S' && tile != 'E' && tile != 'W')
+	if (bonus_is_door_tile(tile))
 		return (bonus_pick_door_texture(app, tile));
 	if (bonus_symbol_index(tile) >= 0)
 	{

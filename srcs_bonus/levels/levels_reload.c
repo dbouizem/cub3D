@@ -87,6 +87,7 @@ static int	apply_next_level(t_app *app, t_app *next)
 		return (1);
 	if (bonus_doors_init(app) != 0)
 		return (1);
+	bonus_sprites_rebuild(app);
 	init_player_vectors(app);
 	ft_bzero(&app->input, sizeof(app->input));
 	return (0);

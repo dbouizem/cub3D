@@ -52,6 +52,18 @@ void			bonus_toggle_door_state(t_door *door);
 int				bonus_levels_init(t_app *app, const char *start_path);
 const char		*bonus_level_current_path(t_app *app);
 int				bonus_load_next_level(t_app *app);
+int				bonus_sprites_init(t_app *app);
+void			bonus_sprites_shutdown(t_app *app);
+void			bonus_sprites_rebuild(t_app *app);
+void			bonus_sprites_set_depth(t_app *app, int x, double dist);
+void			bonus_draw_sprites(t_app *app);
+int				bonus_is_sprite_tile(char c);
+void			sort_bonus_sprites(t_bonus_sprites *sp);
+void			bonus_sprite_destroy_tex(t_app *app, t_img *img);
+int				bonus_sprite_load_tex(t_app *app, t_img *img, const char *path);
+int				bonus_sprite_ensure_cap(t_bonus_sprites *sp, int cap);
+int				bonus_sprite_count_map(t_app *app);
+void			bonus_sprite_fill_from_map(t_app *app);
 
 int				retro_init_img(t_app *app, t_img *img, int width, int height);
 void			retro_reset_img(t_img *img);

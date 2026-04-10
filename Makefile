@@ -78,6 +78,7 @@ BONUS_NOOP_SRCS = \
 	srcs_bonus/noop/api_noop.c \
 	srcs_bonus/noop/minimap_noop.c \
 	srcs_bonus/noop/levels_api_noop.c \
+	srcs_bonus/noop/sprites_noop.c \
 	srcs_bonus/noop/walls_noop.c \
 	srcs_bonus/noop/doors_api_noop.c \
 	srcs_bonus/noop/doors_utils_noop.c \
@@ -103,6 +104,10 @@ BONUS_SRCS = \
 	srcs_bonus/retro/walls_symbol_io.c \
 	srcs_bonus/levels/levels_api.c \
 	srcs_bonus/levels/levels_reload.c \
+	srcs_bonus/sprites/sprites_api.c \
+	srcs_bonus/sprites/sprites_helpers.c \
+	srcs_bonus/sprites/sprites_sort.c \
+	srcs_bonus/sprites/sprites_render.c \
 	srcs_bonus/doors/doors_api.c \
 	srcs_bonus/doors/doors_utils.c \
 	srcs_bonus/doors/doors_query.c
