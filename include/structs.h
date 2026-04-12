@@ -69,12 +69,12 @@ typedef struct s_ray
 	int		step_y;
 	int		hit;
 	int		side;
+	char	wall_face;
 	double	perp_wall_dist;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
 }	t_ray;
-
 
 /* Global application state shared across modules. */
 typedef struct s_app

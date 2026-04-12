@@ -46,7 +46,11 @@ SRC_PARSING = \
 	srcs/validation/init_player.c
 
 SRC_RENDER = \
-	srcs/render/draw_frame.c
+	srcs/render/draw_frame.c \
+	srcs/render/render_utils.c \
+	srcs/render/raycast_init.c \
+	srcs/render/raycast_trace.c \
+	srcs/render/raycast_draw.c
 
 SRC_INPUT = \
 	srcs/input/keyboard.c \

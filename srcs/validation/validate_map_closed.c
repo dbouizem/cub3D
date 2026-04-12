@@ -12,10 +12,10 @@
 
 #include "cub3d.h"
 
-static int	handle_validation_error(char **visited, int height,
-	const char *msg, int len)
+static int	handle_validation_error(t_bfs_context *ctx, const char *msg, int len)
 {
-	cleanup_visited(visited, height);
+	cleanup_visited(ctx->visited, ctx->height);
+	free_queue(ctx->queue);
 	error_put("Error\n");
 	write(2, msg, len);
 	return (1);
@@ -89,10 +89,10 @@ int	check_enclosure(t_app *app, char **lines, int start)
 	ctx.leak = 0;
 	run_bfs(&ctx);
 	if (ctx.leak)
-		return (handle_validation_error(ctx.visited, ctx.height,
+		return (handle_validation_error(&ctx,
 				"Map is not enclosed by walls\n", 29));
 	if (scan_unreachable(lines, start, ctx.height, ctx.visited))
-		return (handle_validation_error(ctx.visited, ctx.height,
+		return (handle_validation_error(&ctx,
 				"Map contains unreachable areas\n", 31));
 	cleanup_visited(ctx.visited, ctx.height);
 	free_queue(ctx.queue);

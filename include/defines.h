@@ -35,6 +35,7 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define EVENT_KEYPRESS 2
+# define EVENT_KEYRELEASE 3
 # define EVENT_DESTROY 17
 
 /* Generic parser return codes. */
