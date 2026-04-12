@@ -26,8 +26,8 @@ int	find_player(t_app *app, char **lines, int start)
 			if (lines[i][j] == 'N' || lines[i][j] == 'S'
 				|| lines[i][j] == 'E' || lines[i][j] == 'W')
 			{
-				app->player_x = j;
-				app->player_y = i - start;
+				app->player_x = j + 0.5;
+				app->player_y = (i - start) + 0.5;
 				app->player_dir = lines[i][j];
 				init_player_directions(app);
 				return (0);

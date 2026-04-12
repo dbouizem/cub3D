@@ -67,6 +67,5 @@ int	init_mlx(t_app *app)
 	app->floor_color = rgb_to_int(app->config.floor_rgb);
 	if (load_textures(app) != 0)
 		return (1);
-	mlx_loop_hook(app->mlx_ptr, &draw_frame, app);
 	return (0);
 }

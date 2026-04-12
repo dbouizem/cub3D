@@ -20,9 +20,9 @@ int	close_window(t_app *app)
 
 int	key_press(int keycode, t_app *app)
 {
-	if (keycode == KEY_W)
+	if (keycode == KEY_W || keycode == KEY_Z)
 		app->keys.w = TRUE;
-	else if (keycode == KEY_A)
+	else if (keycode == KEY_A || keycode == KEY_Q)
 		app->keys.a = TRUE;
 	else if (keycode == KEY_S)
 		app->keys.s = TRUE;
@@ -39,9 +39,9 @@ int	key_press(int keycode, t_app *app)
 
 int	key_release(int keycode, t_app *app)
 {
-	if (keycode == KEY_W)
+	if (keycode == KEY_W || keycode == KEY_Z)
 		app->keys.w = FALSE;
-	else if (keycode == KEY_A)
+	else if (keycode == KEY_A || keycode == KEY_Q)
 		app->keys.a = FALSE;
 	else if (keycode == KEY_S)
 		app->keys.s = FALSE;
