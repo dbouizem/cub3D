@@ -23,9 +23,17 @@ void	bonus_sprites_shutdown(t_app *app)
 	(void)app;
 }
 
-void	bonus_sprites_rebuild(t_app *app)
+int	bonus_sprites_rebuild(t_app *app)
 {
 	(void)app;
+	return (0);
+}
+
+int	bonus_sprites_resize_zbuf(t_app *app, int width)
+{
+	(void)app;
+	(void)width;
+	return (0);
 }
 
 void	bonus_sprites_set_depth(t_app *app, int x, double dist)
@@ -33,9 +41,4 @@ void	bonus_sprites_set_depth(t_app *app, int x, double dist)
 	(void)app;
 	(void)x;
 	(void)dist;
-}
-
-void	bonus_draw_sprites(t_app *app)
-{
-	(void)app;
 }

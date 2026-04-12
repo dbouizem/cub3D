@@ -31,7 +31,9 @@ int	handle_mouse_press(int button, int x, int y, t_app *app)
 	(void)y;
 	if (!app || app->bonus.retro.enabled == 0)
 		return (0);
-	if (button == BUTTON_SCROLL_UP)
+	if (button == BUTTON_LEFT)
+		bonus_hud_try_fire(app);
+	else if (button == BUTTON_SCROLL_UP)
 	{
 		app->bonus.retro.minimap_zoom += BONUS_MINIMAP_ZOOM_STEP;
 		if (app->bonus.retro.minimap_zoom > BONUS_MINIMAP_ZOOM_MAX)

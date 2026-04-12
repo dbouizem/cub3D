@@ -66,8 +66,6 @@ int	retro_render(t_app *app, t_img *saved_frame)
 		return (0);
 	retro_upscale_to_out(app);
 	app->frame = *saved_frame;
-	mlx_put_image_to_window(app->mlx_ptr, app->win_ptr,
-		app->bonus.retro.out.img_ptr, 0, 0);
 	return (1);
 }
 

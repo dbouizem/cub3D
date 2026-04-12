@@ -35,6 +35,8 @@ static int	is_walkable(t_app *app, double x, double y)
 	if (cell == '0' || cell == 'N' || cell == 'S'
 		|| cell == 'E' || cell == 'W')
 		return (1);
+	if (bonus_is_sprite_tile(cell))
+		return (1);
 	if (is_door_tile(cell) && bonus_door_is_blocking(app, x, y) == 0)
 		return (1);
 	return (0);

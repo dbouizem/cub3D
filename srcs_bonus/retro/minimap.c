@@ -20,8 +20,8 @@ void	bonus_draw_minimap(t_app *app)
 		|| !app->bonus.retro.minimap.addr)
 		return ;
 	mm.size = app->bonus.retro.minimap.width;
-	mm.ox = app->frame.width - BONUS_MINIMAP_PAD - mm.size;
-	mm.oy = app->frame.height - BONUS_MINIMAP_PAD - mm.size;
+	mm.ox = BONUS_MINIMAP_PAD;
+	mm.oy = BONUS_MINIMAP_PAD;
 	mm.cx = mm.size / 2;
 	mm.cy = mm.size / 2;
 	mm.r2 = (mm.size / 2 - 1) * (mm.size / 2 - 1);

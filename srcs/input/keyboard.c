@@ -50,6 +50,8 @@ int	handle_keypress(int keycode, t_app *app)
 	}
 	if (keycode == KEY_E)
 		bonus_door_try_toggle(app);
+	if (keycode == KEY_SPACE)
+		bonus_hud_try_fire(app);
 	if (apply_resolution_preset(app, keycode))
 		return (0);
 	set_move_keys(app, keycode, 1);

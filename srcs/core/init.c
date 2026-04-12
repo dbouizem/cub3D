@@ -49,7 +49,39 @@ static void	init_defaults(t_app *app)
 
 static void	init_bonus_textures(t_app *app)
 {
-	(void)app;
+	init_tex(&app->bonus.retro.fb);
+	init_tex(&app->bonus.retro.out);
+	init_tex(&app->bonus.retro.minimap);
+	init_tex(&app->bonus.sprites.pickup_frames[0]);
+	init_tex(&app->bonus.sprites.pickup_frames[1]);
+	init_tex(&app->bonus.sprites.pickup_frames[2]);
+	init_tex(&app->bonus.sprites.pickup_frames[3]);
+	init_tex(&app->bonus.hud.face_dead);
+	init_tex(&app->bonus.hud.weapon_idle);
+	init_tex(&app->bonus.hud.weapon_shoot[0]);
+	init_tex(&app->bonus.hud.weapon_shoot[1]);
+	init_tex(&app->bonus.hud.weapon_shoot[2]);
+}
+
+static void	init_bonus_state(t_app *app)
+{
+	app->bonus.retro.enabled = 0;
+	app->bonus.retro.minimap_zoom = BONUS_MINIMAP_ZOOM_DEFAULT;
+	app->bonus.stats.hp = BONUS_HP_START;
+	app->bonus.stats.armor = BONUS_ARMOR_START;
+	app->bonus.stats.ammo = BONUS_AMMO_START;
+	app->bonus.stats.score = BONUS_SCORE_START;
+	app->bonus.sprites.anim_frame = 0;
+	app->bonus.sprites.anim_timer = 0.0;
+	app->bonus.hud.weapon_frame = 0;
+	app->bonus.hud.weapon_timer = 0.0;
+	app->bonus.hud.weapon_cooldown = 0.0;
+	app->bonus.hud.face_react = 0;
+	app->bonus.hud.face_react_timer = 0.0;
+	app->bonus.hud.face_idle_timer = 0.0;
+	app->bonus.hud.face_idle_frame = 0;
+	app->bonus.hud.face_turn_dir = 0;
+	app->bonus.hud.face_prev_angle = 0.0;
 }
 
 void	init_app(t_app *app)
@@ -62,35 +94,5 @@ void	init_app(t_app *app)
 	init_tex(&app->tex_we);
 	init_tex(&app->tex_ea);
 	init_bonus_textures(app);
-	init_tex(&app->bonus.retro.fb);
-	init_tex(&app->bonus.retro.out);
-	init_tex(&app->bonus.retro.minimap);
-	app->bonus.retro.enabled = 0;
-	app->bonus.retro.minimap_zoom = BONUS_MINIMAP_ZOOM_DEFAULT;
-}
-
-void	init_player_vectors(t_app *app)
-{
-	if (app->player.orientation == 'N' || app->player.orientation == 'S')
-	{
-		app->dir_x = 0;
-		app->plane_y = 0;
-		app->dir_y = -1;
-		app->plane_x = FOV_FACTOR;
-		if (app->player.orientation == 'S')
-			app->dir_y = 1;
-		if (app->player.orientation == 'S')
-			app->plane_x = -FOV_FACTOR;
-	}
-	else
-	{
-		app->dir_y = 0;
-		app->plane_x = 0;
-		app->dir_x = -1;
-		app->plane_y = -FOV_FACTOR;
-		if (app->player.orientation == 'E')
-			app->dir_x = 1;
-		if (app->player.orientation == 'E')
-			app->plane_y = FOV_FACTOR;
-	}
+	init_bonus_state(app);
 }

@@ -25,6 +25,39 @@ static void	levels_fill_paths(t_bonus_levels *levels)
 	levels->count = BONUS_LEVEL_MAX;
 }
 
+static const char	*skip_relative_prefix(const char *path)
+{
+	while (path && path[0] == '.' && path[1] == '/')
+		path += 2;
+	return (path);
+}
+
+static int	path_matches_level(const char *level_path, const char *input_path)
+{
+	size_t		level_len;
+	size_t		input_len;
+	const char	*normalized;
+	const char	*suffix;
+
+	if (!level_path || !input_path)
+		return (0);
+	normalized = skip_relative_prefix(input_path);
+	if (ft_strcmp(level_path, normalized) == 0)
+		return (1);
+	level_len = ft_strlen(level_path);
+	input_len = ft_strlen(normalized);
+	if (input_len < level_len)
+		return (0);
+	suffix = normalized + input_len - level_len;
+	if (ft_strcmp(level_path, suffix) != 0)
+		return (0);
+	if (suffix == normalized)
+		return (1);
+	if (*(suffix - 1) == '/')
+		return (1);
+	return (0);
+}
+
 static int	levels_find_index(t_bonus_levels *levels, const char *path)
 {
 	int	i;
@@ -32,7 +65,7 @@ static int	levels_find_index(t_bonus_levels *levels, const char *path)
 	i = 0;
 	while (i < levels->count)
 	{
-		if (ft_strcmp(levels->paths[i], path) == 0)
+		if (path_matches_level(levels->paths[i], path))
 			return (i);
 		i++;
 	}
@@ -57,13 +90,4 @@ int	bonus_levels_init(t_app *app, const char *start_path)
 		levels->active = 1;
 	}
 	return (0);
-}
-
-const char	*bonus_level_current_path(t_app *app)
-{
-	if (!app)
-		return (NULL);
-	if (app->bonus.levels.active)
-		return (app->bonus.levels.paths[app->bonus.levels.current]);
-	return (app->bonus.levels.start_path);
 }

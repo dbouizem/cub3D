@@ -32,6 +32,7 @@ LDFLAGS = $(LIBFT_A) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 SRC_CORE = \
 	srcs/core/main.c \
 	srcs/core/init.c \
+	srcs/core/init_player.c \
 	srcs/core/init_mlx.c \
 	srcs/core/window_resize.c
 
@@ -55,6 +56,7 @@ SRC_PARSING = \
 
 SRC_RENDER = \
 	srcs/render/draw_frame.c \
+	srcs/render/draw_vignette.c \
 	srcs/render/frame_timing.c \
 	srcs/render/raycast.c \
 	srcs/render/raycast_cast.c \
@@ -76,9 +78,13 @@ SRC_TOOLS = \
 
 BONUS_NOOP_SRCS = \
 	srcs_bonus/noop/api_noop.c \
+	srcs_bonus/noop/hud_draw_noop.c \
 	srcs_bonus/noop/minimap_noop.c \
 	srcs_bonus/noop/levels_api_noop.c \
+	srcs_bonus/noop/pickups_noop.c \
 	srcs_bonus/noop/sprites_noop.c \
+	srcs_bonus/noop/sprites_query_noop.c \
+	srcs_bonus/noop/sprites_hud_noop.c \
 	srcs_bonus/noop/walls_noop.c \
 	srcs_bonus/noop/doors_api_noop.c \
 	srcs_bonus/noop/doors_utils_noop.c \
@@ -91,6 +97,7 @@ BONUS_SRCS = \
 	srcs_bonus/retro/image.c \
 	srcs_bonus/retro/upscale.c \
 	srcs_bonus/retro/minimap.c \
+	srcs_bonus/retro/minimap_pixels.c \
 	srcs_bonus/retro/minimap_render.c \
 	srcs_bonus/retro/shading.c \
 	srcs_bonus/retro/flat_shading.c \
@@ -100,14 +107,46 @@ BONUS_SRCS = \
 	srcs_bonus/retro/walls_anim_pick.c \
 	srcs_bonus/retro/walls_symbol_pick.c \
 	srcs_bonus/retro/walls_io.c \
+	srcs_bonus/retro/walls_anim_io.c \
+	srcs_bonus/retro/walls_paths.c \
 	srcs_bonus/retro/walls_destroy.c \
 	srcs_bonus/retro/walls_symbol_io.c \
 	srcs_bonus/levels/levels_api.c \
+	srcs_bonus/levels/levels_current.c \
 	srcs_bonus/levels/levels_reload.c \
+	srcs_bonus/levels/levels_textures.c \
+	srcs_bonus/levels/levels_transfer.c \
+	srcs_bonus/pickups/pickups_effects.c \
+	srcs_bonus/pickups/pickups_api.c \
+	srcs_bonus/pickups/pickups_sprites.c \
+	srcs_bonus/pickups/pickups_update.c \
+	srcs_bonus/hud/hud_assets.c \
+	srcs_bonus/hud/hud_blit.c \
+	srcs_bonus/hud/hud_colors.c \
+	srcs_bonus/hud/hud_draw.c \
+	srcs_bonus/hud/hud_face_paths.c \
+	srcs_bonus/hud/hud_fire.c \
+	srcs_bonus/hud/hud_frames.c \
+	srcs_bonus/hud/hud_glyphs.c \
+	srcs_bonus/hud/hud_overlay.c \
+	srcs_bonus/hud/hud_panels.c \
+	srcs_bonus/hud/hud_scaled.c \
+	srcs_bonus/hud/hud_state.c \
+	srcs_bonus/hud/hud_status.c \
+	srcs_bonus/hud/hud_text.c \
+	srcs_bonus/hud/hud_weapon_slot.c \
 	srcs_bonus/sprites/sprites_api.c \
+	srcs_bonus/sprites/sprites_alloc.c \
+	srcs_bonus/sprites/sprites_assets.c \
+	srcs_bonus/sprites/sprites_bounds.c \
+	srcs_bonus/sprites/sprites_depth.c \
 	srcs_bonus/sprites/sprites_helpers.c \
+	srcs_bonus/sprites/sprites_space.c \
 	srcs_bonus/sprites/sprites_sort.c \
 	srcs_bonus/sprites/sprites_render.c \
+	srcs_bonus/sprites/sprites_setup.c \
+	srcs_bonus/sprites/sprites_shadow.c \
+	srcs_bonus/sprites/sprites_shutdown.c \
 	srcs_bonus/doors/doors_api.c \
 	srcs_bonus/doors/doors_utils.c \
 	srcs_bonus/doors/doors_query.c

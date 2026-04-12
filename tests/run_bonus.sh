@@ -105,6 +105,21 @@ run_expect_exit "bonus init bad runtime texture EA" 1 "$BIN" \
 run_expect_running "bonus render color extremes" \
 	"$ROOT_DIR/tests/render/color_extremes.cub"
 
+cat > "$ROOT_DIR/tests/.tmp_bonus/bonus_map_starts_with_wall.cub" <<MAP
+NO $ROOT_DIR/textures/mandatory/no.xpm
+SO $ROOT_DIR/textures/mandatory/so.xpm
+WE $ROOT_DIR/textures/mandatory/we.xpm
+EA $ROOT_DIR/textures/mandatory/ea.xpm
+F 1,2,3
+C 4,5,6
+
+22222
+2N002
+22222
+MAP
+run_expect_running "bonus parser map starts with bonus wall" \
+	"$ROOT_DIR/tests/.tmp_bonus/bonus_map_starts_with_wall.cub"
+
 cat > "$ROOT_DIR/tests/.tmp_bonus/wrong_ext.txt" <<'MAP'
 NO ../../textures/mandatory/no.xpm
 SO ../../textures/mandatory/so.xpm

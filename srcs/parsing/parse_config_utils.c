@@ -73,7 +73,8 @@ int	is_map_like_line(const char *line)
 		return (0);
 	while (line[i])
 	{
-		if (!ft_strchr(" 01NSEW", line[i]))
+		if (!ft_strchr(" 01NSEW", line[i])
+			&& !bonus_is_valid_map_char(line[i]))
 			return (0);
 		i++;
 	}

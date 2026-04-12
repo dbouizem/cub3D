@@ -55,13 +55,20 @@ int	draw_frame(t_app *app)
 	update_frame_timing(app);
 	update_player_input(app);
 	bonus_doors_update(app);
+	bonus_hud_update(app);
+	bonus_pickups_update(app);
 	retro_active = retro_begin(app, &saved_frame);
 	draw_background(app);
 	raycast_scene(app);
 	bonus_draw_sprites(app);
 	bonus_draw_minimap(app);
+	apply_world_vignette(app);
 	if (retro_active)
 		retro_render(app, &saved_frame);
+	bonus_draw_hud(app);
+	if (retro_active)
+		mlx_put_image_to_window(app->mlx_ptr, app->win_ptr,
+			app->bonus.retro.out.img_ptr, 0, 0);
 	else
 		mlx_put_image_to_window(app->mlx_ptr, app->win_ptr,
 			app->frame.img_ptr, 0, 0);

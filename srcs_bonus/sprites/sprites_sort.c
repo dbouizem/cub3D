@@ -29,6 +29,9 @@ static void	swap_sprites(t_bonus_sprites *sp, int i, int j)
 	c = sp->types[i];
 	sp->types[i] = sp->types[j];
 	sp->types[j] = c;
+	c = sp->active[i];
+	sp->active[i] = sp->active[j];
+	sp->active[j] = c;
 }
 
 void	sort_bonus_sprites(t_bonus_sprites *sp)

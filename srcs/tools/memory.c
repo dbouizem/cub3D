@@ -57,6 +57,8 @@ static void	destroy_textures(t_app *app)
 	bonus_destroy_wall_textures(app);
 	retro_shutdown(app);
 	bonus_doors_shutdown(app);
+	bonus_hud_shutdown(app);
+	bonus_pickups_shutdown(app);
 	bonus_sprites_shutdown(app);
 	destroy_img(app, &app->frame);
 }

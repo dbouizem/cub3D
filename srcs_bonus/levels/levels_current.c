@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img.h                                              :+:      :+:    :+:   */
+/*   levels_current.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/09 19:45:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/09 19:45:00 by dbouizem         ###   ########.fr       */
+/*   Created: 2026/04/11 19:15:00 by dbouizem          #+#    #+#             */
+/*   Updated: 2026/04/11 19:15:00 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMG_H
-# define IMG_H
+#include "cub3d.h"
 
-typedef struct s_img
+const char	*bonus_level_current_path(t_app *app)
 {
-	void	*img_ptr;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
-
-#endif
+	if (!app)
+		return (NULL);
+	if (app->bonus.levels.active)
+		return (app->bonus.levels.paths[app->bonus.levels.current]);
+	return (app->bonus.levels.start_path);
+}

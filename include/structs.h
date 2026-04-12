@@ -13,11 +13,13 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-# include "img.h"
 # include "structs_bonus.h"
 
 typedef unsigned long	t_size;
 
+/*
+** Player map position and initial orientation from the .cub file.
+*/
 typedef struct s_player
 {
 	double	x;
@@ -25,13 +27,18 @@ typedef struct s_player
 	char	orientation;
 }	t_player;
 
+/*
+** Rectangular map grid after parsing.
+*/
 typedef struct s_map
 {
 	char	**grid;
 	int		height;
 }	t_map;
 
-/* Parsed .cub configuration (textures and RGB colors). */
+/*
+** Parsed .cub configuration: mandatory texture paths and RGB colors.
+*/
 typedef struct s_config
 {
 	char	*tex_no;
@@ -42,6 +49,9 @@ typedef struct s_config
 	int		ceiling_rgb[3];
 }	t_config;
 
+/*
+** Keyboard and mouse state accumulated between frames.
+*/
 typedef struct s_input
 {
 	int	forward;
@@ -55,6 +65,9 @@ typedef struct s_input
 	int	mouse_ready;
 }	t_input;
 
+/*
+** Parser context used while reading header entries before the map.
+*/
 typedef struct s_parse_headers
 {
 	char		**lines;
@@ -63,6 +76,9 @@ typedef struct s_parse_headers
 	const char	*map_path;
 }	t_parse_headers;
 
+/*
+** Raycasting state for one screen column.
+*/
 typedef struct s_ray
 {
 	int		x;
@@ -84,6 +100,9 @@ typedef struct s_ray
 	int		draw_end;
 }	t_ray;
 
+/*
+** Main application state shared by parsing, MLX, rendering, and bonus systems.
+*/
 typedef struct s_app
 {
 	t_config	config;
@@ -111,6 +130,9 @@ typedef struct s_app
 	t_bonus_ctx	bonus;
 }	t_app;
 
+/*
+** Breadth-first search context used by closed-map validation.
+*/
 typedef struct s_bfs_context
 {
 	char	**lines;

@@ -19,43 +19,16 @@ static void	draw_stripe(t_app *app, t_sprite_proj p, t_img *tex, int x)
 	int				ty;
 	unsigned int	color;
 
-	tx = (x - p.x0) * tex->width / p.sh;
+	tx = p.tx0 + ((x - p.x0) * (p.tx1 - p.tx0 + 1) / p.sw);
 	y = p.y0;
 	while (y < p.y1)
 	{
-		ty = (y - p.y0) * tex->height / p.sh;
+		ty = p.ty0 + ((y - p.y0) * (p.ty1 - p.ty0 + 1) / p.sh);
 		color = retro_get_pixel(tex, tx, ty);
-		if (color != 0xFF000000)
+		if (bonus_sprite_is_opaque(color))
 			put_pixel(&app->frame, x, y, (int)color);
 		y++;
 	}
-}
-
-static int	setup_sprite(t_app *app, int i, t_sprite_proj *p, t_img **tex)
-{
-	double			inv;
-	double			tx;
-
-	inv = 1.0 / (app->plane_x * app->dir_y - app->dir_x * app->plane_y);
-	tx = inv * (app->dir_y * app->bonus.sprites.xs[i] - app->dir_x
-			* app->bonus.sprites.ys[i]);
-	p->sy = inv * (-app->plane_y * app->bonus.sprites.xs[i] + app->plane_x
-			* app->bonus.sprites.ys[i]);
-	if (p->sy <= 0.0)
-		return (1);
-	p->sx = (int)((app->frame.width / 2) * (1.0 + tx / p->sy));
-	p->sh = (int)(app->frame.height / (p->sy + 1e-9));
-	if (p->sh < 1)
-		p->sh = 1;
-	p->x0 = p->sx - p->sh / 2;
-	p->x1 = p->sx + p->sh / 2;
-	p->y0 = app->frame.height / 2 - p->sh / 2;
-	p->y1 = app->frame.height / 2 + p->sh / 2;
-	if (app->bonus.sprites.types[i] == '@')
-		*tex = &app->bonus.sprites.at_tex;
-	else
-		*tex = &app->bonus.sprites.star_tex;
-	return (0);
 }
 
 static void	draw_one_sprite(t_app *app, int i)
@@ -64,8 +37,11 @@ static void	draw_one_sprite(t_app *app, int i)
 	t_img			*tex;
 	int				x;
 
-	if (setup_sprite(app, i, &p, &tex))
+	if (!app->bonus.sprites.active[i])
 		return ;
+	if (bonus_setup_sprite_projection(app, i, &p, &tex))
+		return ;
+	bonus_draw_sprite_shadow(app, p);
 	x = p.x0;
 	while (x < p.x1)
 	{
@@ -76,28 +52,16 @@ static void	draw_one_sprite(t_app *app, int i)
 	}
 }
 
-static void	shift_sprite_space(t_bonus_sprites *sp, t_player *pl, double sign)
-{
-	int	i;
-
-	i = -1;
-	while (++i < sp->count)
-	{
-		sp->xs[i] += pl->x * sign;
-		sp->ys[i] += pl->y * sign;
-	}
-}
-
 void	bonus_draw_sprites(t_app *app)
 {
 	int	i;
 
 	if (!app || !app->bonus.sprites.zbuf || app->bonus.sprites.count <= 0)
 		return ;
-	shift_sprite_space(&app->bonus.sprites, &app->player, -1.0);
+	bonus_shift_sprite_space(&app->bonus.sprites, &app->player, -1.0);
 	sort_bonus_sprites(&app->bonus.sprites);
 	i = -1;
 	while (++i < app->bonus.sprites.count)
 		draw_one_sprite(app, i);
-	shift_sprite_space(&app->bonus.sprites, &app->player, 1.0);
+	bonus_shift_sprite_space(&app->bonus.sprites, &app->player, 1.0);
 }

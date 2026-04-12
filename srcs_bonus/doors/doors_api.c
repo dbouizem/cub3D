@@ -72,7 +72,7 @@ void	bonus_doors_update(t_app *app)
 	t_door	*door;
 	int		i;
 
-	if (!app || app->bonus.retro.enabled == 0)
+	if (!app)
 		return ;
 	i = 0;
 	while (i < app->bonus.doors.count)

@@ -15,6 +15,8 @@
 static int	quantize_chan(int c, int step)
 {
 	c = ((c + step / 2) / step) * step;
+	if (c < 0)
+		c = 0;
 	if (c > 255)
 		c = 255;
 	return (c);

@@ -42,9 +42,18 @@ static int	recreate_render_targets(t_app *app)
 	retro_shutdown(app);
 	if (retro_init(app) != 0)
 		return (1);
+	if (bonus_sprites_resize_zbuf(app, app->win_w) != 0)
+		return (1);
 	app->input.mouse_ready = 0;
 	app->input.mouse_dx = 0;
 	return (0);
+}
+
+static int	close_window_error(t_app *app)
+{
+	free_app(app);
+	exit(1);
+	return (1);
 }
 
 int	resize_window(t_app *app, int w, int h, int recreate_window)
@@ -60,16 +69,10 @@ int	resize_window(t_app *app, int w, int h, int recreate_window)
 		mlx_destroy_window(app->mlx_ptr, app->win_ptr);
 		app->win_ptr = mlx_new_window(app->mlx_ptr, w, h, "cub3D");
 		if (!app->win_ptr)
-			return (close_window(app), 1);
+			return (close_window_error(app));
 		bind_window_hooks(app);
 	}
 	if (recreate_render_targets(app) != 0)
-		return (close_window(app), 1);
+		return (close_window_error(app));
 	return (1);
-}
-
-int	handle_window_resize(int width, int height, t_app *app)
-{
-	resize_window(app, width, height, 0);
-	return (0);
 }
