@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 11:32:29 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/08 09:41:27 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/12 07:14:01 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 static int	is_wall(t_app *app, double x, double y)
 {
-	int	map_x;
-	int	map_y;
-	int	height;
-	int	row_len;
+	int		map_x;
+	int		map_y;
+	int		height;
+	int		row_len;
+	char	cell;
 
 	map_x = (int)x;
 	map_y = (int)y;
@@ -27,7 +28,8 @@ static int	is_wall(t_app *app, double x, double y)
 	row_len = ft_strlen(app->file_lines[app->map_start + map_y]);
 	if (map_x < 0 || map_x >= row_len)
 		return (1);
-	if (app->file_lines[app->map_start + map_y][map_x] == '1')
+	cell = app->file_lines[app->map_start + map_y][map_x];
+	if (cell == '1' || cell == ' ')
 		return (1);
 	return (0);
 }
@@ -39,11 +41,12 @@ static void	try_move(t_app *app, double dx, double dy)
 
 	next_x = app->player_x + dx;
 	next_y = app->player_y + dy;
-	if (is_wall(app, next_x, next_y) == 0)
-	{
+	if (is_wall(app, next_x + PLAYER_RADIUS, app->player_y) == 0
+		&& is_wall(app, next_x - PLAYER_RADIUS, app->player_y) == 0)
 		app->player_x = next_x;
+	if (is_wall(app, app->player_x, next_y + PLAYER_RADIUS) == 0
+		&& is_wall(app, app->player_x, next_y - PLAYER_RADIUS) == 0)
 		app->player_y = next_y;
-	}
 }
 
 void	handle_movement(t_app *app)

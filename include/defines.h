@@ -20,6 +20,7 @@
 /* Movement and rotation speeds */
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.03
+# define PLAYER_RADIUS 0.2
 
 /* Window and event constants (Linux/X11 key/event codes). */
 # define WIN_W 1280
