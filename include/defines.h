@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 06:00:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/06 11:13:57 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/15 10:41:21 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # define TRUE 1
 
 /* Movement and rotation speeds */
-# define MOVE_SPEED 0.05
-# define ROT_SPEED 0.03
+# define MOVE_SPEED 0.09
+# define ROT_SPEED 0.05
 # define PLAYER_RADIUS 0.2
 
 /* Window and event constants (Linux/X11 key/event codes). */

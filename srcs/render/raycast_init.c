@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 00:00:00 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/12 00:00:00 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/15 10:27:17 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	init_ray(t_app *app, t_ray *ray, int x)
 	ray->camera_x = 2.0 * x / (double)app->win_w - 1.0;
 	ray->ray_dir_x = app->dir_x + app->plane_x * ray->camera_x;
 	ray->ray_dir_y = app->dir_y + app->plane_y * ray->camera_x;
-	ray->map_x = (int)app->player_x;
-	ray->map_y = (int)app->player_y;
+	ray->map_x = (int)(app->player_x + 1e-9);
+	ray->map_y = (int)(app->player_y + 1e-9);
 	ray->hit = 0;
 	ray->side = 0;
 	ray->wall_face = '\0';

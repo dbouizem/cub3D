@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/12 00:00:00 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/15 10:06:15 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/15 10:17:26 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static int	calculate_tex_x(double wall_x, int tex_width)
 	if (wall_x >= 1.0)
 		wall_x = 0.999999;
 	tex_x = (int)(wall_x * tex_width);
+	if (tex_x < 0)
+		tex_x = 0;
 	if (tex_x >= tex_width)
 		tex_x = tex_width - 1;
 	return (tex_x);

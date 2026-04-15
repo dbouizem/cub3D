@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 16:30:01 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/14 19:32:47 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/15 10:30:54 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,20 @@ static void	calculate_wall_x(t_app *app, t_ray *ray)
 	wall_x -= (double)((int)wall_x);
 	ray->wall_x = wall_x;
 }
-
+// TEST to debug, using fabs()
 static void	calculate_wall_distance(t_app *app, t_ray *ray)
 {
+	double	dist;
+
 	if (ray->side == 0)
-		ray->perp_wall_dist = (ray->map_x - app->player_x
-				+ (1 - ray->step_x) / 2.0) / ray->ray_dir_x;
+		dist = (ray->map_x - app->player_x + (1 - ray->step_x) / 2.0)
+				/ ray->ray_dir_x;
 	else
-		ray->perp_wall_dist = (ray->map_y - app->player_y
-				+ (1 - ray->step_y) / 2.0) / ray->ray_dir_y;
-	if (ray->perp_wall_dist <= 0.0)
-		ray->perp_wall_dist = 0.0001;
+		dist = (ray->map_y - app->player_y + (1 - ray->step_y) / 2.0)
+				/ ray->ray_dir_y;
+	ray->perp_wall_dist = fabs(dist);
+	if (ray->perp_wall_dist < 0.01)
+		ray->perp_wall_dist = 0.01;
 }
 
 static void	calculate_wall_slice(t_app *app, t_ray *ray)
