@@ -6,7 +6,7 @@
 #    By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/31 06:20:52 by dbouizem          #+#    #+#              #
-#    Updated: 2026/04/09 09:12:30 by brrr1            ###   ########.fr        #
+#    Updated: 2026/04/14 16:50:18 by brrr1            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ LDFLAGS = $(LIBFT_A) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 SRC_CORE = \
 	srcs/core/main.c \
 	srcs/core/init.c \
-	srcs/core/init_mlx.c
+	srcs/core/init_mlx.c \
+	srcs/core/load_textures.c
 
 SRC_PARSING = \
 	srcs/parsing/parse_file.c \
@@ -50,7 +51,8 @@ SRC_RENDER = \
 	srcs/render/render_utils.c \
 	srcs/render/raycast_init.c \
 	srcs/render/raycast_trace.c \
-	srcs/render/raycast_draw.c
+	srcs/render/raycast_draw.c \
+	srcs/render/raycast_calcul.c
 
 SRC_INPUT = \
 	srcs/input/keyboard.c \

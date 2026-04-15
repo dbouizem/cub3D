@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 06:23:18 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/09 09:28:07 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/14 16:35:26 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	get_map_cell(t_app *app, int map_x, int map_y);
 void	init_ray(t_app *app, t_ray *ray, int x);
 void	prepare_dda(t_app *app, t_ray *ray);
 void	trace_ray(t_app *app, t_ray *ray);
+void	calculate_ray_result(t_app *app, t_ray *ray);
 void	draw_wall_column(t_app *app, t_ray *ray, int x);
 void	render_rays(t_app *app);
 

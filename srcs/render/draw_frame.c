@@ -6,11 +6,27 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:55:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/09 11:02:13 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/14 17:44:52 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	render_rays(t_app *app)
+{
+	t_ray	ray;
+	int		x;
+
+	x = 0;
+	while (x < app->win_w)
+	{
+		init_ray(app, &ray, x);
+		prepare_dda(app, &ray);
+		trace_ray(app, &ray);
+		draw_wall_column(app, &ray, x);
+		x++;
+	}
+}
 
 int	draw_frame(t_app *app)
 {

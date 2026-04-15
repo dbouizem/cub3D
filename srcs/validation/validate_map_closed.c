@@ -6,13 +6,14 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 14:55:52 by brrr1             #+#    #+#             */
-/*   Updated: 2026/04/02 18:20:10 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/15 10:07:28 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	handle_validation_error(t_bfs_context *ctx, const char *msg, int len)
+static int	handle_validation_error(t_bfs_context *ctx, const char *msg,
+		int len)
 {
 	cleanup_visited(ctx->visited, ctx->height);
 	free_queue(ctx->queue);
@@ -21,9 +22,6 @@ static int	handle_validation_error(t_bfs_context *ctx, const char *msg, int len)
 	return (1);
 }
 
-/*
-** @brief: Checks and enqueues a valid neighbor.
-*/
 static void	try_enqueue(t_bfs_context *ctx, int nx, int ny)
 {
 	size_t	len;

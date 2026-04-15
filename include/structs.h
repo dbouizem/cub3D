@@ -6,7 +6,7 @@
 /*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 06:00:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/07 11:22:20 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/14 16:41:37 by brrr1            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_ray
 	int		step_y;
 	int		hit;
 	int		side;
+	double	wall_x;
 	char	wall_face;
 	double	perp_wall_dist;
 	int		line_height;
