@@ -20,6 +20,8 @@ static int	is_wall(t_app *app, double x, double y)
 	int		row_len;
 	char	cell;
 
+	if (x < 0.0 || y < 0.0)
+		return (1);
 	map_x = (int)x;
 	map_y = (int)y;
 	height = app->line_count - app->map_start;
@@ -34,6 +36,19 @@ static int	is_wall(t_app *app, double x, double y)
 	return (0);
 }
 
+static int	can_move_to(t_app *app, double x, double y)
+{
+	if (is_wall(app, x - PLAYER_RADIUS, y - PLAYER_RADIUS) != 0)
+		return (0);
+	if (is_wall(app, x + PLAYER_RADIUS, y - PLAYER_RADIUS) != 0)
+		return (0);
+	if (is_wall(app, x - PLAYER_RADIUS, y + PLAYER_RADIUS) != 0)
+		return (0);
+	if (is_wall(app, x + PLAYER_RADIUS, y + PLAYER_RADIUS) != 0)
+		return (0);
+	return (1);
+}
+
 static void	try_move(t_app *app, double dx, double dy)
 {
 	double	next_x;
@@ -41,11 +56,9 @@ static void	try_move(t_app *app, double dx, double dy)
 
 	next_x = app->player_x + dx;
 	next_y = app->player_y + dy;
-	if (is_wall(app, next_x + PLAYER_RADIUS, app->player_y) == 0
-		&& is_wall(app, next_x - PLAYER_RADIUS, app->player_y) == 0)
+	if (can_move_to(app, next_x, app->player_y) != 0)
 		app->player_x = next_x;
-	if (is_wall(app, app->player_x, next_y + PLAYER_RADIUS) == 0
-		&& is_wall(app, app->player_x, next_y - PLAYER_RADIUS) == 0)
+	if (can_move_to(app, app->player_x, next_y) != 0)
 		app->player_y = next_y;
 }
 

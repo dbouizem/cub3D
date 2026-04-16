@@ -16,7 +16,9 @@ int	mlx_int_anti_resize_win(t_xvar *xvar,Window win,int w,int h)
   XSizeHints    hints;
   long		toto;
   
-  XGetWMNormalHints(xvar->display,win,&hints,&toto);
+  bzero(&hints, sizeof(hints));
+  if (!XGetWMNormalHints(xvar->display,win,&hints,&toto))
+    toto = 0;
   hints.width = w;
   hints.height = h;
   hints.min_width = w;
@@ -25,4 +27,5 @@ int	mlx_int_anti_resize_win(t_xvar *xvar,Window win,int w,int h)
   hints.max_height = h;
   hints.flags = PPosition | PSize | PMinSize | PMaxSize;
   XSetWMNormalHints(xvar->display,win,&hints);
+  return (0);
 }

@@ -25,6 +25,7 @@
 /* Core */
 void	init_app(t_app *app);
 int		init_mlx(t_app *app);
+int		load_textures(t_app *app);
 int		parse_file(t_app *app, const char *path);
 
 /* Input */
@@ -89,7 +90,7 @@ char	**allocate_visited(int height, int width);
 int		scan_unreachable(char **lines, int start,
 			int height, char **visited);
 void	cleanup_visited(char **visited, int height);
-void	enqueue(t_node **queue, int x, int y);
+int		enqueue(t_node **queue, t_node **queue_tail, int x, int y);
 int		dequeue(t_node **queue, int *x, int *y);
 void	free_queue(t_node *queue);
 void	init_directions(int *dx, int *dy);

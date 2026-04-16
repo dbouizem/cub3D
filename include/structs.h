@@ -115,9 +115,11 @@ typedef struct s_bfs_context
 	int		height;
 	char	**visited;
 	t_node	*queue;
+	t_node	*queue_tail;
 	int		px;
 	int		py;
 	int		leak;
+	int		alloc_error;
 }	t_bfs_context;
 
 #endif

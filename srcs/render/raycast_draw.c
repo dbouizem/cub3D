@@ -37,31 +37,35 @@ static t_img	*select_texture(t_app *app, t_ray *ray)
 	return (NULL);
 }
 
-static int	calculate_tex_x(double wall_x, int tex_width)
+static int	calculate_tex_x(t_ray *ray, int tex_width)
 {
 	int	tex_x;
 
-	if (wall_x < 0.0)
-		wall_x = 0.0;
-	if (wall_x >= 1.0)
-		wall_x = 0.999999;
-	tex_x = (int)(wall_x * tex_width);
+	if (ray->wall_x < 0.0)
+		ray->wall_x = 0.0;
+	if (ray->wall_x >= 1.0)
+		ray->wall_x = 0.999999;
+	tex_x = (int)(ray->wall_x * tex_width);
 	if (tex_x < 0)
 		tex_x = 0;
 	if (tex_x >= tex_width)
 		tex_x = tex_width - 1;
+	if ((ray->side == 0 && ray->ray_dir_x > 0)
+		|| (ray->side == 1 && ray->ray_dir_y < 0))
+		tex_x = tex_width - tex_x - 1;
 	return (tex_x);
 }
 
-static int	calculate_tex_y(int y, int draw_start, int line_height,
-	int tex_height)
+static int	calculate_tex_y(t_app *app, int y, int line_height, int tex_height)
 {
 	int		tex_y;
+	int		wall_start;
 	double	fraction;
 
 	if (line_height <= 0)
 		return (0);
-	fraction = (double)(y - draw_start) / (double)line_height;
+	wall_start = -line_height / 2 + app->win_h / 2;
+	fraction = (double)(y - wall_start) / (double)line_height;
 	tex_y = (int)(fraction * tex_height);
 	if (tex_y < 0)
 		tex_y = 0;
@@ -81,12 +85,11 @@ void	draw_wall_column(t_app *app, t_ray *ray, int x)
 	tex = select_texture(app, ray);
 	if (!tex)
 		return ;
-	tex_x = calculate_tex_x(ray->wall_x, tex->width);
+	tex_x = calculate_tex_x(ray, tex->width);
 	y = ray->draw_start;
 	while (y <= ray->draw_end)
 	{
-		tex_y = calculate_tex_y(y, ray->draw_start, ray->line_height,
-				tex->height);
+		tex_y = calculate_tex_y(app, y, ray->line_height, tex->height);
 		color = get_tex_pixel(tex, tex_x, tex_y);
 		put_pixel(&app->frame, x, y, color);
 		y++;

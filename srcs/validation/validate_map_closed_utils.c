@@ -12,26 +12,27 @@
 
 #include "cub3d.h"
 
-void	enqueue(t_node **queue, int x, int y)
+int	enqueue(t_node **queue, t_node **queue_tail, int x, int y)
 {
 	t_node	*new_node;
-	t_node	*temp;
 
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
-		return ;
+		return (1);
 	new_node->x = x;
 	new_node->y = y;
 	new_node->next = NULL;
 	if (!*queue)
+	{
 		*queue = new_node;
+		*queue_tail = new_node;
+	}
 	else
 	{
-		temp = *queue;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = new_node;
+		(*queue_tail)->next = new_node;
+		*queue_tail = new_node;
 	}
+	return (0);
 }
 
 int	dequeue(t_node **queue, int *x, int *y)
