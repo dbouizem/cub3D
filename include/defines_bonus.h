@@ -79,26 +79,26 @@
 
 /* ---- 4. SHADING & GAMMA ------------------------------------------------- */
 
-# define BONUS_SHADE_DIST	0.22
-# define BONUS_SHADE_MIN	0.34
-# define BONUS_SHADE_SIDE	0.88
-# define BONUS_SHADE_GAMMA	0.82
-# define BONUS_SHADE_LEVELS	24
-# define BONUS_SHADE_AMBIENT	0.18
-# define BONUS_PALETTE_STEPS	24
+# define BONUS_SHADE_DIST	0.10
+# define BONUS_SHADE_MIN	0.75
+# define BONUS_SHADE_SIDE	0.97
+# define BONUS_SHADE_GAMMA	1.00
+# define BONUS_SHADE_LEVELS	0
+# define BONUS_SHADE_AMBIENT	0.10
+# define BONUS_PALETTE_STEPS	0
 
 # define BONUS_FACE_E	1.00
-# define BONUS_FACE_W	0.94
-# define BONUS_FACE_N	0.97
-# define BONUS_FACE_S	0.90
+# define BONUS_FACE_W	0.98
+# define BONUS_FACE_N	0.99
+# define BONUS_FACE_S	0.97
 
-# define BONUS_FLAT_HORIZON	0.70
-# define BONUS_FLAT_CEIL_TOP	1.08
-# define BONUS_FLAT_FLOOR_BOTTOM	0.82
+# define BONUS_FLAT_HORIZON	0.96
+# define BONUS_FLAT_CEIL_TOP	1.02
+# define BONUS_FLAT_FLOOR_BOTTOM	0.92
 # define BONUS_FLAT_GAMMA	1.00
 
-# define BONUS_VIGNETTE_STRENGTH	0.18
-# define BONUS_VIGNETTE_POWER	1.60
+# define BONUS_VIGNETTE_STRENGTH	0.06
+# define BONUS_VIGNETTE_POWER	1.80
 
 /* ---- 5. ALPHABETS & LOOKUP SIZES ---------------------------------------- */
 

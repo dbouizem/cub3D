@@ -96,7 +96,7 @@ The project uses Linux/X11 MLX keycodes from `include/defines.h`.
 | `E` | `KEY_E` | Interact with a door |
 | `Space` | `KEY_SPACE` | Fire weapon in bonus mode |
 | `F1`, `F2`, `F3` | `KEY_F1`, `KEY_F2`, `KEY_F3` | Resolution presets |
-| `F4` | `KEY_F4` | Bonus/retro display control |
+| `F4` | `KEY_F4` | Load next bonus level |
 | Mouse move | `EVENT_MOUSEMOVE` | Mouse look |
 | Scroll up/down | `BUTTON_SCROLL_UP`, `BUTTON_SCROLL_DOWN` | Minimap zoom |
 
@@ -117,7 +117,7 @@ Bonus mode extends the map alphabet with constants from
 | Constant | Characters | Meaning |
 | --- | --- | --- |
 | `BONUS_DOOR_SET` | `ABCDFGHIJKLMOPQRTUVXYZ` | Door-capable bonus tiles |
-| `BONUS_PLAYER_SET` | `NSEWBCFGHIJKLMOPQRTUVXYZ` | Player start or bonus door letters |
+| `BONUS_PLAYER_SET` | `NSEWBCFGHIJKLMOPQRTUVXYZ` | Extra passable letters accepted by bonus map validation |
 | `BONUS_WALL_SYMBOL_SET` | punctuation symbols | Bonus symbol wall tiles |
 | `BONUS_SPRITE_SET` | `*@)/` | Bonus sprites and pickups |
 
@@ -158,9 +158,9 @@ Animated wall tiles are grouped by tile character.
 
 | Tile | Frames | Texture macros |
 | --- | --- | --- |
-| `O` | 3 | `BONUS_WALL_O1_XPM`, `BONUS_WALL_O2_XPM`, `BONUS_WALL_O3_XPM` |
-| `P` | 3 | `BONUS_WALL_P1_XPM`, `BONUS_WALL_P2_XPM`, `BONUS_WALL_P3_XPM` |
-| `Q` | 3 | `BONUS_WALL_Q1_XPM`, `BONUS_WALL_Q2_XPM`, `BONUS_WALL_Q3_XPM` |
+| `o` | 3 | `BONUS_WALL_O1_XPM`, `BONUS_WALL_O2_XPM`, `BONUS_WALL_O3_XPM` |
+| `p` | 3 | `BONUS_WALL_P1_XPM`, `BONUS_WALL_P2_XPM`, `BONUS_WALL_P3_XPM` |
+| `q` | 3 | `BONUS_WALL_Q1_XPM`, `BONUS_WALL_Q2_XPM`, `BONUS_WALL_Q3_XPM` |
 | `*` | 4 | `BONUS_WALL_STAR1_XPM` to `BONUS_WALL_STAR4_XPM` |
 | `.` | 4 | `BONUS_WALL_DOT1_XPM` to `BONUS_WALL_DOT4_XPM` |
 | `(` | 4 | `BONUS_WALL_LPAREN1_XPM` to `BONUS_WALL_LPAREN4_XPM` |
@@ -176,11 +176,11 @@ Static wall texture paths are grouped by level set in `defines_bonus.h`.
 | Group | Tiles | Texture family |
 | --- | --- | --- |
 | Level 1 stone | `2` to `7` | `textures/bonus/walls/wall_s/` |
-| Level 2 area | `G` to `N` | `textures/bonus/walls/wall_a/` |
+| Level 2 area | `g` to `n` | `textures/bonus/walls/wall_a/` |
 | Level 3 gray symbols | `!`, `"`, `#`, `$`, `%`, `&` | `textures/bonus/walls/wall_g/` |
-| Level 4 tech | `D`, `E`, `F` | `textures/bonus/walls/wall_t/` |
+| Level 4 tech | `d`, `e`, `f` | `textures/bonus/walls/wall_t/` |
 | Level 5 computer | `+`, comma, `-` | `textures/bonus/walls/wall_c/` |
-| Level 6 marble | `R` to `Z` | `textures/bonus/walls/wall_m/` |
+| Level 6 marble | `r` to `z` | `textures/bonus/walls/wall_m/` |
 | Level 7 flesh | `'` | `textures/bonus/walls/wall_f/` |
 | Level 8 exit | `8`, `9`, `A`, `B`, `C` | `textures/bonus/walls/wall_e/` |
 | Fallback symbols | other accepted punctuation | `BONUS_WALL_DEFAULT_XPM` |

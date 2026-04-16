@@ -46,14 +46,14 @@ int				bonus_is_solid_tile(char c);
 int				bonus_load_wall_textures(t_app *app);
 void			bonus_init_wall_path_tables(const char **wall_paths,
 					const char **door_paths);
-void			bonus_load_wall_anim_textures(t_app *app);
+int				bonus_load_wall_anim_textures(t_app *app);
 void			bonus_destroy_wall_textures(t_app *app);
 t_img			*bonus_pick_wall_texture(t_app *app, char tile);
 int				bonus_symbol_index(char c);
 t_img			*bonus_pick_symbol_texture(t_app *app, char tile);
 t_img			*bonus_pick_door_texture(t_app *app, char tile);
 t_img			*bonus_pick_anim_texture(t_app *app, char tile);
-void			bonus_load_symbol_textures(t_app *app);
+int				bonus_load_symbol_textures(t_app *app);
 void			bonus_destroy_symbol_textures(t_app *app);
 
 /*

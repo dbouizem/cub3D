@@ -12,38 +12,47 @@
 
 #include "cub3d.h"
 
-static void	load_optional_xpm(t_app *app, t_img *img, const char *path)
+static int	load_optional_xpm(t_app *app, t_img *img, const char *path)
 {
 	char	*resolved;
 
 	retro_reset_img(img);
 	resolved = bonus_resolve_asset_path(app, path);
 	if (!resolved)
-		return ;
+		return (error_put("Warning\nBonus anim texture missing: "),
+			error_put(path), error_put("\n"), 1);
 	img->img_ptr = mlx_xpm_file_to_image(app->mlx_ptr, resolved,
 			&img->width, &img->height);
 	free(resolved);
-	if (img->img_ptr)
-		img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp,
-				&img->line_len, &img->endian);
+	if (!img->img_ptr)
+		return (error_put("Warning\nBonus anim texture load failed: "),
+			error_put(path), error_put("\n"), 1);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp,
+			&img->line_len, &img->endian);
 	if (!img->addr)
-		retro_destroy_img(app, img);
+		return (retro_destroy_img(app, img),
+			error_put("Warning\nBonus anim texture data failed: "),
+			error_put(path), error_put("\n"), 1);
+	return (0);
 }
 
-static void	load_img_list(t_app *app, t_img *imgs,
+static int	load_img_list(t_app *app, t_img *imgs,
 	const char **paths, int count)
 {
 	int	i;
+	int	missing;
 
 	i = 0;
+	missing = 0;
 	while (i < count)
 	{
-		load_optional_xpm(app, &imgs[i], paths[i]);
+		missing += load_optional_xpm(app, &imgs[i], paths[i]);
 		i++;
 	}
+	return (missing);
 }
 
-static void	load_three_frame_anims(t_app *app)
+static int	load_three_frame_anims(t_app *app)
 {
 	const char	*o_paths[3];
 	const char	*p_paths[3];
@@ -58,12 +67,12 @@ static void	load_three_frame_anims(t_app *app)
 	q_paths[0] = BONUS_WALL_Q1_XPM;
 	q_paths[1] = BONUS_WALL_Q2_XPM;
 	q_paths[2] = BONUS_WALL_Q3_XPM;
-	load_img_list(app, app->bonus.assets.wall_o_anim, o_paths, 3);
-	load_img_list(app, app->bonus.assets.wall_p_anim, p_paths, 3);
-	load_img_list(app, app->bonus.assets.wall_q_anim, q_paths, 3);
+	return (load_img_list(app, app->bonus.assets.wall_o_anim, o_paths, 3)
+		+ load_img_list(app, app->bonus.assets.wall_p_anim, p_paths, 3)
+		+ load_img_list(app, app->bonus.assets.wall_q_anim, q_paths, 3));
 }
 
-static void	load_four_frame_anims(t_app *app)
+static int	load_four_frame_anims(t_app *app)
 {
 	const char	*star_paths[4];
 	const char	*dot_paths[4];
@@ -81,13 +90,13 @@ static void	load_four_frame_anims(t_app *app)
 	lparen_paths[1] = BONUS_WALL_LPAREN2_XPM;
 	lparen_paths[2] = BONUS_WALL_LPAREN3_XPM;
 	lparen_paths[3] = BONUS_WALL_LPAREN4_XPM;
-	load_img_list(app, app->bonus.assets.wall_star_anim, star_paths, 4);
-	load_img_list(app, app->bonus.assets.wall_dot_anim, dot_paths, 4);
-	load_img_list(app, app->bonus.assets.wall_lparen_anim, lparen_paths, 4);
+	return (load_img_list(app, app->bonus.assets.wall_star_anim,
+			star_paths, 4) + load_img_list(app, app->bonus.assets.wall_dot_anim,
+			dot_paths, 4) + load_img_list(app,
+			app->bonus.assets.wall_lparen_anim, lparen_paths, 4));
 }
 
-void	bonus_load_wall_anim_textures(t_app *app)
+int	bonus_load_wall_anim_textures(t_app *app)
 {
-	load_three_frame_anims(app);
-	load_four_frame_anims(app);
+	return (load_three_frame_anims(app) + load_four_frame_anims(app));
 }
