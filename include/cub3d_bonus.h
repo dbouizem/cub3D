@@ -65,13 +65,18 @@ void			bonus_doors_shutdown(t_app *app);
 int				bonus_door_try_toggle(t_app *app);
 int				bonus_door_is_open_at(t_app *app, int x, int y);
 int				bonus_door_is_blocking(t_app *app, double px, double py);
+int				bonus_door_blocks_axis(t_app *app, double px, double py,
+					int axis);
 double			bonus_door_open_progress_at(t_app *app, int x, int y);
+int				bonus_door_allows_passage_at(t_app *app, int x, int y,
+					double hit);
 int				bonus_door_state_at(t_app *app, int x, int y);
 int				bonus_is_door_tile(char c);
 char			bonus_map_cell_at(t_app *app, int x, int y);
 t_door			*bonus_find_door(t_app *app, int x, int y);
 int				bonus_find_front_door(t_app *app, int *x, int *y);
-void			bonus_toggle_door_state(t_door *door);
+int				bonus_door_is_occupied(t_app *app, t_door *door);
+void			bonus_toggle_door_state(t_app *app, t_door *door);
 
 /*
 ** Bonus level sequence and reload.

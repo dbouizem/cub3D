@@ -12,68 +12,76 @@
 
 #include "cub3d.h"
 
-static void	draw_stat_column(t_img *img, t_rect r, const char *label, int value)
-{
-	int	nx;
+static const char	*g_hud_labels[4] = {"AMMO", "HP", "ARMOR", "SCORE"};
+static const int	g_hud_colors[4] = {0x00D9B44A, 0x00D94A4A,
+	0x004AA3D9, 0x00F0D35A};
 
+static void	draw_box_digits(t_img *img, t_rect r, int value, int digits)
+{
+	int	x;
+
+	x = r.x + r.w / 2 - bonus_number_width(digits, 5) / 2;
+	bonus_draw_number(img, (t_hud_text){x, r.y + 18, 0x00B00000, 5},
+		value, digits);
+	bonus_draw_number(img, (t_hud_text){x - 2, r.y + 16, 0x00FF1E1E, 5},
+		value, digits);
+}
+
+static void	draw_stat_box(t_img *img, t_rect r, const char *label, int value)
+{
+	int	digits;
+
+	digits = 3;
+	if (ft_strcmp(label, "SCORE") == 0)
+		digits = 4;
 	bonus_draw_panel_frame(img, r);
-	bonus_fill_rect(img, (t_rect){r.x + 7, r.y + 7, r.w - 14, r.h - 14},
+	bonus_fill_rect(img, (t_rect){r.x + 8, r.y + 8, r.w - 16, r.h - 16},
 		0x0018181A);
-	nx = r.x + r.w / 2 - bonus_number_width(3, 6) / 2;
-	bonus_draw_big_stat(img, nx, r.y + 10, value);
+	draw_box_digits(img, r, value, digits);
 	bonus_draw_label(img, (t_hud_text){r.x + r.w / 2
 		- bonus_label_width(label, 2) / 2, r.y + r.h - 22,
 		0x00A0A0A4, 2}, label);
 }
 
-static void	draw_stat_row(t_app *app, t_img *img, t_rect r, int row)
-{
-	int	row_h;
-	int	num_x;
-
-	row_h = (r.h - 16) / 4;
-	num_x = r.x + r.w - 14 - bonus_number_width(3, 3);
-	if (row == 0)
-		bonus_draw_label(img, (t_hud_text){r.x + 16, r.y + 14,
-			0x00D9B44A, 2}, "AMMO");
-	if (row == 0)
-		bonus_draw_number(img, (t_hud_text){num_x, r.y + 12,
-			0x00F7E75D, 3}, app->bonus.stats.ammo, 3);
-	if (row == 1)
-		bonus_draw_label(img, (t_hud_text){r.x + 16, r.y + 14 + row_h,
-			0x00D94A4A, 2}, "HP");
-	if (row == 1)
-		bonus_draw_number(img, (t_hud_text){num_x, r.y + 12 + row_h,
-			0x00F7E75D, 3}, app->bonus.stats.hp, 3);
-}
-
-static void	draw_more_stat_rows(t_app *app, t_img *img, t_rect r)
-{
-	int	row_h;
-	int	num_x;
-	int	score_x;
-
-	row_h = (r.h - 16) / 4;
-	num_x = r.x + r.w - 14 - bonus_number_width(3, 3);
-	score_x = r.x + r.w - 14 - bonus_number_width(4, 3);
-	bonus_draw_label(img, (t_hud_text){r.x + 16, r.y + 14 + row_h * 2,
-		0x004AA3D9, 2}, "ARMOR");
-	bonus_draw_number(img, (t_hud_text){num_x, r.y + 12 + row_h * 2,
-		0x00F7E75D, 3}, app->bonus.stats.armor, 3);
-	bonus_draw_label(img, (t_hud_text){r.x + 16, r.y + 14 + row_h * 3,
-		0x00F0D35A, 2}, "SCORE");
-	bonus_draw_number(img, (t_hud_text){score_x, r.y + 12 + row_h * 3,
-		0x00F7E75D, 3}, app->bonus.stats.score, 4);
-}
-
 static void	draw_stat_table(t_app *app, t_img *img, t_rect r)
 {
+	int	row_h;
+	int	i;
+	int	num_x;
+
 	bonus_draw_panel_frame(img, r);
 	bonus_fill_rect(img, (t_rect){r.x + 7, r.y + 7, r.w - 14, r.h - 14},
 		0x0018181A);
-	draw_stat_row(app, img, r, 0);
-	draw_stat_row(app, img, r, 1);
-	draw_more_stat_rows(app, img, r);
+	row_h = (r.h - 20) / 4;
+	i = -1;
+	while (++i < 4)
+	{
+		bonus_draw_label(img, (t_hud_text){r.x + 14, r.y + 13 + row_h * i,
+			g_hud_colors[i], 2}, g_hud_labels[i]);
+		num_x = r.x + r.w - 16 - bonus_number_width(3 + (i == 3), 2);
+		bonus_draw_number(img, (t_hud_text){num_x, r.y + 13 + row_h * i,
+			0x00F7E75D, 2}, (i == 0) * app->bonus.stats.ammo
+			+ (i == 1) * app->bonus.stats.hp + (i == 2)
+			* app->bonus.stats.armor + (i == 3) * app->bonus.stats.score,
+			3 + (i == 3));
+	}
+}
+
+static void	draw_right_hud(t_app *app, t_img *img, int bar_y)
+{
+	int	table_x;
+	int	score_x;
+	int	armor_x;
+
+	table_x = img->width - 10 - 188;
+	score_x = table_x - 10 - 96;
+	armor_x = score_x - 10 - 96;
+	draw_stat_box(img, (t_rect){armor_x, bar_y + 8, 96,
+		BONUS_HUD_BAR_H - 16}, "ARMOR", app->bonus.stats.armor);
+	draw_stat_box(img, (t_rect){score_x, bar_y + 8, 96,
+		BONUS_HUD_BAR_H - 16}, "SCORE", app->bonus.stats.score);
+	draw_stat_table(app, img, (t_rect){table_x, bar_y + 8, 188,
+		BONUS_HUD_BAR_H - 16});
 }
 
 void	bonus_draw_status_bar(t_app *app, t_img *img)
@@ -84,20 +92,15 @@ void	bonus_draw_status_bar(t_app *app, t_img *img)
 	bar_y = img->height - BONUS_HUD_BAR_H;
 	face_x = img->width / 2 - 108 / 2;
 	bonus_draw_hud_backplate(img, bar_y, BONUS_HUD_BAR_H);
-	draw_stat_column(img, (t_rect){10, bar_y + 8, 104, BONUS_HUD_BAR_H - 16},
-		"AMMO", app->bonus.stats.ammo);
-	draw_stat_column(img, (t_rect){120, bar_y + 8, 104, BONUS_HUD_BAR_H - 16},
-		"HP", app->bonus.stats.hp);
 	bonus_fill_rect(img, (t_rect){face_x - 6, bar_y + 6, 120,
 		BONUS_HUD_BAR_H - 12}, 0x00111113);
 	bonus_draw_face_panel(app, img, (t_rect){face_x, bar_y + 4, 108,
 		BONUS_HUD_BAR_H - 8});
 	bonus_draw_weapon_slot(img, (t_rect){face_x - 38, bar_y + 10, 32, 56});
 	bonus_draw_weapon_slot(img, (t_rect){face_x + 114, bar_y + 10, 32, 56});
-	bonus_draw_mid_stat_box(img, (t_rect){img->width - 384, bar_y + 8, 96,
-		BONUS_HUD_BAR_H - 16}, "ARMOR");
-	bonus_draw_big_stat(img, img->width - 360, bar_y + 18,
-		app->bonus.stats.armor);
-	draw_stat_table(app, img, (t_rect){img->width - 198, bar_y + 8, 188,
-		BONUS_HUD_BAR_H - 16});
+	draw_stat_box(img, (t_rect){10, bar_y + 8, 96, BONUS_HUD_BAR_H - 16},
+		"AMMO", app->bonus.stats.ammo);
+	draw_stat_box(img, (t_rect){116, bar_y + 8, 96, BONUS_HUD_BAR_H - 16},
+		"HP", app->bonus.stats.hp);
+	draw_right_hud(app, img, bar_y);
 }

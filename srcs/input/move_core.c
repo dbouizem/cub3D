@@ -17,7 +17,7 @@ static int	is_door_tile(char c)
 	return (ft_strchr(BONUS_DOOR_SET, c) != NULL);
 }
 
-static int	is_walkable(t_app *app, double x, double y)
+static int	is_walkable(t_app *app, double x, double y, int axis)
 {
 	int		map_x;
 	int		map_y;
@@ -37,24 +37,24 @@ static int	is_walkable(t_app *app, double x, double y)
 		return (1);
 	if (bonus_is_sprite_tile(cell))
 		return (1);
-	if (is_door_tile(cell) && bonus_door_is_blocking(app, x, y) == 0)
+	if (is_door_tile(cell) && bonus_door_blocks_axis(app, x, y, axis) == 0)
 		return (1);
 	return (0);
 }
 
-static int	is_position_clear(t_app *app, double x, double y)
+static int	is_position_clear(t_app *app, double x, double y, int axis)
 {
 	const double	r = COLLISION_RADIUS;
 
-	return (is_walkable(app, x, y)
-		&& is_walkable(app, x + r, y)
-		&& is_walkable(app, x - r, y)
-		&& is_walkable(app, x, y + r)
-		&& is_walkable(app, x, y - r)
-		&& is_walkable(app, x + r, y + r)
-		&& is_walkable(app, x + r, y - r)
-		&& is_walkable(app, x - r, y + r)
-		&& is_walkable(app, x - r, y - r));
+	return (is_walkable(app, x, y, axis)
+		&& is_walkable(app, x + r, y, axis)
+		&& is_walkable(app, x - r, y, axis)
+		&& is_walkable(app, x, y + r, axis)
+		&& is_walkable(app, x, y - r, axis)
+		&& is_walkable(app, x + r, y + r, axis)
+		&& is_walkable(app, x + r, y - r, axis)
+		&& is_walkable(app, x - r, y + r, axis)
+		&& is_walkable(app, x - r, y - r, axis));
 }
 
 static int	compute_steps(double dx, double dy)
@@ -88,10 +88,10 @@ void	move_with_collision(t_app *app, double dx, double dy)
 	while (i < steps)
 	{
 		next = app->player.x + step_x;
-		if (is_position_clear(app, next, app->player.y))
+		if (is_position_clear(app, next, app->player.y, 0))
 			app->player.x = next;
 		next = app->player.y + step_y;
-		if (is_position_clear(app, app->player.x, next))
+		if (is_position_clear(app, app->player.x, next, 1))
 			app->player.y = next;
 		i++;
 	}

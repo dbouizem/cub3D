@@ -59,7 +59,7 @@ static void	handle_weapon_hit(t_app *app, double sx, double sy)
 	{
 		door = bonus_find_door(app, (int)floor(sx), (int)floor(sy));
 		if (door)
-			bonus_toggle_door_state(door);
+			bonus_toggle_door_state(app, door);
 		return ;
 	}
 }

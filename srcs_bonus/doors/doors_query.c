@@ -27,7 +27,7 @@ int	bonus_door_try_toggle(t_app *app)
 	door = bonus_find_door(app, tx, ty);
 	if (!door)
 		return (0);
-	bonus_toggle_door_state(door);
+	bonus_toggle_door_state(app, door);
 	app->bonus.doors.interact_timer = app->bonus.doors.interact_cooldown;
 	return (1);
 }
@@ -46,27 +46,9 @@ int	bonus_door_is_open_at(t_app *app, int x, int y)
 
 int	bonus_door_is_blocking(t_app *app, double px, double py)
 {
-	double	progress;
-	double	half;
-	double	fx;
-	double	fy;
-
-	if (!bonus_is_door_tile(bonus_map_cell_at(app, (int)px, (int)py)))
-		return (0);
-	progress = bonus_door_open_progress_at(app, (int)px, (int)py);
-	if (progress <= 0.0)
+	if (bonus_door_blocks_axis(app, px, py, 0))
 		return (1);
-	if (progress >= 1.0)
-		return (0);
-	if (bonus_map_cell_at(app, (int)px, (int)py) == 'A')
-		return (progress < BONUS_DOOR_PASSABLE);
-	half = progress * 0.5;
-	fx = px - floor(px);
-	fy = py - floor(py);
-	if ((fx > 0.5 - half && fx < 0.5 + half)
-		|| (fy > 0.5 - half && fy < 0.5 + half))
-		return (0);
-	return (1);
+	return (bonus_door_blocks_axis(app, px, py, 1));
 }
 
 double	bonus_door_open_progress_at(t_app *app, int x, int y)

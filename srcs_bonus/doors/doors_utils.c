@@ -60,11 +60,15 @@ int	bonus_find_front_door(t_app *app, int *x, int *y)
 	return (0);
 }
 
-void	bonus_toggle_door_state(t_door *door)
+void	bonus_toggle_door_state(t_app *app, t_door *door)
 {
+	if (!door)
+		return ;
 	if (door->state == DOOR_CLOSED || door->state == DOOR_CLOSING)
 		door->state = DOOR_OPENING;
-	else
+	else if (!bonus_door_is_occupied(app, door))
 		door->state = DOOR_CLOSING;
+	else
+		return ;
 	door->state_timer = 0.0;
 }

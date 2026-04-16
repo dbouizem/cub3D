@@ -22,7 +22,10 @@ t_img	*bonus_pick_sprite_texture(t_app *app, char type)
 		return (&app->bonus.sprites.pickup_ammo);
 	if (type == ')')
 		return (&app->bonus.sprites.pickup_armor);
-	return (&app->bonus.sprites.pickup_frames[app->bonus.sprites.anim_frame]);
+	if (type == '/')
+		return (&app->bonus.sprites.pickup_frames
+			[app->bonus.sprites.anim_frame]);
+	return (NULL);
 }
 
 void	bonus_shift_sprite_space(t_bonus_sprites *sp, t_player *pl, double sign)

@@ -144,10 +144,10 @@ Sprite characters are listed in `BONUS_SPRITE_SET`.
 
 | Character | Role |
 | --- | --- |
-| `*` | Animated bonus pickup frame |
+| `*` | Health pickup |
 | `@` | Ammo pickup |
 | `)` | Armor pickup |
-| `/` | Score pickup |
+| `/` | Animated score pickup |
 
 Pickup data is discovered and managed in `srcs_bonus/pickups/`. Renderable
 sprite arrays and sprite drawing live in `srcs_bonus/sprites/`.

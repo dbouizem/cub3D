@@ -12,9 +12,18 @@
 
 #include "cub3d.h"
 
-static int	is_door_tile(char c)
+static void	update_door_state(t_app *app, t_door *door)
 {
-	return (ft_strchr(BONUS_DOOR_SET, c) != NULL);
+	if (door->state == DOOR_CLOSING && bonus_door_is_occupied(app, door))
+		door->state = DOOR_OPENING;
+	if (door->state == DOOR_OPENING)
+		door->open_progress += app->delta_time * BONUS_DOOR_SPEED;
+	else if (door->state == DOOR_CLOSING)
+		door->open_progress -= app->delta_time * BONUS_DOOR_SPEED;
+	if (door->open_progress >= 1.0)
+		*door = (t_door){door->x, door->y, DOOR_OPEN, 1.0, 0.0};
+	else if (door->open_progress <= 0.0)
+		*door = (t_door){door->x, door->y, DOOR_CLOSED, 0.0, 0.0};
 }
 
 static int	scan_doors(t_app *app, int fill)
@@ -30,7 +39,7 @@ static int	scan_doors(t_app *app, int fill)
 		x = 0;
 		while (app->map.grid[y][x])
 		{
-			if (is_door_tile(app->map.grid[y][x]))
+			if (bonus_is_door_tile(app->map.grid[y][x]))
 			{
 				if (fill)
 					app->bonus.doors.items[count] = (t_door){x, y,
@@ -79,14 +88,7 @@ void	bonus_doors_update(t_app *app)
 	{
 		door = &app->bonus.doors.items[i++];
 		door->state_timer += app->delta_time;
-		if (door->state == DOOR_OPENING)
-			door->open_progress += app->delta_time * BONUS_DOOR_SPEED;
-		else if (door->state == DOOR_CLOSING)
-			door->open_progress -= app->delta_time * BONUS_DOOR_SPEED;
-		if (door->open_progress >= 1.0)
-			*door = (t_door){door->x, door->y, DOOR_OPEN, 1.0, 0.0};
-		else if (door->open_progress <= 0.0)
-			*door = (t_door){door->x, door->y, DOOR_CLOSED, 0.0, 0.0};
+		update_door_state(app, door);
 	}
 	if (app->bonus.doors.interact_timer <= 0.0)
 		return ;

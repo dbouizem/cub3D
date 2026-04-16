@@ -88,6 +88,7 @@ BONUS_NOOP_SRCS = \
 	srcs_bonus/noop/walls_noop.c \
 	srcs_bonus/noop/doors_api_noop.c \
 	srcs_bonus/noop/doors_utils_noop.c \
+	srcs_bonus/noop/doors_logic_noop.c \
 	srcs_bonus/noop/doors_query_noop.c
 
 MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS) $(BONUS_NOOP_SRCS)
@@ -148,6 +149,7 @@ BONUS_SRCS = \
 	srcs_bonus/sprites/sprites_shadow.c \
 	srcs_bonus/sprites/sprites_shutdown.c \
 	srcs_bonus/doors/doors_api.c \
+	srcs_bonus/doors/doors_logic.c \
 	srcs_bonus/doors/doors_utils.c \
 	srcs_bonus/doors/doors_query.c
 

@@ -14,20 +14,11 @@
 
 static int	is_door_hit_blocking(t_app *app, t_ray *r, char tile)
 {
-	double	progress;
 	double	dist;
 	double	hit;
-	double	half;
 
 	if (!bonus_is_door_tile(tile))
 		return (bonus_is_solid_tile(tile));
-	progress = bonus_door_open_progress_at(app, r->map_x, r->map_y);
-	if (progress <= 0.0)
-		return (1);
-	if (progress >= 1.0)
-		return (0);
-	if (tile == 'A')
-		return (progress < BONUS_DOOR_PASSABLE);
 	if (r->side == 0)
 		dist = r->side_x - r->delta_x;
 	else
@@ -37,8 +28,7 @@ static int	is_door_hit_blocking(t_app *app, t_ray *r, char tile)
 	else
 		hit = app->player.x + dist * r->ray_dir_x;
 	hit -= floor(hit);
-	half = progress * 0.5;
-	return (!(hit > 0.5 - half && hit < 0.5 + half));
+	return (!bonus_door_allows_passage_at(app, r->map_x, r->map_y, hit));
 }
 
 static int	hit_solid_cell(t_app *app, t_ray *r)
