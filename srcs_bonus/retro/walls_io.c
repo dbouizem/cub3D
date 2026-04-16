@@ -47,33 +47,33 @@ static int	load_img_list(t_app *app, t_img *imgs,
 	const char **paths, int count)
 {
 	int	i;
-	int	missing;
+	int	failures;
 
 	i = 0;
-	missing = 0;
+	failures = 0;
 	while (i < count)
 	{
-		missing += load_optional_xpm(app, &imgs[i], paths[i]);
+		failures += load_optional_xpm(app, &imgs[i], paths[i]);
 		i++;
 	}
-	return (missing);
+	return (failures);
 }
 
 int	bonus_load_wall_textures(t_app *app)
 {
 	const char	*wall_paths[BONUS_WALL_COUNT];
 	const char	*door_paths[BONUS_DOOR_COUNT];
-	int			missing;
+	int			failures;
 
 	bonus_init_wall_path_tables(wall_paths, door_paths);
-	missing = 0;
-	missing += load_img_list(app, app->bonus.assets.walls,
+	failures = 0;
+	failures += load_img_list(app, app->bonus.assets.walls,
 			wall_paths, BONUS_WALL_COUNT);
-	missing += load_img_list(app, app->bonus.assets.doors,
+	failures += load_img_list(app, app->bonus.assets.doors,
 			door_paths, BONUS_DOOR_COUNT);
-	missing += bonus_load_symbol_textures(app);
-	missing += bonus_load_wall_anim_textures(app);
-	if (missing > 0)
-		error_put("Warning\nBonus assets incomplete: using fallbacks\n");
+	failures += bonus_load_symbol_textures(app);
+	failures += bonus_load_wall_anim_textures(app);
+	if (failures > 0)
+		return (error_put("Error\nBonus asset loading failed\n"), 1);
 	return (0);
 }

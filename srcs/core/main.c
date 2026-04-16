@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	bind_window_hooks(t_app *app)
+static void	bind_window_hooks(t_app *app)
 {
 	mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0, handle_keypress, app);
 	mlx_hook(app->win_ptr, EVENT_KEYRELEASE, 1L << 1, handle_keyrelease, app);

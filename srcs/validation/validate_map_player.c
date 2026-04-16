@@ -25,7 +25,7 @@ static int	count_player(char **lines, int start)
 		j = 0;
 		while (lines[i][j])
 		{
-			if (ft_strchr("NSEW", lines[i][j]))
+			if (ft_strchr(BONUS_PLAYER_SET, lines[i][j]))
 				count++;
 			j++;
 		}

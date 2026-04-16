@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 06:23:18 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/05 05:20:00 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/17 00:09:21 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 /*
 ** File reading and line splitting.
@@ -52,9 +53,6 @@ int		parse_color(int dst[3], const char *line);
 
 int		parse_headers(t_app *app, t_parse_headers *ctx);
 int		check_required_headers(t_app *app);
-int		parse_header_entry(t_app *app, char *line, const char *map_path);
-int		starts_with_header_prefix(const char *line);
-int		has_required_headers_loaded(t_app *app);
 int		parse_map(t_app *app, char **lines, int start_idx, int line_count);
 
 /*
@@ -87,9 +85,7 @@ int		init_mlx(t_app *app);
 ** Rendering.
 */
 int		draw_frame(t_app *app);
-void	update_frame_timing(t_app *app);
 int		raycast_scene(t_app *app);
-t_ray	cast_ray(t_app *app, int x);
 void	draw_wall_column(t_app *app, t_ray ray);
 
 /*
@@ -102,7 +98,6 @@ int		handle_mouse_move(int x, int y, t_app *app);
 int		close_window(t_app *app);
 void	update_player_input(t_app *app);
 void	apply_mouse_look(t_app *app);
-void	bind_window_hooks(t_app *app);
 int		resize_window(t_app *app, int w, int h, int recreate_window);
 int		apply_resolution_preset(t_app *app, int keycode);
 void	move_with_collision(t_app *app, double dx, double dy);

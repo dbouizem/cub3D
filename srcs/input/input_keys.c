@@ -32,10 +32,14 @@ static void	set_turn_keys(t_app *app, int keycode, int value)
 		app->input.turn_right = value;
 }
 
-int	close_window(t_app *app)
+int	apply_resolution_preset(t_app *app, int keycode)
 {
-	free_app(app);
-	exit(0);
+	if (keycode == KEY_F1)
+		return (resize_window(app, 960, 540, 1));
+	if (keycode == KEY_F2)
+		return (resize_window(app, 1280, 720, 1));
+	if (keycode == KEY_F3)
+		return (resize_window(app, 1600, 900, 1));
 	return (0);
 }
 

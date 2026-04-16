@@ -116,12 +116,16 @@ Bonus mode extends the map alphabet with constants from
 
 | Constant | Characters | Meaning |
 | --- | --- | --- |
-| `BONUS_DOOR_SET` | `ABCDFGHIJKLMOPQRTUVXYZ` | Door-capable bonus tiles |
-| `BONUS_PLAYER_SET` | `NSEWBCFGHIJKLMOPQRTUVXYZ` | Extra passable letters accepted by bonus map validation |
+| `BONUS_DOOR_SET` | `AD` | Door-capable bonus tiles |
+| `BONUS_PLAYER_SET` | `NSEW` | Player start and orientation |
 | `BONUS_WALL_SYMBOL_SET` | punctuation symbols | Bonus symbol wall tiles |
 | `BONUS_SPRITE_SET` | `*@)/` | Bonus sprites and pickups |
 
 Numeric bonus wall tiles are `2` to `9`.
+
+Player detection still uses only `N`, `S`, `E`, and `W` through
+`is_open_cell()` and `find_player()`. Bonus mode does not add extra player
+spawn letters beyond the mandatory orientations.
 
 ## Door Tiles
 
@@ -182,7 +186,7 @@ Static wall texture paths are grouped by level set in `defines_bonus.h`.
 | Level 5 computer | `+`, comma, `-` | `textures/bonus/walls/wall_c/` |
 | Level 6 marble | `r` to `z` | `textures/bonus/walls/wall_m/` |
 | Level 7 flesh | `'` | `textures/bonus/walls/wall_f/` |
-| Level 8 exit | `8`, `9`, `A`, `B`, `C` | `textures/bonus/walls/wall_e/` |
+| Level 8 exit | `8`, `9`, `a`, `b`, `c` | `textures/bonus/walls/wall_e/` |
 | Fallback symbols | other accepted punctuation | `BONUS_WALL_DEFAULT_XPM` |
 
 Wall path table initialization is in `srcs_bonus/retro/walls_paths.c`.

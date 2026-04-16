@@ -104,10 +104,10 @@
 
 # define BONUS_WALL_COUNT	34
 # define BONUS_WALL_SYMBOL_COUNT	32
-# define BONUS_DOOR_COUNT	22
+# define BONUS_DOOR_COUNT	2
 
-# define BONUS_DOOR_SET	"ABCDFGHIJKLMOPQRTUVXYZ"
-# define BONUS_PLAYER_SET	"NSEWBCFGHIJKLMOPQRTUVXYZ"
+# define BONUS_DOOR_SET	"AD"
+# define BONUS_PLAYER_SET	"NSEW"
 # define BONUS_WALL_SYMBOL_SET	"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 # define BONUS_SPRITE_SET	"*@)/"
 
@@ -191,7 +191,7 @@
 # define BONUS_WALL7_XPM	"textures/bonus/walls/wall_s/wall_s5.xpm"
 
 /*
-** Level 2 — animated area set  (tiles G–N, O is in section 6)
+** Level 2 — animated area set  (tiles g–n, o is in section 6)
 */
 # define BONUS_WALL_G_XPM	"textures/bonus/walls/wall_a/wall_a12.xpm"
 # define BONUS_WALL_H_XPM	"textures/bonus/walls/wall_a/wall_a11.xpm"
@@ -213,7 +213,7 @@
 # define BONUS_WALL_AMP_XPM	"textures/bonus/walls/wall_g/wall_g6.xpm"
 
 /*
-** Level 4 — tech set  (tiles D, E, F)
+** Level 4 — tech set  (tiles d, e, f)
 */
 # define BONUS_WALL_D_XPM	"textures/bonus/walls/wall_t/wall_t.xpm"
 # define BONUS_WALL_E_XPM	"textures/bonus/walls/wall_t/wall_t1.xpm"
@@ -227,7 +227,7 @@
 # define BONUS_WALL_MINUS_XPM	"textures/bonus/walls/wall_c/wall_c3.xpm"
 
 /*
-** Level 6 — marble set  (tiles R–Z, Q is animated in section 6)
+** Level 6 — marble set  (tiles r–z, q is animated in section 6)
 */
 # define BONUS_WALL_R_XPM	"textures/bonus/walls/wall_m/wall_m10.xpm"
 # define BONUS_WALL_S_XPM	"textures/bonus/walls/wall_m/wall_m26.xpm"
@@ -240,12 +240,12 @@
 # define BONUS_WALL_Z_XPM	"textures/bonus/walls/wall_m/wall_m24.xpm"
 
 /*
-** Level 7 — flesh set  (tile ', P is animated in section 6, ( is animated)
+** Level 7 — flesh set  (tile ', p is animated in section 6, ( is animated)
 */
 # define BONUS_WALL_SQUOTE_XPM	"textures/bonus/walls/wall_f/wall_f1.xpm"
 
 /*
-** Level 8 — exit set  (tiles 8, 9, A, B, C)
+** Level 8 — exit set  (tiles 8, 9, a, b, c)
 */
 # define BONUS_WALL8_XPM	"textures/bonus/walls/wall_e/wall_e.xpm"
 # define BONUS_WALL9_XPM	"textures/bonus/walls/wall_e/wall_e1.xpm"

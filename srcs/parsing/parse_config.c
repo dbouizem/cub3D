@@ -12,6 +12,35 @@
 
 #include "cub3d.h"
 
+static int	parse_header_entry(t_app *app, char *line, const char *map_path)
+{
+	if (starts_with_id(line, "NO"))
+		return (parse_texture(&app->config.tex_no, line, map_path));
+	if (starts_with_id(line, "SO"))
+		return (parse_texture(&app->config.tex_so, line, map_path));
+	if (starts_with_id(line, "WE"))
+		return (parse_texture(&app->config.tex_we, line, map_path));
+	if (starts_with_id(line, "EA"))
+		return (parse_texture(&app->config.tex_ea, line, map_path));
+	if (starts_with_one_id(line, 'F'))
+		return (parse_color(app->config.floor_rgb, line));
+	if (starts_with_one_id(line, 'C'))
+		return (parse_color(app->config.ceiling_rgb, line));
+	return (PARSE_NOT_HEADER);
+}
+
+static int	starts_with_header_prefix(const char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && ft_isspace(line[i]))
+		i++;
+	if (line[i] == '\0')
+		return (0);
+	return (ft_strchr("NSWEFC", line[i]) != NULL);
+}
+
 static int	parse_until_map(t_app *app, t_parse_headers *ctx, int *i)
 {
 	int	status;
@@ -42,7 +71,11 @@ int	parse_headers(t_app *app, t_parse_headers *ctx)
 	status = parse_until_map(app, ctx, &i);
 	if (status == PARSE_ERR)
 		return (1);
-	if (status == PARSE_NOT_HEADER && has_required_headers_loaded(app) == 0
+	if (status == PARSE_NOT_HEADER
+		&& (!app->config.tex_no || !app->config.tex_so
+			|| !app->config.tex_we || !app->config.tex_ea
+			|| app->config.floor_rgb[0] < 0
+			|| app->config.ceiling_rgb[0] < 0)
 		&& starts_with_header_prefix(ctx->lines[i]))
 		return (error_put("Error\nInvalid header format\n"), 1);
 	if (i < ctx->line_count && is_map_like_line(ctx->lines[i]) == 0)
@@ -57,7 +90,10 @@ int	parse_headers(t_app *app, t_parse_headers *ctx)
 
 int	check_required_headers(t_app *app)
 {
-	if (has_required_headers_loaded(app))
+	if (app->config.tex_no && app->config.tex_so
+		&& app->config.tex_we && app->config.tex_ea
+		&& app->config.floor_rgb[0] >= 0
+		&& app->config.ceiling_rgb[0] >= 0)
 		return (0);
 	if (app->config.tex_no == NULL || app->config.tex_so == NULL
 		|| app->config.tex_we == NULL || app->config.tex_ea == NULL)

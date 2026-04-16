@@ -12,6 +12,23 @@
 
 #include "cub3d.h"
 
+int	is_open_cell(char c)
+{
+	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
+void	init_directions(int *dx, int *dy)
+{
+	dy[0] = -1;
+	dy[1] = 1;
+	dy[2] = 0;
+	dy[3] = 0;
+	dx[0] = 0;
+	dx[1] = 0;
+	dx[2] = 1;
+	dx[3] = -1;
+}
+
 int	finish_validation(t_bfs_context *ctx, const char *msg)
 {
 	cleanup_visited(ctx->visited, ctx->height);

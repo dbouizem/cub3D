@@ -6,12 +6,11 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 16:59:21 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/03/31 16:59:22 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/04/17 00:08:53 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <limits.h>
 
 int	has_cub_extension(const char *path)
 {

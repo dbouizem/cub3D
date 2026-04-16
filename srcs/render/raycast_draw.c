@@ -96,7 +96,6 @@ static void	draw_wall_texels(t_app *app, t_ray ray, t_img *tex, double wall_x)
 	while (y <= ray.draw_end)
 	{
 		color = sample_texel(tex, tex_x, (int)tex_pos);
-		color = apply_wall_shading(color, ray);
 		put_pixel(&app->frame, ray.x, y, color);
 		tex_pos += step;
 		y++;

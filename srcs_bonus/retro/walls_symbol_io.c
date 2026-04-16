@@ -38,7 +38,7 @@ static void	init_symbol_paths(const char **paths)
 
 static void	warn_symbol_load(const char *path)
 {
-	error_put("Warning\nBonus symbol texture missing, using wall fallback: ");
+	error_put("Warning\nBonus symbol texture missing: ");
 	error_put(path);
 	error_put("\n");
 }
@@ -65,19 +65,19 @@ static int	load_symbol_texture(t_app *app, t_img *img, const char *path)
 int	bonus_load_symbol_textures(t_app *app)
 {
 	int			i;
-	int			missing;
+	int			failures;
 	const char	*paths[BONUS_WALL_SYMBOL_COUNT];
 
 	init_symbol_paths(paths);
 	i = 0;
-	missing = 0;
+	failures = 0;
 	while (i < BONUS_WALL_SYMBOL_COUNT)
 	{
-		missing += load_symbol_texture(app,
+		failures += load_symbol_texture(app,
 				&app->bonus.assets.wall_symbols[i], paths[i]);
 		i++;
 	}
-	return (missing);
+	return (failures);
 }
 
 void	bonus_destroy_symbol_textures(t_app *app)

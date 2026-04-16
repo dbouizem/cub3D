@@ -47,22 +47,6 @@ static void	init_defaults(t_app *app)
 	app->plane_y = 0.0;
 }
 
-static void	init_bonus_textures(t_app *app)
-{
-	init_tex(&app->bonus.retro.fb);
-	init_tex(&app->bonus.retro.out);
-	init_tex(&app->bonus.retro.minimap);
-	init_tex(&app->bonus.sprites.pickup_frames[0]);
-	init_tex(&app->bonus.sprites.pickup_frames[1]);
-	init_tex(&app->bonus.sprites.pickup_frames[2]);
-	init_tex(&app->bonus.sprites.pickup_frames[3]);
-	init_tex(&app->bonus.hud.face_dead);
-	init_tex(&app->bonus.hud.weapon_idle);
-	init_tex(&app->bonus.hud.weapon_shoot[0]);
-	init_tex(&app->bonus.hud.weapon_shoot[1]);
-	init_tex(&app->bonus.hud.weapon_shoot[2]);
-}
-
 static void	init_bonus_state(t_app *app)
 {
 	app->bonus.retro.enabled = 0;
@@ -84,6 +68,32 @@ static void	init_bonus_state(t_app *app)
 	app->bonus.hud.face_prev_angle = 0.0;
 }
 
+void	init_player_vectors(t_app *app)
+{
+	if (app->player.orientation == 'N' || app->player.orientation == 'S')
+	{
+		app->dir_x = 0;
+		app->plane_y = 0;
+		app->dir_y = -1;
+		app->plane_x = FOV_FACTOR;
+		if (app->player.orientation == 'S')
+			app->dir_y = 1;
+		if (app->player.orientation == 'S')
+			app->plane_x = -FOV_FACTOR;
+	}
+	else
+	{
+		app->dir_y = 0;
+		app->plane_x = 0;
+		app->dir_x = -1;
+		app->plane_y = -FOV_FACTOR;
+		if (app->player.orientation == 'E')
+			app->dir_x = 1;
+		if (app->player.orientation == 'E')
+			app->plane_y = FOV_FACTOR;
+	}
+}
+
 void	init_app(t_app *app)
 {
 	ft_bzero(app, sizeof(*app));
@@ -93,6 +103,17 @@ void	init_app(t_app *app)
 	init_tex(&app->tex_so);
 	init_tex(&app->tex_we);
 	init_tex(&app->tex_ea);
-	init_bonus_textures(app);
+	init_tex(&app->bonus.retro.fb);
+	init_tex(&app->bonus.retro.out);
+	init_tex(&app->bonus.retro.minimap);
+	init_tex(&app->bonus.sprites.pickup_frames[0]);
+	init_tex(&app->bonus.sprites.pickup_frames[1]);
+	init_tex(&app->bonus.sprites.pickup_frames[2]);
+	init_tex(&app->bonus.sprites.pickup_frames[3]);
+	init_tex(&app->bonus.hud.face_dead);
+	init_tex(&app->bonus.hud.weapon_idle);
+	init_tex(&app->bonus.hud.weapon_shoot[0]);
+	init_tex(&app->bonus.hud.weapon_shoot[1]);
+	init_tex(&app->bonus.hud.weapon_shoot[2]);
 	init_bonus_state(app);
 }

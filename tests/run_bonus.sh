@@ -2,7 +2,7 @@
 set -u
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-BIN="${1:-$ROOT_DIR/cub3D}"
+BIN="${1:-$ROOT_DIR/cub3D_bonus}"
 TMP_DIR="$ROOT_DIR/tests/.tmp_bonus"
 PASS=0
 FAIL=0

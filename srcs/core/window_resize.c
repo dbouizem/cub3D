@@ -70,7 +70,14 @@ int	resize_window(t_app *app, int w, int h, int recreate_window)
 		app->win_ptr = mlx_new_window(app->mlx_ptr, w, h, "cub3D");
 		if (!app->win_ptr)
 			return (close_window_error(app));
-		bind_window_hooks(app);
+		mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0, handle_keypress, app);
+		mlx_hook(app->win_ptr, EVENT_KEYRELEASE, 1L << 1, handle_keyrelease,
+			app);
+		mlx_hook(app->win_ptr, EVENT_BUTTONPRESS, 1L << 2, handle_mouse_press,
+			app);
+		mlx_hook(app->win_ptr, EVENT_MOUSEMOVE, 1L << 6, handle_mouse_move,
+			app);
+		mlx_hook(app->win_ptr, EVENT_DESTROY, 0, close_window, app);
 	}
 	if (recreate_render_targets(app) != 0)
 		return (close_window_error(app));

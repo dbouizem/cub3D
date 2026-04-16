@@ -12,24 +12,22 @@
 
 #include "cub3d.h"
 
-static const char	*g_hud_labels[4] = {"AMMO", "HP", "ARMOR", "SCORE"};
-static const int	g_hud_colors[4] = {0x00D9B44A, 0x00D94A4A,
-	0x004AA3D9, 0x00F0D35A};
-
-static void	draw_box_digits(t_img *img, t_rect r, int value, int digits)
+static void	init_stat_meta(const char **labels, int *colors)
 {
-	int	x;
-
-	x = r.x + r.w / 2 - bonus_number_width(digits, 5) / 2;
-	bonus_draw_number(img, (t_hud_text){x, r.y + 18, 0x00B00000, 5},
-		value, digits);
-	bonus_draw_number(img, (t_hud_text){x - 2, r.y + 16, 0x00FF1E1E, 5},
-		value, digits);
+	labels[0] = "AMMO";
+	labels[1] = "HP";
+	labels[2] = "ARMOR";
+	labels[3] = "SCORE";
+	colors[0] = 0x00D9B44A;
+	colors[1] = 0x00D94A4A;
+	colors[2] = 0x004AA3D9;
+	colors[3] = 0x00F0D35A;
 }
 
 static void	draw_stat_box(t_img *img, t_rect r, const char *label, int value)
 {
 	int	digits;
+	int	x;
 
 	digits = 3;
 	if (ft_strcmp(label, "SCORE") == 0)
@@ -37,7 +35,11 @@ static void	draw_stat_box(t_img *img, t_rect r, const char *label, int value)
 	bonus_draw_panel_frame(img, r);
 	bonus_fill_rect(img, (t_rect){r.x + 8, r.y + 8, r.w - 16, r.h - 16},
 		0x0018181A);
-	draw_box_digits(img, r, value, digits);
+	x = r.x + r.w / 2 - bonus_number_width(digits, 5) / 2;
+	bonus_draw_number(img, (t_hud_text){x, r.y + 18, 0x00B00000, 5},
+		value, digits);
+	bonus_draw_number(img, (t_hud_text){x - 2, r.y + 16, 0x00FF1E1E, 5},
+		value, digits);
 	bonus_draw_label(img, (t_hud_text){r.x + r.w / 2
 		- bonus_label_width(label, 2) / 2, r.y + r.h - 22,
 		0x00A0A0A4, 2}, label);
@@ -45,10 +47,13 @@ static void	draw_stat_box(t_img *img, t_rect r, const char *label, int value)
 
 static void	draw_stat_table(t_app *app, t_img *img, t_rect r)
 {
-	int	row_h;
-	int	i;
-	int	num_x;
+	int			row_h;
+	int			i;
+	int			num_x;
+	const char	*labels[4];
+	int			colors[4];
 
+	init_stat_meta(labels, colors);
 	bonus_draw_panel_frame(img, r);
 	bonus_fill_rect(img, (t_rect){r.x + 7, r.y + 7, r.w - 14, r.h - 14},
 		0x0018181A);
@@ -57,7 +62,7 @@ static void	draw_stat_table(t_app *app, t_img *img, t_rect r)
 	while (++i < 4)
 	{
 		bonus_draw_label(img, (t_hud_text){r.x + 14, r.y + 13 + row_h * i,
-			g_hud_colors[i], 2}, g_hud_labels[i]);
+			colors[i], 2}, labels[i]);
 		num_x = r.x + r.w - 16 - bonus_number_width(3 + (i == 3), 2);
 		bonus_draw_number(img, (t_hud_text){num_x, r.y + 13 + row_h * i,
 			0x00F7E75D, 2}, (i == 0) * app->bonus.stats.ammo

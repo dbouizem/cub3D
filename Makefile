@@ -30,11 +30,11 @@ HEADERS = $(wildcard include/*.h) $(wildcard $(LIBFT_INC)/*.h)
 LDFLAGS = $(LIBFT_A) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 
 SRC_CORE = \
-	srcs/core/main.c \
-	srcs/core/init.c \
-	srcs/core/init_player.c \
-	srcs/core/init_mlx.c \
-	srcs/core/window_resize.c
+		srcs/core/main.c \
+		srcs/core/init_app.c \
+		srcs/core/init_mlx.c \
+		srcs/core/shutdown.c \
+		srcs/core/window_resize.c
 
 SRC_PARSING = \
 	srcs/parsing/parse_file.c \
@@ -42,39 +42,34 @@ SRC_PARSING = \
 	srcs/parsing/parse_split.c \
 	srcs/parsing/parse_map.c \
 	srcs/parsing/parse_config.c \
-	srcs/parsing/parse_config_headers.c \
-	srcs/parsing/parse_config_texture.c \
-	srcs/parsing/parse_config_color.c \
-	srcs/parsing/parse_config_utils.c \
+	srcs/parsing/parse_textures.c \
+	srcs/parsing/parse_colors.c \
+	srcs/parsing/parse_utils.c \
 	srcs/validation/validate_map.c \
 	srcs/validation/validate_map_player.c \
 	srcs/validation/validate_map_chars.c \
 	srcs/validation/validate_map_closed.c \
-	srcs/validation/validate_map_closed_setup.c \
-	srcs/validation/validate_map_closed_bfs.c \
-	srcs/validation/validate_map_closed_utils.c
+	srcs/validation/validate_closed_setup.c \
+	srcs/validation/validate_bfs.c
 
 SRC_RENDER = \
-	srcs/render/draw_frame.c \
+	srcs/render/render_frame.c \
 	srcs/render/draw_vignette.c \
-	srcs/render/frame_timing.c \
 	srcs/render/raycast.c \
-	srcs/render/raycast_cast.c \
-	srcs/render/raycast_draw.c \
-	srcs/render/raycast_shading.c
+	srcs/render/raycast_draw.c
 
 SRC_INPUT = \
-	srcs/input/keyboard.c \
-	srcs/input/mouse.c \
-	srcs/input/resolution_preset.c \
+	srcs/input/input_keys.c \
+	srcs/input/input_mouse.c \
 	srcs/input/input_update.c \
-	srcs/input/move_core.c \
-	srcs/input/movement.c \
+	srcs/input/move_collision.c \
+	srcs/input/move_player.c \
 	srcs/input/rotation.c
 
 SRC_TOOLS = \
 	srcs/tools/error.c \
-	srcs/tools/memory.c
+	srcs/tools/memory.c \
+	srcs/tools/image.c
 
 BONUS_NOOP_SRCS = \
 	srcs_bonus/noop/api_noop.c \

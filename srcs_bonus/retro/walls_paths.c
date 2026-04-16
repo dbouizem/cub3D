@@ -77,6 +77,6 @@ void	bonus_init_wall_path_tables(const char **wall_paths,
 	fill_default_paths(door_paths, BONUS_DOOR_COUNT, BONUS_DOOR_DEFAULT_XPM);
 	if (BONUS_DOOR_COUNT > 0)
 		door_paths[0] = BONUS_DOOR_A_XPM;
-	if (BONUS_DOOR_COUNT > 3)
-		door_paths[3] = BONUS_DOOR_D_XPM;
+	if (BONUS_DOOR_COUNT > 1)
+		door_paths[1] = BONUS_DOOR_D_XPM;
 }

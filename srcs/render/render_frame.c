@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_frame.c                                       :+:      :+:    :+:   */
+/*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:55:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/05 05:20:00 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/16 23:36:45 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	put_pixel(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	if (img == NULL || img->addr == NULL)
-		return ;
-	if (x < 0 || y < 0 || x >= img->width || y >= img->height)
-		return ;
-	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
-	*(unsigned int *)dst = (unsigned int)color;
-}
 
 static void	draw_background(t_app *app)
 {
@@ -45,6 +33,33 @@ static void	draw_background(t_app *app)
 		}
 		y++;
 	}
+}
+
+static double	get_time_seconds(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((double)tv.tv_sec + (double)tv.tv_usec / 1000000.0);
+}
+
+static void	update_frame_timing(t_app *app)
+{
+	double	now;
+
+	now = get_time_seconds();
+	if (app->last_frame_time <= 0.0)
+		app->delta_time = FRAME_DT_DEFAULT;
+	else
+	{
+		app->delta_time = now - app->last_frame_time;
+		if (app->delta_time < 0.0)
+			app->delta_time = FRAME_DT_DEFAULT;
+		else if (app->delta_time > FRAME_DT_MAX)
+			app->delta_time = FRAME_DT_MAX;
+	}
+	app->last_frame_time = now;
+	app->frame_count++;
 }
 
 int	draw_frame(t_app *app)
