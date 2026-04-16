@@ -64,8 +64,7 @@ static int	apply_next_level(t_app *app, t_app *next)
 		| (app->config.ceiling_rgb[1] << 8) | app->config.ceiling_rgb[2];
 	app->floor_color = (app->config.floor_rgb[0] << 16)
 		| (app->config.floor_rgb[1] << 8) | app->config.floor_rgb[2];
-	if (bonus_sprites_rebuild(app) != 0)
-		return (1);
+	bonus_pickups_fill_active_sprites(app);
 	init_player_vectors(app);
 	ft_bzero(&app->input, sizeof(app->input));
 	return (0);

@@ -124,6 +124,7 @@ BONUS_SRCS = \
 	srcs_bonus/hud/hud_fire.c \
 	srcs_bonus/hud/hud_frames.c \
 	srcs_bonus/hud/hud_glyphs.c \
+	srcs_bonus/hud/hud_level.c \
 	srcs_bonus/hud/hud_overlay.c \
 	srcs_bonus/hud/hud_panels.c \
 	srcs_bonus/hud/hud_scaled.c \

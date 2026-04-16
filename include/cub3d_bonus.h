@@ -121,6 +121,9 @@ void			bonus_draw_mid_stat_box(t_img *img, t_rect r,
 					const char *label);
 void			bonus_draw_big_stat(t_img *img, int x, int y, int value);
 void			bonus_draw_face_panel(t_app *app, t_img *img, t_rect r);
+void			bonus_draw_level_box(t_app *app, t_img *img, t_rect r);
+void			bonus_draw_left_hud(t_app *app, t_img *img, int bar_y,
+					int face_x);
 void			bonus_draw_weapon_slot(t_img *img, t_rect r);
 void			bonus_draw_status_bar(t_app *app, t_img *img);
 void			bonus_draw_weapon_overlay(t_app *app, t_img *dst, t_img *src);

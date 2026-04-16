@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 12:00:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/11 12:00:00 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/04/17 01:09:20 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ static void	draw_right_hud(t_app *app, t_img *img, int bar_y)
 	int	score_x;
 	int	armor_x;
 
-	table_x = img->width - 10 - 188;
-	score_x = table_x - 10 - 96;
+	table_x = img->width - 40 - 188;
+	score_x = table_x - 40 - 96;
 	armor_x = score_x - 10 - 96;
 	draw_stat_box(img, (t_rect){armor_x, bar_y + 8, 96,
 		BONUS_HUD_BAR_H - 16}, "ARMOR", app->bonus.stats.armor);
@@ -103,9 +103,6 @@ void	bonus_draw_status_bar(t_app *app, t_img *img)
 		BONUS_HUD_BAR_H - 8});
 	bonus_draw_weapon_slot(img, (t_rect){face_x - 38, bar_y + 10, 32, 56});
 	bonus_draw_weapon_slot(img, (t_rect){face_x + 114, bar_y + 10, 32, 56});
-	draw_stat_box(img, (t_rect){10, bar_y + 8, 96, BONUS_HUD_BAR_H - 16},
-		"AMMO", app->bonus.stats.ammo);
-	draw_stat_box(img, (t_rect){116, bar_y + 8, 96, BONUS_HUD_BAR_H - 16},
-		"HP", app->bonus.stats.hp);
+	bonus_draw_left_hud(app, img, bar_y, face_x);
 	draw_right_hud(app, img, bar_y);
 }

@@ -32,12 +32,12 @@ void	bonus_fill_rect(t_img *img, t_rect r, int color)
 
 static int	label_glyph_index(char c)
 {
-	char	map[16];
+	char	map[17];
 	int		i;
 
-	ft_memcpy(map, "ABCEHILMOPRST:- ", 16);
+	ft_memcpy(map, "ABCEHILMOPRSTV:- ", 17);
 	i = 0;
-	while (i < 16 && map[i] != c)
+	while (i < 17 && map[i] != c)
 		i++;
 	return (i);
 }
@@ -67,19 +67,20 @@ void	bonus_draw_digit(t_img *img, t_hud_text txt, int digit)
 
 void	bonus_draw_label_glyph(t_img *img, t_hud_text txt, char c)
 {
-	static const unsigned char	glyphs[16][5] = {
+	static const unsigned char	glyphs[17][5] = {
 	{2, 5, 7, 5, 5}, {6, 5, 6, 5, 6}, {3, 4, 4, 4, 3},
 	{7, 4, 6, 4, 7}, {5, 5, 7, 5, 5}, {7, 2, 2, 2, 7},
 	{4, 4, 4, 4, 7}, {5, 7, 7, 5, 5}, {7, 5, 5, 5, 7},
 	{6, 5, 6, 4, 4}, {6, 5, 6, 5, 5}, {7, 4, 7, 1, 7},
-	{7, 2, 2, 2, 2}, {7, 4, 4, 4, 7}, {2, 0, 2, 0, 2},
+	{7, 2, 2, 2, 2}, {7, 4, 4, 4, 7}, {5, 5, 5, 5, 2},
+	{2, 0, 2, 0, 2},
 	{0, 0, 0, 0, 0}};
 	int							row;
 	int							col;
 	int							i;
 
 	i = label_glyph_index(c);
-	if (i >= 16)
+	if (i >= 17)
 		return ;
 	row = -1;
 	while (++row < 5)
