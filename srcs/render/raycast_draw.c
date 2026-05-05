@@ -12,6 +12,10 @@
 
 #include "cub3d.h"
 
+/*
+** Bonus hook:
+** mandatory gets NULL here and falls back to NO/SO/WE/EA textures.
+*/
 static t_img	*pick_texture(t_app *app, t_ray ray)
 {
 	t_img	*bonus_tex;
@@ -50,6 +54,10 @@ static int	sample_texel(t_img *tex, int tex_x, int tex_y)
 	return (*(unsigned int *)pixel);
 }
 
+/*
+** Bonus hook:
+** mandatory door progress is 0, so this projection does not modify walls.
+*/
 static void	apply_door_projection(t_ray *ray, double *wall_x, char tile,
 	double progress)
 {

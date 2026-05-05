@@ -32,6 +32,10 @@ static void	free_config(t_app *app)
 	app->config.tex_ea = NULL;
 }
 
+/*
+** Bonus cleanup hooks:
+** mandatory links no-op destroy functions, bonus releases real bonus assets.
+*/
 static void	destroy_textures(t_app *app)
 {
 	destroy_img(app, &app->tex_no);

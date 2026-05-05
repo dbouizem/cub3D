@@ -12,6 +12,9 @@
 
 #include "cub3d.h"
 
+/*
+** Doors cannot block movement when doors are disabled.
+*/
 int	bonus_door_blocks_axis(t_app *app, double px, double py, int axis)
 {
 	(void)app;
@@ -21,6 +24,9 @@ int	bonus_door_blocks_axis(t_app *app, double px, double py, int axis)
 	return (0);
 }
 
+/*
+** Mandatory raycasts never pass through door panels.
+*/
 int	bonus_door_allows_passage_at(t_app *app, int x, int y, double hit)
 {
 	(void)app;
@@ -30,6 +36,9 @@ int	bonus_door_allows_passage_at(t_app *app, int x, int y, double hit)
 	return (0);
 }
 
+/*
+** There is no animated door to check against the player position.
+*/
 int	bonus_door_is_occupied(t_app *app, t_door *door)
 {
 	(void)app;

@@ -57,6 +57,11 @@ static int	init_frame_buffer(t_app *app)
 	return (0);
 }
 
+/*
+** Bonus hooks:
+** in mandatory mode these init calls return success without loading features.
+** In bonus mode, the Makefile links the real implementations.
+*/
 int	init_mlx(t_app *app)
 {
 	app->mlx_ptr = mlx_init();

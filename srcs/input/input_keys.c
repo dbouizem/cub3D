@@ -43,6 +43,10 @@ int	apply_resolution_preset(t_app *app, int keycode)
 	return (0);
 }
 
+/*
+** Bonus hooks:
+** F4, E, and SPACE do nothing in mandatory mode because they call no-op hooks.
+*/
 int	handle_keypress(int keycode, t_app *app)
 {
 	if (keycode == KEY_ESC)

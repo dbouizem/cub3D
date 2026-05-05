@@ -17,6 +17,10 @@ static int	is_door_tile(char c)
 	return (ft_strchr(BONUS_DOOR_SET, c) != NULL);
 }
 
+/*
+** Bonus hooks:
+** mandatory treats sprite and door checks as false through no-op functions.
+*/
 static int	is_walkable(t_app *app, double x, double y, int axis)
 {
 	int		map_x;

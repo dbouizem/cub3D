@@ -13,21 +13,9 @@
 #ifndef STRUCTS_BONUS_H
 # define STRUCTS_BONUS_H
 
-# define BONUS_HEADER_VERSION 1
+# include "defines_bonus.h"
 
-/*
-** Generic MLX image buffer.
-*/
-typedef struct s_img
-{
-	void	*img_ptr;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
+# define BONUS_HEADER_VERSION 1
 
 /*
 ** Doors are stored separately from the map so their animation state can change.
@@ -224,6 +212,8 @@ typedef struct s_sprite_proj
 
 /*
 ** Single bonus namespace embedded in t_app.
+** Mandatory builds keep this struct in t_app but link no-op bonus functions,
+** so these fields stay inactive unless the bonus target is built.
 */
 typedef struct s_bonus_ctx
 {

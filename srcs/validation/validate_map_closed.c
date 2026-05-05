@@ -34,6 +34,10 @@ static int	push_node(t_bfs_context *ctx, int x, int y)
 	return (0);
 }
 
+/*
+** Bonus hook:
+** mandatory considers only '1' solid; bonus can add solid door/wall symbols.
+*/
 static int	visit_neighbor(t_bfs_context *ctx, int nx, int ny)
 {
 	char	cell;

@@ -12,6 +12,10 @@
 
 #include "cub3d.h"
 
+/*
+** Bonus hook:
+** mandatory accepts only "01NSEW "; bonus may add extra map symbols.
+*/
 static int	is_valid_char(char c)
 {
 	if (ft_strchr("01NSEW ", c) != NULL)

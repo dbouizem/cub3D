@@ -34,6 +34,10 @@ static int	create_frame_buffer(t_app *app)
 	return (0);
 }
 
+/*
+** Bonus hooks:
+** mandatory only recreates the main frame; bonus also recreates retro/sprite data.
+*/
 static int	recreate_render_targets(t_app *app)
 {
 	destroy_img_local(app, &app->frame);

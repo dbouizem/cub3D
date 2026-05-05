@@ -12,11 +12,17 @@
 
 #include "cub3d.h"
 
+/*
+** Mandatory mode has no sprite layer to draw over the walls.
+*/
 void	bonus_draw_sprites(t_app *app)
 {
 	(void)app;
 }
 
+/*
+** No map character is treated as a sprite in mandatory mode.
+*/
 int	bonus_is_sprite_tile(char c)
 {
 	(void)c;

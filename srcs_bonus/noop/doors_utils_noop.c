@@ -12,12 +12,18 @@
 
 #include "cub3d.h"
 
+/*
+** No tile is considered a door in mandatory mode.
+*/
 int	bonus_is_door_tile(char c)
 {
 	(void)c;
 	return (0);
 }
 
+/*
+** Shared map accessor: outside or missing cells are treated as spaces.
+*/
 char	bonus_map_cell_at(t_app *app, int x, int y)
 {
 	int	len;

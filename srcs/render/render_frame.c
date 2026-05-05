@@ -6,12 +6,16 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:55:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/16 23:36:45 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/05/05 01:23:50 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
+** Bonus hook:
+** apply_flat_shading returns the original color in mandatory mode.
+*/
 static void	draw_background(t_app *app)
 {
 	int	x;
@@ -62,6 +66,11 @@ static void	update_frame_timing(t_app *app)
 	app->frame_count++;
 }
 
+/*
+** Bonus hooks:
+** doors, HUD, pickups, sprites, minimap, and retro rendering are no-op in
+** mandatory mode; bonus mode replaces them with the real systems.
+*/
 int	draw_frame(t_app *app)
 {
 	t_img	saved_frame;

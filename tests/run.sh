@@ -103,6 +103,37 @@ run_expect_exit "validation unreachable" 1 "$BIN" "$ROOT_DIR/tests/validation/un
 run_expect_exit "validation open internal space" 1 "$BIN" \
   "$ROOT_DIR/tests/validation/open_internal_space.cub"
 
+# Mandatory must reject bonus-only map symbols.
+cat > "$TMP_DIR/bonus_door_char.cub" <<MAP
+NO $ROOT_DIR/textures/mandatory/no.xpm
+SO $ROOT_DIR/textures/mandatory/so.xpm
+WE $ROOT_DIR/textures/mandatory/we.xpm
+EA $ROOT_DIR/textures/mandatory/ea.xpm
+F 100,100,100
+C 50,50,50
+
+11111
+1N0A1
+11111
+MAP
+run_expect_exit "validation rejects bonus door char" 1 "$BIN" \
+  "$TMP_DIR/bonus_door_char.cub"
+
+cat > "$TMP_DIR/bonus_sprite_char.cub" <<MAP
+NO $ROOT_DIR/textures/mandatory/no.xpm
+SO $ROOT_DIR/textures/mandatory/so.xpm
+WE $ROOT_DIR/textures/mandatory/we.xpm
+EA $ROOT_DIR/textures/mandatory/ea.xpm
+F 100,100,100
+C 50,50,50
+
+11111
+1N0*1
+11111
+MAP
+run_expect_exit "validation rejects bonus sprite char" 1 "$BIN" \
+  "$TMP_DIR/bonus_sprite_char.cub"
+
 # Issue 3: init / mlx / texture loading / color bounds.
 run_expect_running "init color bounds 0/255" \
   "$ROOT_DIR/tests/init/ok_color_bounds.cub"

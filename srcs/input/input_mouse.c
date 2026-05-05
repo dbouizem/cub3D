@@ -25,6 +25,10 @@ static void	rotate_mouse(t_app *app, double angle)
 	app->plane_y = old_plane_x * sin(angle) + app->plane_y * cos(angle);
 }
 
+/*
+** Bonus hooks:
+** mouse weapon/minimap controls are ignored while retro bonus mode is disabled.
+*/
 int	handle_mouse_press(int button, int x, int y, t_app *app)
 {
 	(void)x;
@@ -48,6 +52,10 @@ int	handle_mouse_press(int button, int x, int y, t_app *app)
 	return (0);
 }
 
+/*
+** Bonus hook:
+** mouse look is disabled in mandatory mode because app->bonus.retro.enabled is 0.
+*/
 int	handle_mouse_move(int x, int y, t_app *app)
 {
 	(void)y;
@@ -64,6 +72,10 @@ int	handle_mouse_move(int x, int y, t_app *app)
 	return (0);
 }
 
+/*
+** Bonus hook:
+** mandatory never applies mouse rotation because the bonus flag stays disabled.
+*/
 void	apply_mouse_look(t_app *app)
 {
 	double	angle;

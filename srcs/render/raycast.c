@@ -38,6 +38,10 @@ static void	setup_ray(t_app *app, t_ray *r, int x)
 		r->side_y = (r->map_y + 1.0 - app->player.y) * r->delta_y;
 }
 
+/*
+** Bonus hooks:
+** mandatory treats only '1' as solid and has no doors.
+*/
 static int	hit_solid_cell(t_app *app, t_ray *r)
 {
 	double	dist;
@@ -106,6 +110,10 @@ static t_ray	cast_ray(t_app *app, int x)
 	return (r);
 }
 
+/*
+** Bonus hook:
+** mandatory does not store sprite depth; bonus uses it to sort sprites.
+*/
 int	raycast_scene(t_app *app)
 {
 	int		x;

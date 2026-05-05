@@ -13,10 +13,11 @@
 #ifndef CUB3D_BONUS_H
 # define CUB3D_BONUS_H
 
+# include "structs.h"
+
 typedef struct s_app	t_app;
-typedef struct s_img	t_img;
 typedef struct s_ray	t_ray;
-typedef struct s_door	t_door;
+typedef struct s_player	t_player;
 
 /*
 ** Retro framebuffer, minimap, and shading.

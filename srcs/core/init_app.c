@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_app.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/31 17:23:16 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/05 05:20:00 by brrr1            ###   ########.fr       */
+/*   Updated: 2026/04/29 16:14:45 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ static void	init_defaults(t_app *app)
 	app->plane_y = 0.0;
 }
 
+/*
+** Bonus state is initialized here so shared code can access app->bonus.
+** In mandatory mode, these values stay inactive and the bonus hooks are no-op.
+*/
 static void	init_bonus_state(t_app *app)
 {
 	app->bonus.retro.enabled = 0;

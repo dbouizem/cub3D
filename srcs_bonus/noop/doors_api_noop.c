@@ -12,17 +12,26 @@
 
 #include "cub3d.h"
 
+/*
+** Door state is not allocated in mandatory mode.
+*/
 int	bonus_doors_init(t_app *app)
 {
 	(void)app;
 	return (0);
 }
 
+/*
+** Mandatory mode has no animated doors to update each frame.
+*/
 void	bonus_doors_update(t_app *app)
 {
 	(void)app;
 }
 
+/*
+** Mandatory mode has no door array to free.
+*/
 void	bonus_doors_shutdown(t_app *app)
 {
 	(void)app;

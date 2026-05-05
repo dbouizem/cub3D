@@ -12,6 +12,9 @@
 
 #include "cub3d.h"
 
+/*
+** The minimap is a bonus feature, so mandatory mode draws nothing here.
+*/
 void	bonus_draw_minimap(t_app *app)
 {
 	(void)app;

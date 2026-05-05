@@ -62,6 +62,10 @@ int	starts_with_one_id(const char *line, char id)
 	return (1);
 }
 
+/*
+** Bonus hook:
+** mandatory rejects bonus map symbols because bonus_is_valid_map_char is false.
+*/
 int	is_map_like_line(const char *line)
 {
 	int	i;
