@@ -30,6 +30,14 @@ void	bonus_pickups_shutdown(t_app *app)
 }
 
 /*
+** Pickup animation and collection are disabled in mandatory mode.
+*/
+void	bonus_pickups_update(t_app *app)
+{
+	(void)app;
+}
+
+/*
 ** There are no pickups to collect in mandatory mode.
 */
 int	bonus_pickup_collect(t_app *app, t_pickup *pickup)

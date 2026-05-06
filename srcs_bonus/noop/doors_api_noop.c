@@ -36,3 +36,12 @@ void	bonus_doors_shutdown(t_app *app)
 {
 	(void)app;
 }
+
+/*
+** No tile is considered a door in mandatory mode.
+*/
+int	bonus_is_door_tile(char c)
+{
+	(void)c;
+	return (0);
+}

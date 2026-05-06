@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 06:00:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/05/03 23:16:11 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/05/06 14:57:47 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,6 @@
 # include "structs_bonus.h"
 
 typedef unsigned long	t_size;
-
-/*
-** Generic MLX image buffer shared by mandatory and bonus code.
-** img_ptr is the MLX image handle, addr is the raw pixel memory.
-** width/height are in pixels, bpp is bits per pixel, line_len is the
-** byte size of one image row, and endian describes byte order.
-*/
-typedef struct s_img
-{
-	void	*img_ptr;
-	char	*addr;
-	int		width;
-	int		height;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
-
 
 /*
 ** Player state read from the map.

@@ -12,15 +12,10 @@
 
 NAME  = cub3D
 BONUS_NAME = cub3D_bonus
-ASAN_NAME = cub3D_asan
 
 CC = cc
 LIBFT_INC = libft/includes
 CFLAGS = -Wall -Wextra -Werror -Iinclude -Iminilibx -I$(LIBFT_INC)
-SAN_FLAGS = -fsanitize=address,undefined -fno-omit-frame-pointer
-SAN_CFLAGS = $(CFLAGS) -g3 $(SAN_FLAGS)
-SAN_LDFLAGS = $(LDFLAGS) $(SAN_FLAGS)
-
 OBJ_DIR = obj
 MLX_DIR = minilibx
 LIBFT_DIR = libft
@@ -67,22 +62,18 @@ SRC_INPUT = \
 	srcs/input/rotation.c
 
 SRC_TOOLS = \
-	srcs/tools/error.c \
-	srcs/tools/memory.c \
-	srcs/tools/image.c
+	srcs/tools/utils.c
 
 BONUS_NOOP_SRCS = \
-	srcs_bonus/noop/api_noop.c \
-	srcs_bonus/noop/hud_draw_noop.c \
-	srcs_bonus/noop/minimap_noop.c \
-	srcs_bonus/noop/levels_api_noop.c \
+	srcs_bonus/noop/retro_noop.c \
+	srcs_bonus/noop/shading_noop.c \
+	srcs_bonus/noop/hud_noop.c \
+	srcs_bonus/noop/levels_map_noop.c \
 	srcs_bonus/noop/pickups_noop.c \
 	srcs_bonus/noop/sprites_noop.c \
 	srcs_bonus/noop/sprites_query_noop.c \
-	srcs_bonus/noop/sprites_hud_noop.c \
 	srcs_bonus/noop/walls_noop.c \
 	srcs_bonus/noop/doors_api_noop.c \
-	srcs_bonus/noop/doors_utils_noop.c \
 	srcs_bonus/noop/doors_logic_noop.c \
 	srcs_bonus/noop/doors_query_noop.c
 
@@ -91,15 +82,13 @@ MANDATORY_SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOO
 BONUS_SRCS = \
 	srcs_bonus/retro/api.c \
 	srcs_bonus/retro/image.c \
-	srcs_bonus/retro/upscale.c \
+	srcs_bonus/retro/display.c \
 	srcs_bonus/retro/minimap.c \
 	srcs_bonus/retro/minimap_pixels.c \
-	srcs_bonus/retro/minimap_render.c \
 	srcs_bonus/retro/shading.c \
 	srcs_bonus/retro/flat_shading.c \
 	srcs_bonus/retro/walls_rules.c \
 	srcs_bonus/retro/walls_core.c \
-	srcs_bonus/retro/walls_door_pick.c \
 	srcs_bonus/retro/walls_anim_pick.c \
 	srcs_bonus/retro/walls_symbol_pick.c \
 	srcs_bonus/retro/walls_io.c \
@@ -191,7 +180,7 @@ clean:
 
 fclean: clean
 	@echo "$(RED)Cleaning...$(RESET)"
-	@rm -f $(NAME) $(BONUS_NAME) $(ASAN_NAME)
+	@rm -f $(NAME) $(BONUS_NAME)
 	@$(MAKE) -C $(LIBFT_DIR) fclean --no-print-directory > /dev/null 2>&1
 	@$(MAKE) -C $(MLX_DIR) clean --no-print-directory > /dev/null 2>&1
 	@echo "$(GREEN)✓ All cleaned.$(RESET)"
@@ -208,12 +197,4 @@ test: all
 test_bonus: bonus
 	@./tests/run_bonus.sh ./$(BONUS_NAME)
 
-ci:
-	@$(MAKE) fclean --no-print-directory
-	@$(MAKE) all --no-print-directory
-	@$(MAKE) test --no-print-directory
-
-asan:
-	@$(MAKE) CFLAGS="$(SAN_CFLAGS)" LDFLAGS="$(SAN_LDFLAGS)" OBJ_DIR=obj_asan NAME="$(ASAN_NAME)" all --no-print-directory
-
-.PHONY: all bonus clean fclean re rebonus test test_bonus ci asan
+.PHONY: all bonus clean fclean re rebonus test test_bonus

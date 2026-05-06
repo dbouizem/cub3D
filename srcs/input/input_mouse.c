@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse.c                                            :+:      :+:    :+:   */
+/*   input_mouse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 13:10:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/09 13:10:00 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:19:04 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	handle_mouse_press(int button, int x, int y, t_app *app)
 
 /*
 ** Bonus hook:
-** mouse look is disabled in mandatory mode because app->bonus.retro.enabled is 0.
+** mouse look is disabled in mandatory mode
+** because app->bonus.retro.enabled is 0.
 */
 int	handle_mouse_move(int x, int y, t_app *app)
 {

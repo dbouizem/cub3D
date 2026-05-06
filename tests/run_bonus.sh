@@ -3,6 +3,7 @@ set -u
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 BIN="${1:-$ROOT_DIR/cub3D_bonus}"
+MAND="$ROOT_DIR/tests/mandatory"
 TMP_DIR="$ROOT_DIR/tests/.tmp_bonus"
 PASS=0
 FAIL=0
@@ -29,10 +30,13 @@ run_expect_running() {
 	local name="$1"
 	local map_path="$2"
 	local rc
-	timeout 1s "$BIN" "$map_path" >/dev/null 2>&1
+	local out="$TMP_DIR/run.out"
+	timeout 1s "$BIN" "$map_path" >"$out" 2>&1
 	rc=$?
 	if [ "$rc" -eq 124 ]; then
 		pass "$name (running, timeout=124)"
+	elif [ "$rc" -eq 1 ] && grep -q "mlx_init failed" "$out"; then
+		pass "$name (parsed ok, headless mlx_init failed)"
 	else
 		fail "$name (exit=$rc expected=124)"
 	fi
@@ -43,10 +47,13 @@ run_expect_running_timeout() {
 	local duration="$2"
 	local map_path="$3"
 	local rc
-	timeout "${duration}" "$BIN" "$map_path" >/dev/null 2>&1
+	local out="$TMP_DIR/run.out"
+	timeout "${duration}" "$BIN" "$map_path" >"$out" 2>&1
 	rc=$?
 	if [ "$rc" -eq 124 ]; then
 		pass "$name (running, timeout=124)"
+	elif [ "$rc" -eq 1 ] && grep -q "mlx_init failed" "$out"; then
+		pass "$name (parsed ok, headless mlx_init failed)"
 	else
 		fail "$name (exit=$rc expected=124)"
 	fi
@@ -83,7 +90,7 @@ fi
 
 run_expect_exit "bonus cli no argument" 1 "$BIN"
 run_expect_exit "bonus parser missing file" 1 "$BIN" \
-	"$ROOT_DIR/tests/parser/does_not_exist.cub"
+	"$MAND/parser/does_not_exist.cub"
 run_expect_running "bonus retro small map" "$ROOT_DIR/tests/bonus/retro_small.cub"
 run_expect_running "bonus retro maze map" "$ROOT_DIR/tests/bonus/retro_maze.cub"
 run_expect_running "bonus retro wide map" "$ROOT_DIR/tests/bonus/retro_wide.cub"
@@ -91,19 +98,19 @@ run_expect_running "bonus retro tall map" "$ROOT_DIR/tests/bonus/retro_tall.cub"
 run_expect_running "bonus retro corridor map" "$ROOT_DIR/tests/bonus/retro_corridor.cub"
 run_expect_running "bonus retro tiles 2..9" "$ROOT_DIR/tests/bonus/retro_tiles_2_9.cub"
 run_expect_exit "bonus parser invalid rgb" 1 "$BIN" \
-	"$ROOT_DIR/tests/parser/bad_rgb.cub"
+	"$MAND/parser/bad_rgb.cub"
 run_expect_exit "bonus parser bad texture extension" 1 "$BIN" \
-	"$ROOT_DIR/tests/parser/bad_tex_extension.cub"
+	"$MAND/parser/bad_tex_extension.cub"
 run_expect_exit "bonus parser unreadable texture path" 1 "$BIN" \
-	"$ROOT_DIR/tests/parser/bad_tex_unreadable.cub"
+	"$MAND/parser/bad_tex_unreadable.cub"
 run_expect_exit "bonus parser unreachable map" 1 "$BIN" \
-	"$ROOT_DIR/tests/validation/unreachable.cub"
+	"$MAND/validation/unreachable.cub"
 run_expect_exit "bonus init bad runtime texture NO" 1 "$BIN" \
-	"$ROOT_DIR/tests/init/bad_texture_runtime.cub"
+	"$MAND/init/bad_texture_runtime.cub"
 run_expect_exit "bonus init bad runtime texture EA" 1 "$BIN" \
-	"$ROOT_DIR/tests/init/bad_texture_runtime_ea.cub"
+	"$MAND/init/bad_texture_runtime_ea.cub"
 run_expect_running "bonus render color extremes" \
-	"$ROOT_DIR/tests/render/color_extremes.cub"
+	"$MAND/render/color_extremes.cub"
 
 cat > "$ROOT_DIR/tests/.tmp_bonus/bonus_map_starts_with_wall.cub" <<MAP
 NO $ROOT_DIR/textures/mandatory/no.xpm

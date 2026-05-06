@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 13:45:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/09 13:45:00 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:18:35 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static int	create_frame_buffer(t_app *app)
 
 /*
 ** Bonus hooks:
-** mandatory only recreates the main frame; bonus also recreates retro/sprite data.
+** mandatory only recreates the main frame;
+** bonus also recreates retro/sprite data.
 */
 static int	recreate_render_targets(t_app *app)
 {

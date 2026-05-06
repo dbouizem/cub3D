@@ -42,6 +42,35 @@ static t_img	*pick_bonus_wall(t_app *app, char tile)
 	return (&app->bonus.assets.walls[idx]);
 }
 
+static int	door_index(char c)
+{
+	const char	*set;
+	int			i;
+
+	set = BONUS_DOOR_SET;
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+t_img	*bonus_pick_door_texture(t_app *app, char tile)
+{
+	int	idx;
+
+	idx = door_index(tile);
+	if (idx < 0 || idx >= BONUS_DOOR_COUNT)
+		return (NULL);
+	if (!app->bonus.assets.doors[idx].img_ptr
+		|| !app->bonus.assets.doors[idx].addr)
+		return (NULL);
+	return (&app->bonus.assets.doors[idx]);
+}
+
 t_img	*bonus_pick_wall_texture(t_app *app, char tile)
 {
 	t_img	*sym;

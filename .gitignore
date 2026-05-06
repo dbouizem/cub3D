@@ -1,13 +1,10 @@
 # Build outputs
 cub3D
 cub3D_bonus
-cub3D_asan
-chocolate-doom/
 
 # Object files
 obj/
 obj_bonus/
-obj_asan/
 
 # Common artifacts
 *.o
@@ -29,7 +26,6 @@ libft/objs/
 
 # MiniLibX generated artifacts
 minilibx/obj/
-minilibx/obj_asan/
 minilibx/libmlx.a
 minilibx/libmlx_Linux.a
 minilibx/Makefile.gen

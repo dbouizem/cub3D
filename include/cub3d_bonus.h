@@ -26,6 +26,7 @@ int				retro_init(t_app *app);
 int				retro_begin(t_app *app, t_img *saved_frame);
 int				retro_render(t_app *app, t_img *saved_frame);
 void			retro_shutdown(t_app *app);
+int				bonus_apply_resolution_preset(t_app *app, int keycode);
 int				retro_init_img(t_app *app, t_img *img, int width, int height);
 void			retro_reset_img(t_img *img);
 void			retro_destroy_img(t_app *app, t_img *img);

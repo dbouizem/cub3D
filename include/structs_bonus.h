@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 10:25:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/06 10:25:00 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/05/05 14:22:17 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@
 # include "defines_bonus.h"
 
 # define BONUS_HEADER_VERSION 1
+
+/*
+** Generic MLX image buffer shared by mandatory and bonus code.
+** img_ptr is the MLX image handle, addr is the raw pixel memory.
+** width/height are in pixels, bpp is bits per pixel, line_len is the
+** byte size of one image row, and endian describes byte order.
+*/
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
 
 /*
 ** Doors are stored separately from the map so their animation state can change.

@@ -34,8 +34,8 @@ int	retro_init(t_app *app)
 	retro_reset_img(&app->bonus.retro.out);
 	retro_reset_img(&app->bonus.retro.minimap);
 	app->bonus.retro.enabled = 0;
-	if (retro_init_img(app, &app->bonus.retro.fb,
-			BONUS_RENDER_W, BONUS_RENDER_H) != 0)
+	if (retro_init_img(app, &app->bonus.retro.fb, app->win_w,
+			app->win_h) != 0)
 		return (error_put(BONUS_WARN_FB_INIT), 0);
 	if (retro_init_img(app, &app->bonus.retro.out, app->win_w,
 			app->win_h) != 0)
@@ -56,7 +56,7 @@ int	retro_begin(t_app *app, t_img *saved_frame)
 	if (!saved_frame || !retro_ready(app))
 		return (0);
 	*saved_frame = app->frame;
-	app->frame = app->bonus.retro.fb;
+	app->frame = app->bonus.retro.out;
 	return (1);
 }
 
@@ -64,7 +64,6 @@ int	retro_render(t_app *app, t_img *saved_frame)
 {
 	if (!saved_frame || !retro_ready(app))
 		return (0);
-	retro_upscale_to_out(app);
 	app->frame = *saved_frame;
 	return (1);
 }

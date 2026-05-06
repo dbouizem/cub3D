@@ -99,7 +99,6 @@ int		close_window(t_app *app);
 void	update_player_input(t_app *app);
 void	apply_mouse_look(t_app *app);
 int		resize_window(t_app *app, int w, int h, int recreate_window);
-int		apply_resolution_preset(t_app *app, int keycode);
 void	move_with_collision(t_app *app, double dx, double dy);
 void	move_forward(t_app *app);
 void	move_backward(t_app *app);
