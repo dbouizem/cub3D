@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bbeceiro <bbeceiro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/31 17:00:15 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/06 11:28:08 by brrr1            ###   ########.fr       */
+/*   Created: 2026/05/07 14:28:23 by bbeceiro          #+#    #+#             */
+/*   Updated: 2026/05/07 14:28:26 by bbeceiro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ static int	start_game_loop(t_app *app)
 	mlx_loop_hook(app->mlx_ptr, (int (*)())draw_frame, app);
 	mlx_loop(app->mlx_ptr);
 	return (0);
+}
+
+static int	wrapper_keypress(void)
+{
+
 }
 
 int	main(int argc, char **argv)
