@@ -17,6 +17,11 @@ The repository is split between mandatory code in `srcs/` and bonus-only code
 in `srcs_bonus/`. Mandatory mode stays isolated through no-op bonus API files,
 while `make bonus` links the real bonus systems.
 
+## Documentation
+
+Project documentation is available here:
+[cub3D documentation](https://cub3d.djihane-bouizem.workers.dev/en/).
+
 ## Features
 
 - Mandatory raycasting renderer with one texture per wall direction.
