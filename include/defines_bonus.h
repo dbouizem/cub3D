@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/06 10:25:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/12 04:55:39 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/05/07 10:27:27 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@
 /*
 ** Layout
 */
-# define BONUS_MINIMAP_TILE	5
-# define BONUS_MINIMAP_RADIUS	8
+# define BONUS_MINIMAP_TILE	7
+# define BONUS_MINIMAP_RADIUS	10
 # define BONUS_MINIMAP_PAD	8
 # define BONUS_MINIMAP_RING_THICKNESS	3
 

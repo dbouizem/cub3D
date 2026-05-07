@@ -6,7 +6,7 @@
 /*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 12:00:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/17 01:09:20 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/05/07 11:25:47 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,22 @@ static void	draw_right_hud(t_app *app, t_img *img, int bar_y)
 	int	table_x;
 	int	score_x;
 	int	armor_x;
+	int	center_end;
 
 	table_x = img->width - 40 - 188;
 	score_x = table_x - 40 - 96;
 	armor_x = score_x - 10 - 96;
+	center_end = img->width / 2 + 92;
+	if (armor_x < center_end + 12)
+	{
+		score_x = img->width - 40 - 96;
+		armor_x = score_x - 10 - 96;
+		draw_stat_box(img, (t_rect){armor_x, bar_y + 8, 96,
+			BONUS_HUD_BAR_H - 16}, "ARMOR", app->bonus.stats.armor);
+		draw_stat_box(img, (t_rect){score_x, bar_y + 8, 96,
+			BONUS_HUD_BAR_H - 16}, "SCORE", app->bonus.stats.score);
+		return ;
+	}
 	draw_stat_box(img, (t_rect){armor_x, bar_y + 8, 96,
 		BONUS_HUD_BAR_H - 16}, "ARMOR", app->bonus.stats.armor);
 	draw_stat_box(img, (t_rect){score_x, bar_y + 8, 96,
