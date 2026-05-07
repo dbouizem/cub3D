@@ -14,17 +14,21 @@
 
 static void	bind_window_hooks(t_app *app)
 {
-	mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0, handle_keypress, app);
-	mlx_hook(app->win_ptr, EVENT_KEYRELEASE, 1L << 1, handle_keyrelease, app);
-	mlx_hook(app->win_ptr, EVENT_BUTTONPRESS, 1L << 2, handle_mouse_press, app);
-	mlx_hook(app->win_ptr, EVENT_MOUSEMOVE, 1L << 6, handle_mouse_move, app);
-	mlx_hook(app->win_ptr, EVENT_DESTROY, 0, close_window, app);
+	mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0,
+		(int (*)())handle_keypress, app);
+	mlx_hook(app->win_ptr, EVENT_KEYRELEASE, 1L << 1,
+		(int (*)())handle_keyrelease, app);
+	mlx_hook(app->win_ptr, EVENT_BUTTONPRESS, 1L << 2,
+		(int (*)())handle_mouse_press, app);
+	mlx_hook(app->win_ptr, EVENT_MOUSEMOVE, 1L << 6,
+		(int (*)())handle_mouse_move, app);
+	mlx_hook(app->win_ptr, EVENT_DESTROY, 0, (int (*)())close_window, app);
 }
 
 static int	start_game_loop(t_app *app)
 {
 	bind_window_hooks(app);
-	mlx_loop_hook(app->mlx_ptr, draw_frame, app);
+	mlx_loop_hook(app->mlx_ptr, (int (*)())draw_frame, app);
 	mlx_loop(app->mlx_ptr);
 	return (0);
 }
