@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: brrr1 <brrr1@student.42.fr>                +#+  +:+       +#+         #
+#    By: dbouizem <dbouizem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/31 06:20:52 by dbouizem          #+#    #+#              #
-#    Updated: 2026/04/14 16:50:18 by brrr1            ###   ########.fr        #
+#    Updated: 2026/05/07 17:41:52 by dbouizem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,11 +67,11 @@ SRCS = $(SRC_CORE) $(SRC_PARSING) $(SRC_RENDER) $(SRC_INPUT) $(SRC_TOOLS)
 
 OBJS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(SRCS))
 
-RED = \033[1;31m
-GREEN = \033[1;32m
-YELLOW = \033[1;33m
-CYAN = \033[1;36m
-RESET = \033[0m
+# RED = \033[1;31m
+# GREEN = \033[1;32m
+# YELLOW = \033[1;33m
+# CYAN = \033[1;36m
+# RESET = \033[0m
 
 all: $(NAME)
 
