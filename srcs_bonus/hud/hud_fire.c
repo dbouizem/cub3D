@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hud_fire.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbouizem <djihane.bouizem@gmail.com>       +#+  +:+       +#+        */
+/*   By: dbouizem <dbouizem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 12:00:00 by dbouizem          #+#    #+#             */
-/*   Updated: 2026/04/11 12:00:00 by dbouizem         ###   ########.fr       */
+/*   Updated: 2026/05/07 18:27:16 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,10 @@ static int	try_hit_pickup(t_app *app, double sx, double sy)
 static void	handle_weapon_hit(t_app *app, double sx, double sy)
 {
 	char	cell;
-	t_door	*door;
 
 	cell = bonus_map_cell_at(app, (int)floor(sx), (int)floor(sy));
 	if (bonus_is_door_tile(cell))
-	{
-		door = bonus_find_door(app, (int)floor(sx), (int)floor(sy));
-		if (door)
-			bonus_toggle_door_state(app, door);
 		return ;
-	}
 }
 
 static void	bonus_weapon_hitscan(t_app *app)
