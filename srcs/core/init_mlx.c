@@ -26,7 +26,8 @@ int	init_mlx(t_app *app)
 			app->win_h, "cub3D");
 	if (!app->win_ptr)
 		return (error_put("Error\nmlx_new_window failed\n"), 1);
-	mlx_hook(app->win_ptr, EVENT_KEYRELEASE, 1L << 1, key_release, app);
+	mlx_hook(app->win_ptr, EVENT_KEYRELEASE, 1L << 1,
+		(int (*)())key_release, app);
 	app->frame.img_ptr = mlx_new_image(app->mlx_ptr, app->win_w, app->win_h);
 	if (!app->frame.img_ptr)
 		return (error_put("Error\nmlx_new_image failed\n"), 1);
