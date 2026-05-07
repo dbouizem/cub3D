@@ -14,17 +14,11 @@
 
 static int	start_game_loop(t_app *app)
 {
-	mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0,
-		(int (*)())key_press, app);
-	mlx_hook(app->win_ptr, EVENT_DESTROY, 0, (int (*)())close_window, app);
-	mlx_loop_hook(app->mlx_ptr, (int (*)())draw_frame, app);
+	mlx_hook(app->win_ptr, EVENT_KEYPRESS, 1L << 0, key_press, app);
+	mlx_hook(app->win_ptr, EVENT_DESTROY, 0, close_window, app);
+	mlx_loop_hook(app->mlx_ptr, draw_frame, app);
 	mlx_loop(app->mlx_ptr);
 	return (0);
-}
-
-static int	wrapper_keypress(void)
-{
-
 }
 
 int	main(int argc, char **argv)
