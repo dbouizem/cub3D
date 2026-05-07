@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_closed.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeceiro <bbeceiro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dbouizem <dbouizem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/02 14:55:52 by bbeceiro             #+#    #+#             */
-/*   Updated: 2026/04/05 06:45:00 by bbeceiro            ###   ########.fr       */
+/*   Created: 2026/04/02 14:55:52 by bbeceiro          #+#    #+#             */
+/*   Updated: 2026/05/07 18:41:09 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

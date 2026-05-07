@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map_player.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeceiro <bbeceiro@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dbouizem <dbouizem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/03 00:00:00 by bbeceiro             #+#    #+#             */
-/*   Updated: 2026/04/03 00:00:00 by bbeceiro            ###   ########.fr       */
+/*   Created: 2026/04/03 00:00:00 by bbeceiro          #+#    #+#             */
+/*   Updated: 2026/05/07 18:41:21 by dbouizem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
