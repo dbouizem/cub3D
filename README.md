@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by brrr1, dbouizem.*
+*This project has been created as part of the 42 curriculum by bbeceiro, dbouizem.*
 
 # cub3D
 
@@ -450,7 +450,7 @@ there must be a no-op fallback under `srcs_bonus/noop/`.
 ### Team
 
 - dbouizem: https://github.com/dbouizem/
-- brrr1: https://github.com/Basurita-Bebe
+- bbeceiro: https://github.com/Basurita-Bebe
 
 ### AI Usage
 
