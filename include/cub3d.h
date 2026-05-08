@@ -62,6 +62,9 @@ int		validate_map(t_app *app, char **lines, int start);
 int		validate_player(t_app *app, char **lines, int start);
 int		validate_chars(t_app *app, char **lines, int start);
 int		is_open_cell(char c);
+int		is_validation_door(char cell);
+int		is_validation_wall(char cell);
+int		mark_validation_leak(t_bfs_context *ctx, char cell);
 void	init_directions(int *dx, int *dy);
 int		check_enclosure(t_app *app, char **lines, int start);
 int		init_bfs_context(t_bfs_context *ctx, t_app *app, char **lines,

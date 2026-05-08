@@ -45,6 +45,7 @@ SRC_PARSING = \
 	srcs/validation/validate_map_chars.c \
 	srcs/validation/validate_map_closed.c \
 	srcs/validation/validate_closed_setup.c \
+	srcs/validation/validate_closed_rules.c \
 	srcs/validation/validate_bfs.c
 
 SRC_RENDER = \

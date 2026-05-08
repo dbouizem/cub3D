@@ -34,43 +34,26 @@ static int	push_node(t_bfs_context *ctx, int x, int y)
 	return (0);
 }
 
-static int	is_validation_wall(char cell)
-{
-	if (ft_strchr(BONUS_DOOR_SET, cell) != NULL)
-		return (0);
-	return (bonus_is_solid_tile(cell));
-}
-
-static int	is_validation_door(char cell)
-{
-	return (ft_strchr(BONUS_DOOR_SET, cell) != NULL);
-}
-
 /*
 ** Bonus hook:
 ** mandatory considers only '1' solid; bonus can add solid door/wall symbols.
 */
-static int	visit_neighbor(t_bfs_context *ctx, int x, int y, int dir[2])
+static int	visit_neighbor(t_bfs_context *ctx, int x, int y, int i)
 {
 	char	cell;
+	int		dx[4];
+	int		dy[4];
 	int		nx;
 	int		ny;
 
-	nx = x + dir[0];
-	ny = y + dir[1];
+	init_directions(dx, dy);
+	nx = x + dx[i];
+	ny = y + dy[i];
 	if (nx < 0 || ny < 0 || nx >= ctx->width || ny >= ctx->height)
-	{
-		if (!is_validation_door(map_cell(ctx, x, y)))
-			ctx->leak = 1;
-		return (0);
-	}
+		return (mark_validation_leak(ctx, map_cell(ctx, x, y)));
 	cell = map_cell(ctx, nx, ny);
 	if (cell == ' ')
-	{
-		if (!is_validation_door(map_cell(ctx, x, y)))
-			ctx->leak = 1;
-		return (0);
-	}
+		return (mark_validation_leak(ctx, map_cell(ctx, x, y)));
 	if (is_validation_wall(cell) || ctx->visited[ny][nx] == '1')
 		return (0);
 	ctx->visited[ny][nx] = '1';
@@ -79,14 +62,10 @@ static int	visit_neighbor(t_bfs_context *ctx, int x, int y, int dir[2])
 
 static int	run_bfs(t_bfs_context *ctx)
 {
-	int	dx[4];
-	int	dy[4];
 	int	x;
 	int	y;
 	int	i;
-	int	dir[2];
 
-	init_directions(dx, dy);
 	ctx->visited[ctx->py][ctx->px] = '1';
 	if (push_node(ctx, ctx->px, ctx->py) != 0)
 		return (1);
@@ -98,9 +77,7 @@ static int	run_bfs(t_bfs_context *ctx)
 		i = 0;
 		while (i < 4)
 		{
-			dir[0] = dx[i];
-			dir[1] = dy[i];
-			if (visit_neighbor(ctx, x, y, dir) != 0)
+			if (visit_neighbor(ctx, x, y, i) != 0)
 				return (1);
 			i++;
 		}
