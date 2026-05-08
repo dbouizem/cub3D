@@ -1,0 +1,16 @@
+==74107== Memcheck, a memory error detector
+==74107== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==74107== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==74107== Command: /home/djh/Bureau/cub3D/cub3D /home/djh/Bureau/cub3D/tests/mandatory/edge/irregular_ok.cub
+==74107== 
+==74107== 
+==74107== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==74107== 
+==74107== HEAP SUMMARY:
+==74107==     in use at exit: 0 bytes in 0 blocks
+==74107==   total heap usage: 482 allocs, 482 frees, 132,220 bytes allocated
+==74107== 
+==74107== All heap blocks were freed -- no leaks are possible
+==74107== 
+==74107== For lists of detected and suppressed errors, rerun with: -s
+==74107== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

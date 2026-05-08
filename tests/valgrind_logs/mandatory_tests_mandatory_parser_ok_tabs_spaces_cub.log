@@ -1,0 +1,16 @@
+==74234== Memcheck, a memory error detector
+==74234== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==74234== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==74234== Command: /home/djh/Bureau/cub3D/cub3D /home/djh/Bureau/cub3D/tests/mandatory/parser/ok_tabs_spaces.cub
+==74234== 
+==74234== 
+==74234== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==74234== 
+==74234== HEAP SUMMARY:
+==74234==     in use at exit: 0 bytes in 0 blocks
+==74234==   total heap usage: 462 allocs, 462 frees, 133,416 bytes allocated
+==74234== 
+==74234== All heap blocks were freed -- no leaks are possible
+==74234== 
+==74234== For lists of detected and suppressed errors, rerun with: -s
+==74234== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

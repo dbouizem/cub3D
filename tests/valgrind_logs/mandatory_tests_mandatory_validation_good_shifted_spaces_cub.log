@@ -1,0 +1,18 @@
+==252== Memcheck, a memory error detector
+==252== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==252== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==252== Command: /home/djh/Bureau/cub3D/cub3D /home/djh/Bureau/cub3D/tests/mandatory/validation/good_shifted_spaces.cub
+==252== 
+Error
+mlx_init failed
+==252== 
+==252== FILE DESCRIPTORS: 3 open (3 std) at exit.
+==252== 
+==252== HEAP SUMMARY:
+==252==     in use at exit: 0 bytes in 0 blocks
+==252==   total heap usage: 49 allocs, 49 frees, 10,699 bytes allocated
+==252== 
+==252== All heap blocks were freed -- no leaks are possible
+==252== 
+==252== For lists of detected and suppressed errors, rerun with: -s
+==252== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
