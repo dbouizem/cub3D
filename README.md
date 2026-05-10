@@ -10,7 +10,7 @@
 
 
 > Raycasting engine inspired by Wolfenstein 3D.
- First-person 3D renderer from a 2D .cub map, built on MiniLibX/X11.[Full documentation](https://cub3d.djihane-bouizem.workers.dev/en/)
+ First-person 3D renderer from a 2D .cub map, built on MiniLibX/X11.  [Full documentation](https://cub3d.djihane-bouizem.workers.dev/en/)
 
 ![cub3D demo](assets/demo.gif)
 
